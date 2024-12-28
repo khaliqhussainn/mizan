@@ -128,3 +128,12 @@ More than just a clone, this project represents a journey of learning, innovatio
 [Insert Appropriate License Here]
 
 **Crafted with ❤️ by Passionate Developers**
+
+
+
+
+
+<!--  -->
+<!-- appwrite -->
+const client = new Client();
+client.setProject('676fbd32002376946429');

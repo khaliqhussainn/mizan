@@ -26,7 +26,6 @@ import {
   incrementQuantity,
   removeFromCart,
 } from "../redux/cartReducer/action";
-import axios from "axios";
 import Navbar from "../Components/Home/Navbar";
 import Footer from "../Components/Home/Footer";
 
@@ -37,72 +36,55 @@ export const Cart = () => {
   const { cartItems } = useSelector((store) => store.cartReducer);
 
   let saved = 0;
-  const getData = () => {
-    axios
-      .get(`https://lifestyle-mock-server-api.onrender.com/cart`)
-      .then((res) => {
-        dispatch(addToCart(res.data));
-      })
-      .catch((err) => {
-        console.log(err);
+
+  const handleAddToCart = (product) => {
+    const existingItem = cartItems.find((item) => item.id === product.id);
+
+    if (existingItem) {
+      // If the product already exists, increase its quantity
+      dispatch(incrementQuantity(product.id));
+    } else {
+      // If the product does not exist, add it
+      const newProduct = { ...product, quantity: 1 };
+      dispatch(addToCart([newProduct]));
+      toast({
+        title: `${product.title}`,
+        description: "Added to Cart",
+        status: "success",
+        duration: 2000,
+        position: "top",
+        isClosable: true,
       });
+    }
   };
 
   const handleDelete = (e) => {
     let { id, title } = e;
-    axios
-      .delete(`https://lifestyle-mock-server-api.onrender.com/cart/${id}`)
-      .then((res) => {
-        dispatch(removeFromCart(id));
-        toast({
-          title: `${title}`,
-          description: "Deleted from Cart",
-          status: "success",
-          duration: 2000,
-          position: "top",
-          isClosable: true,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(removeFromCart(id));
+    toast({
+      title: `${title}`,
+      description: "Deleted from Cart",
+      status: "success",
+      duration: 2000,
+      position: "top",
+      isClosable: true,
+    });
   };
 
-  const handleINC = (id, VAL) => {
-    console.log(id, VAL);
-    axios
-      .patch(`https://lifestyle-mock-server-api.onrender.com/cart/${id}`, {
-        quantity: VAL,
-      })
-      .then((res) => {
-        dispatch(incrementQuantity(id));
-        getData();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleINC = (id) => {
+    dispatch(incrementQuantity(id));
   };
 
-  const handleDEC = (id, VAL) => {
-    console.log(id, VAL);
-    axios
-      .patch(`https://lifestyle-mock-server-api.onrender.com/cart/${id}`, {
-        quantity: VAL,
-      })
-      .then((res) => {
-        dispatch(decrementQuantity(id));
-        getData();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const handleDEC = (id) => {
+    dispatch(decrementQuantity(id));
   };
 
   const getTotalPrice = () => {
     return cartItems.reduce((total, e) => total + e.price * e.quantity, 0);
   };
+
   useEffect(() => {
-    getData();
+    // No need to fetch data from API, as we are using Redux state
   }, []);
 
   return (
@@ -121,11 +103,7 @@ export const Cart = () => {
         <TableContainer width="99%">
           <Table variant="simple">
             <Thead width="99%">
-              <Tr
-                bg={"#555555"}
-                color={"white"}
-                justifyContent={"space-between"}
-              >
+              <Tr bg={"#555555"} color={"white"} justifyContent={"space-between"}>
                 <Th color={"white"}>ITEM DESCRIPTION</Th>
                 <Th color={"white"}>UNIT PRICE</Th>
                 <Th color={"white"}>QUANTITY</Th>
@@ -136,7 +114,6 @@ export const Cart = () => {
                 </Th>
               </Tr>
             </Thead>
-
             {cartItems.length === 0 ? (
               <Box padding={"100px"} textAlign={"center"}>
                 <Heading>Your Basket Is Empty</Heading>
@@ -144,29 +121,21 @@ export const Cart = () => {
             ) : (
               <Tbody>
                 {cartItems?.map((e) => {
-                  {
-                    saved =
-                      saved +
-                      (Math.floor(e.price) -
-                        Math.floor(e.price - (10 * e.price) / 100)) *
-                        e.quantity;
-                  }
+                  saved +=
+                    (Math.floor(e.price) -
+                      Math.floor(e.price - (10 * e.price) / 100)) *
+                    e.quantity;
                   return (
-                    <Tr
-                      key={e.id}
-                      fontSize={"12px"}
-                      justifyContent={"space-between"}
-                    >
+                    <Tr key={e.id} fontSize={"12px"} justifyContent={"space-between"}>
                       <Td fontSize={"12px"}>
-                        {" "}
                         <Image
                           width={"100px"}
                           height={"100px"}
                           src={e.image}
-                          alt="Dan Abramov"
+                          alt={e.title}
                         />
                         {e.brand}
-                        <br></br>
+                        <br />
                         {e.title}
                       </Td>
                       <Td>
@@ -174,17 +143,16 @@ export const Cart = () => {
                         <span textDecoration={"line-through"}>
                           Rs {Math.floor(e.price)}
                         </span>
-                        <br></br>
+                        <br />
                         <Text>Discounted Price</Text>
                         Rs {Math.floor(e.price - (10 * e.price) / 100)}
-                        <br></br>
                       </Td>
                       <Td>
                         <Button
                           isDisabled={e.quantity === 1}
                           variant={"outline"}
                           m={"2px"}
-                          onClick={() => handleDEC(e.id, e.quantity - 1)}
+                          onClick={() => handleDEC(e.id)}
                         >
                           -
                         </Button>
@@ -194,21 +162,19 @@ export const Cart = () => {
                         <Button
                           variant={"outline"}
                           m={"2px"}
-                          onClick={() => handleINC(e.id, e.quantity + 1)}
+                          onClick={() => handleINC(e.id)}
                         >
                           +
                         </Button>
                       </Td>
                       <Td>
                         Rs{" "}
-                        {Math.floor(e.price - (10 * e.price) / 100) *
-                          e.quantity}
+                        {Math.floor(e.price - (10 * e.price) / 100) * e.quantity}
                       </Td>
                       <Td>
                         <CloseIcon onClick={() => handleDelete(e)} />
                       </Td>
                       <Td>
-                        {" "}
                         Rs{" "}
                         {Math.floor(
                           e.price - Math.floor(e.price - (10 * e.price) / 100)
@@ -222,12 +188,7 @@ export const Cart = () => {
           </Table>
         </TableContainer>
         <Flex justifyContent={"space-between"} mt={8}>
-          {/* <Box width={"45%"}>
-              <Button variant={"outline"} float={"left"} onClick={handleEmpty}>
-                Empty Basket
-              </Button>
-            </Box> */}
-          <Box width={"45%"} border="1px solid #e8e8e8 ">
+          <Box width={"45%"} border="1px solid #e8e8e8">
             <Flex
               justifyContent={"space-between"}
               p="1rem"
@@ -258,8 +219,7 @@ export const Cart = () => {
                 TOTAL{" "}
               </Heading>
               <Heading as={"h6"} fontWeight="250">
-                {" "}
-                RS {getTotalPrice() - saved}
+                Rs {getTotalPrice() - saved}
               </Heading>
             </Flex>
             <Box float={"right"}>
@@ -281,7 +241,6 @@ export const Cart = () => {
                   }
                 }}
               >
-                {" "}
                 CheckOut
               </Button>
             </Box>
@@ -292,3 +251,5 @@ export const Cart = () => {
     </>
   );
 };
+
+export default Cart;

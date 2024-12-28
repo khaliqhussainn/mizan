@@ -9,7 +9,7 @@ import {
   VStack,
   Button,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HomeSlider from "../Components/Home/HomeSlider";
 import KidSlider from "../Components/Home/KidSlider";
 import MenSlider from "../Components/Home/MensSlider";
@@ -27,6 +27,7 @@ const Product = ({ src, description, price, clothType, brand }) => (
     overflow="hidden"
     p={4}
     boxShadow="md"
+    width={{ base: "100%", sm: "100%", md: "50%", lg: "20%" }}
   >
     <Image src={src} alt={description} />
     <VStack align="start" mt={4}>
@@ -71,10 +72,11 @@ function HomePage() {
           color={"white"}
           fontSize={{ base: "80%", sm: "100%", lg: "100%" }}
           position="absolute"
+          textAlign="center"
           top={{ base: "117px", sm: "115px", md: "142px", lg: "125px" }}
           left={{ base: "5%", sm: "27%", md: "30%", lg: "40%" }}
         >
-          New arrivals in mens and womens wear upto 30% off ❤️
+          New arrivals in mens and womens wear upto 30% off
         </Text>
       </Box>
 
@@ -114,6 +116,13 @@ function HomePage() {
           marginTop={{ base: 3, sm: 4, md: 6, lg: 7 }}
           gap="20px"
           flexWrap="wrap"
+          width={{ base: "100%", sm: "100%", md: "100%", lg: "100%" }}
+          justifyContent={{
+            base: "center",
+            sm: "center",
+            md: "none",
+            lg: "none",
+          }}
         >
           <Product
             src="https://lmsin.net/cdn-cgi/image/w=410,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-DesktopUberHP-OurBenefit1-22Feb2023.jpg"
@@ -129,15 +138,20 @@ function HomePage() {
             clothType="Polyester"
             brand="Brand B"
           />
-          <Box display={{ base: "none", sm: "none", md: "block", lg: "block" }}>
-            <Product
-              src="https://lmsin.net/cdn-cgi/image/w=410,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-DesktopUberHP-OurBenefit3-13Oct2022.jpg"
-              description="Product 3 Description"
-              price="49.99"
-              clothType="Silk"
-              brand="Brand C"
-            />
-          </Box>
+          <Product
+            src="https://lmsin.net/cdn-cgi/image/w=410,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-DesktopUberHP-OurBenefit3-13Oct2022.jpg"
+            description="Product 3 Description"
+            price="49.99"
+            clothType="Silk"
+            brand="Brand C"
+          />
+          <Product
+            src="https://lmsin.net/cdn-cgi/image/w=410,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-DesktopUberHP-OurBenefit3-13Oct2022.jpg"
+            description="Product 3 Description"
+            price="49.99"
+            clothType="Silk"
+            brand="Brand D"
+          />
         </Flex>
       </Box>
 
