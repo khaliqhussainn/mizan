@@ -1,5 +1,5 @@
-# 🛍️ Lifestyle Stores Clone | Ultimate Fashion Destination 👗
 
+<<<<<<< HEAD
 ## 🌟 Project Showcase: Reimagining Online Fashion Shopping
 
 ![Project Logo](https://github.com/deepakpatil26/spiffy-farm-6274/blob/main/src/Asssets/logo2.png)
@@ -137,3 +137,5 @@ More than just a clone, this project represents a journey of learning, innovatio
 <!-- appwrite -->
 const client = new Client();
 client.setProject('676fbd32002376946429');
+=======
+>>>>>>> 363e848cdd2fd238e572465661cfa6118b20ec67
