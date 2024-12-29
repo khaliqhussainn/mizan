@@ -4,10 +4,8 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { getwomens } from "../redux/MenReducer/action";
 import { Box, Text, Grid, Progress, Spinner } from "@chakra-ui/react";
 import Card from "../Components/Card";
-import Pagination1 from "../Components/Filter/Pagination1";
 import Navbar from "../Components/Home/Navbar";
 import Footer from "../Components/Home/Footer";
-import Menfilter from "../Components/Filter/Menfilter";
 
 export const Women = () => {
   const [searchParams] = useSearchParams();
@@ -52,7 +50,6 @@ export const Women = () => {
           New arrivals in womenswear upto 30% off ❤️
         </Text>
       </Box>
-      <Menfilter type={"women"} />
       {isLoading ? (
         <Box
           textAlign={"center"}
@@ -89,7 +86,6 @@ export const Women = () => {
             })}
         </Grid>
       )}
-      <Pagination1 />
       <Box mt={"30px"}>
         <Footer />
       </Box>
