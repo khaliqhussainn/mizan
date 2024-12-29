@@ -139,3 +139,22 @@ const client = new Client();
 client.setProject('676fbd32002376946429');
 =======
 >>>>>>> 363e848cdd2fd238e572465661cfa6118b20ec67
+
+
+
+// "registeredUser": [
+//     {
+//       "id": 1,
+//       "firstName": "Parul",
+//       "lastName": "Saini",
+//       "email": ***@***.***",
+//       "password": "1234"
+//     },
+//     {
+//       "firstName": "x",
+//       "lastName": "y",
+//       "email": ***@***.***",
+//       "password": "1234",
+//       "id": 2
+//     }
+//   ]

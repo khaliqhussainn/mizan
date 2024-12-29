@@ -1,43 +1,88 @@
-import { Box, Image, Text } from "@chakra-ui/react";
 import React, { Component } from "react";
 import Slider from "react-slick";
 import { IoIosArrowForward } from "react-icons/io";
+import "./style.css"; // Import the CSS file
+const Product = ({
+  src,
+  description,
+  price,
+  clothType,
+  brand,
+  onAddToCart,
+}) => (
+  <div className="trendProduct">
+    <img src={src} alt={description} />
+    <div className="product-details">
+      <p>
+        <strong>{brand}</strong>
+      </p>
+      <p>{description}</p>
+      <p>${price}</p>
+      <p>{clothType}</p>
+      <button
+        onClick={() =>
+          onAddToCart({ src, description, price, clothType, brand })
+        }
+      >
+        Add to Cart
+      </button>
+    </div>
+  </div>
+);
+
 const data = [
-  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget25-Common-Banner1-07March23A.jpg",
-  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget25-Common-Banner2-07March23A.jpg",
-  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget25-Common-Banner3-07March23A.jpg",
-  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget25-Common-Banner4-07March23A.jpg",
-  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget25-Common-Banner6-07March23A.jpg",
-  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget25-Common-Banner7-07March23A.jpg",
-  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget25-Common-Banner8-07March23A.jpg",
-  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget25-Common-Banner9-07March23A.jpg",
+  {
+    src: "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget20-Common-Banner1-10Mar23.jpg",
+    description: "Product 1 Description",
+    price: "29.99",
+    clothType: "Cotton",
+    brand: "Brand A",
+  },
+  {
+    src: "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget20-Common-Banner2-10Mar23.jpg",
+    description: "Product 2 Description",
+    price: "39.99",
+    clothType: "Polyester",
+    brand: "Brand B",
+  },
+  {
+    src: "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget20-Common-Banner3-10Mar23.jpg",
+    description: "Product 3 Description",
+    price: "49.99",
+    clothType: "Silk",
+    brand: "Brand C",
+  },
+  {
+    src: "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget20-Common-Banner4-10Mar23.jpg",
+    description: "Product 4 Description",
+    price: "59.99",
+    clothType: "Linen",
+    brand: "Brand D",
+  },
+  {
+    src: "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget20-Common-Banner5-10Mar23.jpg",
+    description: "Product 5 Description",
+    price: "69.99",
+    clothType: "Wool",
+    brand: "Brand E",
+  },
+  {
+    src: "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget20-Common-Banner6-10Mar23.jpg",
+    description: "Product 6 Description",
+    price: "79.99",
+    clothType: "Denim",
+    brand: "Brand F",
+  },
 ];
+
 function SampleNextArrow({ onClick }) {
   return (
-    <Box
-      fontSize={{ base: "20px", sm: "25px", md: "30px", lg: "30px" }}
-      padding={{
-        base: "2px 2px",
-        sm: "3px 5px",
-        md: "4px 8px",
-        lg: "5px 12px",
-      }}
-      borderRadius="50%"
-      color="black"
-      boxShadow="0 0 5px 3px #ccc"
-      display="flex"
-      width={{ base: "20px", sm: "30px", md: "40px", lg: "50px" }}
-      position="absolute"
-      top="45%"
-      right={"-5px"}
-      backgroundColor="white"
-      className="arrow arrow-right"
-      onClick={onClick}
-    >
+    <div className="arrow arrow-right" onClick={onClick}>
       <IoIosArrowForward />
-    </Box>
+    </div>
   );
 }
+
 export default class WomenSlider extends Component {
   render() {
     var settings = {
@@ -76,25 +121,25 @@ export default class WomenSlider extends Component {
       ],
     };
     return (
-      <Box marginTop={{ base: 6, sm: 7, md: 10, lg: 20 }}>
+      <div className="slider-container">
         <Slider {...settings}>
           {data.map((item, i) => {
             return (
-              <Box borderRadius={"20px"} key={i}>
-                <Image
-                  borderRadius={"20px"}
-                  width={"93%"}
-                  margin="auto"
-                  src={item}
+              <div key={i}>
+                <Product
+                  src={item.src}
+                  description={item.description}
+                  price={item.price}
+                  clothType={item.clothType}
+                  brand={item.brand}
+                  onAddToCart={this.props.handleAddToCart}
+                  
                 />
-                <Text fontWeight={"bold"} textAlign="center">
-                  Up To 50% Off
-                </Text>
-              </Box>
+              </div>
             );
           })}
         </Slider>
-      </Box>
+      </div>
     );
   }
 }

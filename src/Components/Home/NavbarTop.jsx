@@ -1,110 +1,45 @@
 import React from "react";
-import { Box, Divider, Flex } from "@chakra-ui/react";
 import {
   MdOutlineLocalShipping,
   MdOutlineAddToHomeScreen,
 } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
+import "./style.css";
 
 const NavbarTop = () => {
   return (
-    <Box bg={"black"} paddingTop={2} paddingBottom={2}>
-      <Flex
-        width="80%"
-        margin="auto"
-        justifyContent={"space-between"}
-        alignItems="center"
-      >
-        <Flex justifyContent={"space-around"} width="55%" alignItems="center">
-          <Flex _hover={{ cursor: "pointer" }}>
-            <MdOutlineLocalShipping fontSize={"20px"} color="white" />
-            <Box
-              className="topnavoffer"
-              fontFamily="sans-serif"
-              color={"white"}
-              fontWeight="500"
-              fontSize="15px"
-              pl="13px"
-            >
-              Free shipping
-            </Box>
-          </Flex>
-
-          <Flex _hover={{ cursor: "pointer" }}>
-            <MdOutlineAddToHomeScreen fontSize={"20px"} color="white" />
-            <Box
-              className="topnavoffer"
-              fontFamily="sans-serif"
-              color={"white"}
-              fontWeight="500"
-              fontSize="15px"
-              pl="13px"
-            >
-              Click & Collect
-            </Box>
-          </Flex>
-
-          <Flex _hover={{ cursor: "pointer" }}>
-            <FaHome fontSize={"20px"} color="white" />
-            <Box
-              className="topnavoffer"
-              fontFamily="sans-serif"
-              color={"white"}
-              fontWeight="500"
-              fontSize="15px"
-              pl="13px"
-            >
-              Return To Store
-            </Box>
-          </Flex>
-        </Flex>
-
-        <Flex justifyContent={"space-evenly"} width="35%" alignItems="center">
-          <Box _hover={{ cursor: "pointer" }}>
-            <Box
-              className="topnavoffer"
-              fontFamily="sans-serif"
-              color={"white"}
-              fontWeight="500"
-              fontSize="13px"
-              pl="13px"
-            >
-              Download Our App
-            </Box>
-          </Box>
-
-          <Divider h="15px" orientation="vertical" />
-
-          <Box _hover={{ cursor: "pointer" }}>
-            <Box
-              className="topnavoffer"
-              fontFamily="sans-serif"
-              color={"white"}
-              fontWeight="500"
-              fontSize="13px"
-              pl="13px"
-            >
-              Store Locator
-            </Box>
-          </Box>
-
-          <Divider h="15px" orientation="vertical" />
-
-          <Box _hover={{ cursor: "pointer" }}>
-            <Box
-              className="topnavoffer"
-              fontFamily="sans-serif"
-              color={"white"}
-              fontWeight="500"
-              fontSize="13px"
-              pl="13px"
-            >
-              Help
-            </Box>
-          </Box>
-        </Flex>
-      </Flex>
-    </Box>
+    <div className="navbar-top">
+      <div className="navbar-top-container">
+        <div className="navbar-top-left">
+          <div className="navbar-top-item">
+            <MdOutlineLocalShipping className="navbar-top-item-icon" />
+            <span className="navbar-top-item-text">Free shipping</span>
+          </div>
+          <div className="navbar-top-item">
+            <MdOutlineAddToHomeScreen className="navbar-top-item-icon" />
+            <span className="navbar-top-item-text">Click & Collect</span>
+          </div>
+          <div className="navbar-top-item">
+            <FaHome className="navbar-top-item-icon" />
+            <span className="navbar-top-item-text">Return To Store</span>
+          </div>
+        </div>
+        <div className="navbar-top-right">
+          <div className="navbar-top-item">
+            <span className="navbar-top-item-text">Download Our App</span>
+          </div>
+          <div className="navbar-top-divider"></div>
+          <div className="navbar-top-item">
+            <span className="navbar-top-item-text">Store Locator</span>
+          </div>
+          <div className="navbar-top-divider"></div>
+          <div className="navbar-top-item">
+            <span className="navbar-top-item-text">Help</span>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
+
 export default NavbarTop;

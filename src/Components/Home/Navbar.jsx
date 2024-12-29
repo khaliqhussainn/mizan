@@ -1,27 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import {
-  Box,
-  Flex,
-  Image,
-  Popover,
-  Text,
-  MenuGroup,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  Menu,
-  useToast,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Button,
-} from "@chakra-ui/react";
-
 import React, { useEffect } from "react";
 import { BsBag, BsPerson } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -35,14 +11,15 @@ import { logout } from "../../redux/authReducer/action";
 import axios from "axios";
 import { addToCart } from "../../redux/cartReducer/action";
 import Cart from "../../pages/Cart"; // Import the Cart component
+import NavbarTop from "./NavbarTop"; // Import the NavbarTop component
+import "./style.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const toast = useToast();
-  const { isOpen, onOpen, onClose } = useDisclosure();
   let { isAuth, afterLoginUser } = useSelector((state) => state.AuthReducer);
   const { cartItems } = useSelector((store) => store.cartReducer);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   useEffect(() => {
     axios
@@ -55,176 +32,90 @@ const Navbar = () => {
       });
   }, [cartItems]);
 
+  const handleLogout = () => {
+    dispatch(logout());
+    alert("User Logout Successfully. Come Back Again Soon");
+  };
+
   return (
-    <Box
-      position={"sticky"}
-      top="0"
-      zIndex={"100"}
-      bg="#f7f8f7"
-      width="100%"
-      boxShadow=" 0px 7px 7px -5px rgba(170, 159, 170, 0.2)"
-    >
-      <Flex
-        height={{ base: "3.2rem", md: "4.94rem" }}
-        px={{ base: "1rem", md: "3rem" }}
-        justify={"space-between"}
-        gap={{ base: "0.5rem", sm: "1rem", md: "2rem", lg: "2rem" }}
-        align={"center"}
-        width="90%"
-        margin="auto"
-      >
-        <Box display={{ lg: "none" }}>
-          <SideBar />
-        </Box>
+    <div>
+      <NavbarTop />
+      <div className="navbar">
+        <div className="navbar-container">
+          <div className="sidebar">
+            <SideBar />
+          </div>
 
-        <Link to="/">
-          <Box minW={"6rem"}>
-            <Image
-              src={Logo}
-              alt="logo"
-              margin={"auto"}
-              width={{ base: "90%", sm: "60%", md: "60%", lg: "100%" }}
-              height={{ base: "2rem", md: "100%" }}
-            />
-          </Box>
-        </Link>
-
-        <Box
-          minWidth={"30%"}
-          width="90%"
-          display={{ base: "none", lg: "block" }}
-        >
-          <HomeMenu />
-        </Box>
-
-        <Box
-          minWidth={"30%"}
-          width="90%"
-          display={{ base: "none", lg: "block" }}
-        >
-          <SearchBar />
-        </Box>
-
-        <Flex gap={{ base: "0.5rem", md: "1.5rem" }} align="center">
-          <Popover>
-            <Menu>
-              <MenuButton>
-                <BsPerson fontSize={"1.3rem"} />
-              </MenuButton>
-
-              <MenuList>
-                <MenuGroup title="Profile">
-                  <MenuItem color="pink.400">
-                    Hey,{isAuth ? `${afterLoginUser.name}` : "User"}
-                  </MenuItem>
-                  <MenuItem>My Account</MenuItem>
-                  <MenuItem>Order History</MenuItem>
-                  <MenuItem>My Address</MenuItem>
-                  <MenuItem>Payments</MenuItem>
-                  <MenuItem>Reviews</MenuItem>
-                  <MenuItem onClick={() => navigate("/adminLogin")}>
-                    Admin
-                  </MenuItem>
-                </MenuGroup>
-
-                {isAuth === true ? (
-                  <MenuItem
-                    _hover={{ backgroundColor: "pink" }}
-                    backgroundColor="#fdb852"
-                    onClick={() => {
-                      dispatch(logout);
-                      toast({
-                        title: "User Logout Successfully.",
-                        description: "Come Back Again Soon",
-                        status: "success",
-                        duration: 2000,
-                        isClosable: true,
-                        position: "top",
-                      });
-                    }}
-                  >
-                    Sign Out
-                  </MenuItem>
-                ) : (
-                  <MenuItem
-                    _hover={{ backgroundColor: "pink" }}
-                    backgroundColor="#fdb852"
-                    onClick={() => {
-                      navigate("/signup");
-                    }}
-                  >
-                    Sign Up
-                  </MenuItem>
-                )}
-              </MenuList>
-            </Menu>
-          </Popover>
-          <Link to="#">
-            <Flex flexDir={"column"} align={"center"}>
-              <Text>
-                <AiOutlineHeart fontSize={"1.3rem"} />
-              </Text>
-            </Flex>
+          <Link to="/" className="logo">
+            <img src={Logo} alt="logo" />
           </Link>
 
-          <Flex flexDir={"column"} align={"center"} pos="relative" onClick={onOpen}>
-            <Text>
-              <BsBag fontSize={"1.3rem"} />
-            </Text>
-            <Box
-              justify={"center"}
-              align="center"
-              pos={"absolute"}
-              top="-5px"
-              right="-12px"
-              width="20px"
-              height="20px"
-              color="white"
-              borderRadius={"50%"}
-              bg="#d53f8c"
-            >
-              <Text> {cartItems.length}</Text>
-            </Box>
-          </Flex>
-        </Flex>
-      </Flex>
+          <div className="menu">
+            <HomeMenu />
+          </div>
 
-      <Box padding={"8px"} display={{ lg: "none" }} width="90%" margin="auto">
+          <div className="search-bar">
+            <SearchBar />
+          </div>
+
+          <div className="icons">
+            <div className="icon">
+              <BsPerson onClick={() => navigate("/profile")} />
+            </div>
+            <div className="icon">
+              <AiOutlineHeart />
+            </div>
+            <div className="icon" onClick={() => setIsOpen(true)}>
+              <BsBag />
+              <div className="cart-count">{cartItems.length}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="search-bar-mobile">
         <SearchBar />
-      </Box>
+      </div> */}
 
-      <Modal isOpen={isOpen} onClose={onClose} size="full">
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Your Cart</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Cart
-              cartItems={cartItems}
-              onIncrease={(id) => {
-                // Implement increase logic
-              }}
-              onDecrease={(id) => {
-                // Implement decrease logic
-              }}
-              onRemove={(id) => {
-                // Implement remove logic
-              }}
-              onSizeChange={(id, size) => {
-                // Implement size change logic
-              }}
-            />
-          </ModalBody>
-          <ModalFooter>
-            <Button colorScheme="green" onClick={() => {
-              // Implement payment logic
-            }}>
-              Proceed to Payment
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </Box>
+      {isOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2>Your Cart</h2>
+              <span className="modal-close" onClick={() => setIsOpen(false)}>
+                &times;
+              </span>
+            </div>
+            <div className="modal-body">
+              <Cart
+                cartItems={cartItems}
+                onIncrease={(id) => {
+                  // Implement increase logic
+                }}
+                onDecrease={(id) => {
+                  // Implement decrease logic
+                }}
+                onRemove={(id) => {
+                  // Implement remove logic
+                }}
+                onSizeChange={(id, size) => {
+                  // Implement size change logic
+                }}
+              />
+            </div>
+            <div className="modal-footer">
+              <button
+                onClick={() => {
+                  // Implement payment logic
+                }}
+              >
+                Proceed to Payment
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

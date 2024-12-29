@@ -46,8 +46,8 @@ export default function AdminLogin() {
           position: "top",
         });
 
-        setEmail("");
-        setPassword("");
+        setEmail("khaliqhussain9711@gmail.com");
+        setPassword("12345678");
         navigate("/admin");
       })
       .catch((error) => {
