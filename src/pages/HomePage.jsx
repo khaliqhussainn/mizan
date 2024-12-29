@@ -160,7 +160,7 @@ function HomePage() {
           <Product
             src="https://lmsin.net/cdn-cgi/image/w=410,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-DesktopUberHP-OurBenefit3-13Oct2022.jpg"
             description="Product 3 Description"
-            price="49.99"
+            price="40.99"
             clothType="Silk"
             brand="Brand C"
             onAddToCart={handleAddToCart}
