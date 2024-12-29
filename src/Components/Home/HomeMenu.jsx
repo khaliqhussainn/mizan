@@ -17,227 +17,6 @@ const HomeMenu = () => {
 
       // border="1px solid red"
     >
-        <Flex
-        justify={"center"}
-        className="dropDown"
-        height="100%"
-        align={"center"}
-        width="15%"
-        _hover={{ color: "#f89f17" }}
-      >
-        <Link to="/">Home</Link>
-        {/* <Box
-          top="4rem"
-          className="drop-down-content"
-          left="-2rem"
-          overflow="hidden"
-          bg="white"
-          pos={"absolute"}
-          width="950px"
-          transition={"all 0.3s"}
-          height={"0vh"}
-          marginTop="14px"
-        >
-          <Link to="#">
-            <div className="main-menu">
-              <div className="hoverlist">
-                <ul>
-                  <p className="category-heading">Women</p>
-                  <li>
-                    <Link to="#">Ballerinas</Link>
-                  </li>
-                  <li>
-                    <Link to="#">flip-Flops</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Sandals</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Heel</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Shoes</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Sliders</Link>
-                  </li>
-                </ul>
-                <ul>
-                  <p className="category-heading">Top Brands</p>
-                  <li>
-                    <Link to="#">Ginger</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Sketchers</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Code</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Catwalk</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Melange</Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="hoverlist">
-                <ul>
-                  <p className="category-heading">Men</p>
-
-                  <li>
-                    <Link to="#">Loafers</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Slip-Ons</Link>
-                  </li>
-                  <li>
-                    <Link to="#">SportsShoes</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Lace up</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Boots</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Floaters</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Slippers</Link>
-                  </li>
-                </ul>
-                <ul>
-                  <p className="category-heading">Top Brands</p>
-
-                  <li>
-                    <Link to="#">Sketcher</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Forca</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Code</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Puma</Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="hoverlist">
-                <ul>
-                  <p className="category-heading">Boys</p>
-                  <li>
-                    <Link to="#">Shoes</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Sandals</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Slippers</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Boots</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Socks</Link>
-                  </li>
-                </ul>
-                <ul>
-                  <p className="category-heading">Girls</p>
-
-                  <li>
-                    <Link to="#">Shoes</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Sandals</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Slippers</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Boots</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Socks</Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="hoverlist">
-                <ul>
-                  <p className="category-heading">Women Accesories</p>
-
-                  <li>
-                    <Link>Handbags </Link>
-                  </li>
-                  <li>
-                    <Link>Backpack </Link>
-                  </li>
-                  <li>
-                    <Link>Slings</Link>
-                  </li>
-                  <li>
-                    <Link>clutches </Link>
-                  </li>
-
-                  <li>
-                    <Link>Wallets</Link>
-                  </li>
-                  <li>
-                    <Link>totes</Link>
-                  </li>
-                  <li>
-                    <Link>Laptop Bags</Link>
-                  </li>
-                  <li>
-                    <Link>Pouch</Link>
-                  </li>
-                  <li>
-                    <Link>Socks</Link>
-                  </li>
-                  <li>
-                    <Link>Fashion</Link>
-                  </li>
-                </ul>
-              </div>
-              <div className="hoverlist">
-                <ul>
-                  <p className="category-heading">Men Accessories</p>
-
-                  <li>
-                    <Link>Backpack</Link>
-                  </li>
-                  <li>
-                    <Link>Wallets</Link>
-                  </li>
-                  <li>
-                    <Link>Belts</Link>
-                  </li>
-                  <li>
-                    <Link>Masks</Link>
-                  </li>
-                  <li>
-                    <Link>Socks</Link>
-                  </li>
-
-                  <ul>
-                    <p className="category-heading"> Essentials</p>
-                    <li>
-                      <Link>Flip-flop</Link>
-                    </li>
-                    <li>
-                      <Link>MultiUtility Bag</Link>
-                    </li>
-                  </ul>
-                </ul>
-              </div>
-            </div>
-          </Link>
-        </Box> */}
-      </Flex>
       <Flex
         justify={"center"}
         className="dropDown"
@@ -898,7 +677,227 @@ const HomeMenu = () => {
           </Link>
         </Box>
       </Flex>
-    
+      <Flex
+        justify={"center"}
+        className="dropDown"
+        height="100%"
+        align={"center"}
+        width="15%"
+        _hover={{ color: "#f89f17" }}
+      >
+        <Link to="#">Shoes</Link>
+        <Box
+          top="4rem"
+          className="drop-down-content"
+          left="-2rem"
+          overflow="hidden"
+          bg="white"
+          pos={"absolute"}
+          width="950px"
+          transition={"all 0.3s"}
+          height={"0vh"}
+          marginTop="14px"
+        >
+          <Link to="#">
+            <div className="main-menu">
+              <div className="hoverlist">
+                <ul>
+                  <p className="category-heading">Women</p>
+                  <li>
+                    <Link to="#">Ballerinas</Link>
+                  </li>
+                  <li>
+                    <Link to="#">flip-Flops</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Sandals</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Heel</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Shoes</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Sliders</Link>
+                  </li>
+                </ul>
+                <ul>
+                  <p className="category-heading">Top Brands</p>
+                  <li>
+                    <Link to="#">Ginger</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Sketchers</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Code</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Catwalk</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Melange</Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="hoverlist">
+                <ul>
+                  <p className="category-heading">Men</p>
+
+                  <li>
+                    <Link to="#">Loafers</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Slip-Ons</Link>
+                  </li>
+                  <li>
+                    <Link to="#">SportsShoes</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Lace up</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Boots</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Floaters</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Slippers</Link>
+                  </li>
+                </ul>
+                <ul>
+                  <p className="category-heading">Top Brands</p>
+
+                  <li>
+                    <Link to="#">Sketcher</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Forca</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Code</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Puma</Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="hoverlist">
+                <ul>
+                  <p className="category-heading">Boys</p>
+                  <li>
+                    <Link to="#">Shoes</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Sandals</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Slippers</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Boots</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Socks</Link>
+                  </li>
+                </ul>
+                <ul>
+                  <p className="category-heading">Girls</p>
+
+                  <li>
+                    <Link to="#">Shoes</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Sandals</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Slippers</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Boots</Link>
+                  </li>
+                  <li>
+                    <Link to="#">Socks</Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="hoverlist">
+                <ul>
+                  <p className="category-heading">Women Accesories</p>
+
+                  <li>
+                    <Link>Handbags </Link>
+                  </li>
+                  <li>
+                    <Link>Backpack </Link>
+                  </li>
+                  <li>
+                    <Link>Slings</Link>
+                  </li>
+                  <li>
+                    <Link>clutches </Link>
+                  </li>
+
+                  <li>
+                    <Link>Wallets</Link>
+                  </li>
+                  <li>
+                    <Link>totes</Link>
+                  </li>
+                  <li>
+                    <Link>Laptop Bags</Link>
+                  </li>
+                  <li>
+                    <Link>Pouch</Link>
+                  </li>
+                  <li>
+                    <Link>Socks</Link>
+                  </li>
+                  <li>
+                    <Link>Fashion</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="hoverlist">
+                <ul>
+                  <p className="category-heading">Men Accessories</p>
+
+                  <li>
+                    <Link>Backpack</Link>
+                  </li>
+                  <li>
+                    <Link>Wallets</Link>
+                  </li>
+                  <li>
+                    <Link>Belts</Link>
+                  </li>
+                  <li>
+                    <Link>Masks</Link>
+                  </li>
+                  <li>
+                    <Link>Socks</Link>
+                  </li>
+
+                  <ul>
+                    <p className="category-heading"> Essentials</p>
+                    <li>
+                      <Link>Flip-flop</Link>
+                    </li>
+                    <li>
+                      <Link>MultiUtility Bag</Link>
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+          </Link>
+        </Box>
+      </Flex>
       <Flex
         justify={"center"}
         className="dropDown"

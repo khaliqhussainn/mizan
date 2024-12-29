@@ -1,136 +1,18 @@
-import { Box, Image, Text, VStack } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import React, { Component } from "react";
 import Slider from "react-slick";
 import { IoIosArrowForward } from "react-icons/io";
 
 const data = [
-  {
-    images: [
-      "https://lmsin.net/cdn-cgi/image/h=831,w=615,q=60,fit=cover/https://aaeff43fe32172cbcecc-ae2a4e9a8cbc330ede5588dedf56886e.lmsin.net/lifestyle/1000011695801-Blue-Blue-1000011695801_01-2100.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    description: "Product 1 Description",
-    price: "29.99",
-    clothType: "Cotton",
-    brand: "Brand A",
-  },
-  {
-    images: [
-      "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner2-24March23.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    description: "Product 2 Description",
-    price: "39.99",
-    clothType: "Polyester",
-    brand: "Brand B",
-  },
-  {
-    images: [
-      "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner2-24March23.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    description: "Product 2 Description",
-    price: "39.99",
-    clothType: "Polyester",
-    brand: "Brand B",
-  },
-  {
-    images: [
-      "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner2-24March23.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    description: "Product 2 Description",
-    price: "39.99",
-    clothType: "Polyester",
-    brand: "Brand B",
-  },
-  {
-    images: [
-      "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner2-24March23.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    description: "Product 2 Description",
-    price: "39.99",
-    clothType: "Polyester",
-    brand: "Brand B",
-  },
-  {
-    images: [
-      "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner2-24March23.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    description: "Product 2 Description",
-    price: "39.99",
-    clothType: "Polyester",
-    brand: "Brand B",
-  },
-  {
-    images: [
-      "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner2-24March23.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    description: "Product 2 Description",
-    price: "39.99",
-    clothType: "Polyester",
-    brand: "Brand B",
-  },
-  {
-    images: [
-      "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner2-24March23.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    description: "Product 2 Description",
-    price: "39.99",
-    clothType: "Polyester",
-    brand: "Brand B",
-  },
-  {
-    images: [
-      "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner2-24March23.jpg",
-      "https://example.com/image2.jpg",
-      "https://example.com/image3.jpg",
-    ],
-    description: "Product 2 Description",
-    price: "39.99",
-    clothType: "Polyester",
-    brand: "Brand B",
-  },
-  // Add more products with multiple images
+  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner1-24March23.jpg",
+  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner2-24March23.jpg",
+  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner3-01March23.jpg",
+  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner4-24March23.jpg",
+  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner4-24March23.jpg",
+  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner5-01March23.jpg",
+  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner6-01March23.jpg",
+  "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-LimitedSale-Desk-Banner7-01March23.jpg",
 ];
-
-const Product = ({ images, description, price, clothType, brand }) => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
-  return (
-    <Box borderWidth="1px" borderRadius="lg" overflow="hidden" p={4} boxShadow="md">
-      <Slider {...settings}>
-        {images.map((src, index) => (
-          <Image key={index} src={src} alt={description} borderRadius="20px" />
-        ))}
-      </Slider>
-      <VStack align="start" mt={4}>
-        <Text fontWeight="semibold">{brand}</Text>
-        <Text>{description}</Text>
-        <Text>${price}</Text>
-        <Text>{clothType}</Text>
-      </VStack>
-    </Box>
-  );
-};
 
 function SampleNextArrow({ onClick }) {
   return (
@@ -199,16 +81,18 @@ export default class UnMissSlider extends Component {
     return (
       <Box marginTop={{ base: 3, sm: 4, md: 6, lg: 7 }}>
         <Slider {...settings}>
-          {data.map((item, i) => (
-            <Product
-              key={i}
-              images={item.images}
-              description={item.description}
-              price={item.price}
-              clothType={item.clothType}
-              brand={item.brand}
-            />
-          ))}
+          {data.map((item, i) => {
+            return (
+              <Box borderRadius={"20px"} key={i}>
+                <Image
+                  borderRadius={"20px"}
+                  width={"93%"}
+                  margin="auto"
+                  src={item}
+                />
+              </Box>
+            );
+          })}
         </Slider>
       </Box>
     );

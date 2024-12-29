@@ -8,8 +8,11 @@ import {
   Text,
   VStack,
   Button,
+  useToast,
+  IconButton,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import HomeSlider from "../Components/Home/HomeSlider";
 import KidSlider from "../Components/Home/KidSlider";
 import MenSlider from "../Components/Home/MensSlider";
@@ -19,8 +22,12 @@ import UnMissSlider from "../Components/Home/UnMissSlider";
 import Footer from "../Components/Home/Footer";
 import Navbar from "../Components/Home/Navbar";
 import NavbarTop from "../Components/Home/NavbarTop";
+import Cart from "./Cart";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { FaShoppingCart } from 'react-icons/fa';
 
-const Product = ({ src, description, price, clothType, brand }) => (
+const Product = ({ src, description, price, clothType, brand, onAddToCart }) => (
   <Box
     borderWidth="1px"
     borderRadius="lg"
@@ -35,31 +42,92 @@ const Product = ({ src, description, price, clothType, brand }) => (
       <Text>{description}</Text>
       <Text>${price}</Text>
       <Text>{clothType}</Text>
-      <Button colorScheme="orange" mt={4}>
+      <Button colorScheme="orange" mt={4} onClick={() => onAddToCart({ src, description, price, clothType, brand })}>
         Add to Cart
       </Button>
     </VStack>
   </Box>
 );
+
 function HomePage() {
+  const [cartItems, setCartItems] = useState([]);
+  const [showCart, setShowCart] = useState(false);
+
+  useEffect(() => {
+    console.log("Cart Items in HomePage:", cartItems);
+  }, [cartItems]);
+
+  const handleAddToCart = (product) => {
+    console.log("Adding to cart:", product);
+    setCartItems((prevItems) => {
+      const existingItem = prevItems.find(item => item.description === product.description);
+      if (existingItem) {
+        return prevItems.map(item =>
+          item.description === product.description
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+      return [...prevItems, { ...product, quantity: 1, id: Date.now(), size: '' }];
+    });
+
+    // Show toast notification
+    toast.success(`${product.brand} ${product.description} has been added to your cart.`, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
+  const handleIncrease = (id) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const handleDecrease = (id) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  };
+
+  const handleRemove = (id) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  };
+
+  const handleSizeChange = (id, newSize) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, size: newSize } : item
+      )
+    );
+  };
+
   return (
     <Box bgColor={"#fdfdfd"}>
-      {/* <Box bgColor={"black"}>  */}
+      <ToastContainer />
       <Box display={{ base: "none", sm: "none", md: "none", lg: "block" }}>
         <NavbarTop />
       </Box>
       <Navbar />
-      {/* Yellow Strip */}
-      {/* <Box
-        height={10}
-        backgroundColor="#f89f17"
-        color={"white"}
-        fontSize={{ base: "80%", sm: "100%", lg: "100%" }}
-        display="flex"
-        alignItems="center"
-        justifyContent={"center"}>
-        New arrivals in womenswear upto30% off ❤️
-      </Box> */}
+      <IconButton
+        icon={<FaShoppingCart />}
+        aria-label="Cart"
+        position="fixed"
+        top="20px"
+        right="20px"
+        onClick={() => setShowCart(true)}
+      />
       <Box>
         <Progress
           colorScheme="pink"
@@ -94,7 +162,6 @@ function HomePage() {
         />
       </Box>
 
-      {/* Our Benifits */}
       <Box
         width={{ base: "90%", sm: "90%", md: "90%", lg: "85%" }}
         margin="auto"
@@ -130,6 +197,7 @@ function HomePage() {
             price="29.99"
             clothType="Cotton"
             brand="Brand A"
+            onAddToCart={handleAddToCart}
           />
           <Product
             src="https://lmsin.net/cdn-cgi/image/w=410,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-DesktopUberHP-OurBenefit2-13Oct2022.jpg"
@@ -137,6 +205,7 @@ function HomePage() {
             price="39.99"
             clothType="Polyester"
             brand="Brand B"
+            onAddToCart={handleAddToCart}
           />
           <Product
             src="https://lmsin.net/cdn-cgi/image/w=410,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-DesktopUberHP-OurBenefit3-13Oct2022.jpg"
@@ -144,6 +213,7 @@ function HomePage() {
             price="49.99"
             clothType="Silk"
             brand="Brand C"
+            onAddToCart={handleAddToCart}
           />
           <Product
             src="https://lmsin.net/cdn-cgi/image/w=410,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-DesktopUberHP-OurBenefit3-13Oct2022.jpg"
@@ -151,6 +221,7 @@ function HomePage() {
             price="49.99"
             clothType="Silk"
             brand="Brand D"
+            onAddToCart={handleAddToCart}
           />
         </Flex>
       </Box>
@@ -163,11 +234,9 @@ function HomePage() {
         <Image
           width="100%"
           borderRadius={"20px"}
-          src="https://lmsin.net/cdn-cgi/image/w=1232,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/Uber-HP-Desktop-PromoStrip3-25Mar2023.jpg"
+          src="https://lmsin.net/cdn-cgi/image/w=1232,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/Uber-HP-Desktop-PromoStrip3-25Mar2023.jpg"
         />
       </Box>
-
-      {/* unmissable offer */}
 
       <Box
         width={{ base: "90%", sm: "90%", md: "90%", lg: "85%" }}
@@ -187,8 +256,6 @@ function HomePage() {
         </Text>
         <UnMissSlider />
       </Box>
-
-      {/* womens store */}
 
       <Box
         width={{ base: "90%", sm: "90%", md: "90%", lg: "85%" }}
@@ -211,13 +278,11 @@ function HomePage() {
           <Image
             width="100%"
             borderRadius={"20px"}
-            src="https://lmsin.net/cdn-cgi/image/w=1232,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-PromoWidget24-Desk-Banner1-07Mar23.jpg"
+            src="https://lmsin.net/cdn-cgi/image/w=1232,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-PromoWidget24-Desk-Banner1-07Mar23.jpg"
           />
         </Box>
         <WomenSlider />
       </Box>
-
-      {/* Mens Wear */}
 
       <Box
         width={{ base: "90%", sm: "90%", md: "90%", lg: "85%" }}
@@ -240,14 +305,12 @@ function HomePage() {
           <Image
             borderRadius={"20px"}
             width="100%"
-            src="https://lmsin.net/cdn-cgi/image/w=1232,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/desktop-LS-UBERHP-GiftCard-13modblock-oneBythree-A-07Mar2023.jpg"
+            src="https://lmsin.net/cdn-cgi/image/w=1232,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/desktop-LS-UBERHP-GiftCard-13modblock-oneBythree-A-07Mar2023.jpg"
           />
         </Box>
 
         <MenSlider />
       </Box>
-
-      {/* Kid's wear */}
 
       <Box
         width={{ base: "90%", sm: "90%", md: "90%", lg: "85%" }}
@@ -270,14 +333,12 @@ function HomePage() {
           <Image
             borderRadius={"20px"}
             width="100%"
-            src="https://lmsin.net/cdn-cgi/image/w=1232,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget26-Desk-Banner1-08Mar23.jpg"
+            src="https://lmsin.net/cdn-cgi/image/w=1232,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget26-Desk-Banner1-08Mar23.jpg"
           />
         </Box>
 
         <KidSlider />
       </Box>
-
-      {/* Trending Add-ons */}
 
       <Box
         width={{ base: "90%", sm: "90%", md: "90%", lg: "85%" }}
@@ -300,14 +361,13 @@ function HomePage() {
           <Image
             borderRadius={"20px"}
             width="100%"
-            src="https://lmsin.net/cdn-cgi/image/w=1232,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget23-Desk-Banner1-14Mar23.gif"
+            src="https://lmsin.net/cdn-cgi/image/w=1232,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget23-Desk-Banner1-14Mar23.gif"
           />
         </Box>
 
         <TrendingSlider />
       </Box>
 
-      {/* Seasons hot deals */}
       <Box
         width={{ base: "90%", sm: "90%", md: "90%", lg: "85%" }}
         margin="auto"
@@ -335,31 +395,14 @@ function HomePage() {
           gap={6}
           marginTop={{ base: 3, sm: 4, md: 6, lg: 7 }}
         >
-          <Image src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget18-Banner1-01March23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget18-Banner1-01March23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget18-Banner3-09March23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget18-Banner4-01March23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget18-Banner5-01March23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget18-Banner6-01March23.jpg" />
+          <Image src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget18-Banner1-01March23.jpg" />
 
           <Image
             display={{ base: "none", sm: "none", md: "block", lg: "block" }}
-            src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget18-Banner7-01March23.jpg"
-          />
-
-          <Image
-            display={{ base: "none", sm: "none", md: "block", lg: "block" }}
-            src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget18-Banner8-01March23.jpg"
+            src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget18-Banner8-01March23.jpg"
           />
         </Grid>
       </Box>
-
-      {/* Big brand discount */}
 
       <Box
         width={{ base: "90%", sm: "90%", md: "90%", lg: "85%" }}
@@ -387,45 +430,21 @@ function HomePage() {
           gap={4}
           marginTop={{ base: 3, sm: 4, md: 6, lg: 7 }}
         >
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner1-09Feb2023.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner5-09Feb2023.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner9-09Feb2023.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner2-16Mar2023.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner6-16Mar2023.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner10-14Dec2022.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner3-17Jan2023.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner7-22Dec2022.jpg" />
+          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner1-09Feb2023.jpg" />
 
           <Image
             display={{ base: "block", sm: "none", md: "block", lg: "block" }}
-            src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner8-16Dec2022.jpg"
+            src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner8-16Dec2022.jpg"
           />
 
           <Image
             display={{ base: "none", sm: "none", md: "block", lg: "block" }}
-            src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner11-16Mar2023.jpg"
+            src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner11-16Mar2023.jpg"
           />
 
-          <Image
-            display={{ base: "none", sm: "none", md: "none", lg: "block" }}
-            src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner12-31Jan2023.jpg"
-          />
-
-          <Image
-            display={{ base: "none", sm: "none", md: "none", lg: "block" }}
-            src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner4-16Mar2023.jpg"
-          />
         </Grid>
       </Box>
 
-      {/* Welcome summer */}
       <Box
         width={{ base: "90%", sm: "90%", md: "90%", lg: "85%" }}
         margin="auto"
@@ -452,31 +471,15 @@ function HomePage() {
           gap={6}
           marginTop={{ base: 3, sm: 4, md: 6, lg: 7 }}
         >
-          <Image src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget21-Desk-Banner1-14Feb23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget21-Desk-Banner2-14Feb23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget21-Desk-Banner3-14Feb23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget21-Desk-Banner4-14Feb23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget21-Desk-Banner5-14Feb23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget21-Desk-Banner6-14Feb23.jpg" />
+          <Image src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget21-Desk-Banner1-14Feb23.jpg" />
 
           <Image
             display={{ base: "none", sm: "none", md: "block", lg: "block" }}
-            src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget21-Desk-Banner7-14Feb23.jpg"
+            src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget21-Desk-Banner7-14Feb23.jpg"
           />
 
-          <Image
-            display={{ base: "none", sm: "none", md: "block", lg: "block" }}
-            src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget21-Desk-Banner8-14Feb23.jpg"
-          />
         </Grid>
       </Box>
-
-      {/* Brands We Love */}
 
       <Box
         width={{ base: "90%", sm: "90%", md: "90%", lg: "85%" }}
@@ -493,7 +496,7 @@ function HomePage() {
           marginTop={{ base: 5, sm: 6, md: 7, lg: 10 }}
           borderBottomColor={"#f89f17"}
         >
-          Big Brands Big Discounts
+          Brands We Love
         </Text>
         <Grid
           templateColumns={{
@@ -505,41 +508,15 @@ function HomePage() {
           gap={4}
           marginTop={{ base: 3, sm: 4, md: 6, lg: 7 }}
         >
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner1-17Mar23.jpg" />
+          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner1-17Mar23.jpg" />
 
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner2-29Nov22.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner3-17Mar23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner4-15Mar23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner5-16Mar23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner6-16Mar23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner7-06Jan23.jpg" />
-
-          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner8-27Feb23.jpg" />
+          <Image src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner2-29Nov22.jpg" />
 
           <Image
             display={{ base: "block", sm: "none", md: "block", lg: "block" }}
-            src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner9-24Mar23.jpg"
+            src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner9-24Mar23.jpg"
           />
 
-          <Image
-            display={{ base: "none", sm: "none", md: "block", lg: "block" }}
-            src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner10-20Dec22.jpg"
-          />
-
-          <Image
-            display={{ base: "none", sm: "none", md: "none", lg: "block" }}
-            src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner11-20Feb23.jpg"
-          />
-
-          <Image
-            display={{ base: "none", sm: "none", md: "none", lg: "block" }}
-            src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner12-21Dec22.jpg"
-          />
         </Grid>
       </Box>
 
@@ -550,6 +527,40 @@ function HomePage() {
       >
         <Footer />
       </Box>
+
+      {showCart && (
+        <Box
+          position="fixed"
+          top="0"
+          left="0"
+          width="100%"
+          height="100%"
+          bg="rgba(0, 0, 0, 0.5)"
+          zIndex="1000"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Box bg="white" p={4} borderRadius="md" width="80%" maxWidth="600px">
+            <IconButton
+              icon={<FaShoppingCart />}
+              aria-label="Close Cart"
+              position="absolute"
+              top="10px"
+              right="10px"
+              onClick={() => setShowCart(false)}
+            />
+            <Cart
+              cartItems={cartItems}
+              onIncrease={handleIncrease}
+              onDecrease={handleDecrease}
+              onRemove={handleRemove}
+              onSizeChange={handleSizeChange}
+              // onClose={handleClose}
+            />
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 }

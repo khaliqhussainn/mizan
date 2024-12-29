@@ -9,7 +9,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/SignUp";
 import Checkout from "../pages/Checkout";
 import Payment from "../pages/Payment";
-import { Cart } from "../pages/Cart";
+import Cart  from "../pages/Cart";
 import AdminProduct from "./Admin/AdminProduct";
 import AdminManageProduct from "./Admin/AdminManageProduct";
 import AdminEdit from "./Admin/AdminEdit";

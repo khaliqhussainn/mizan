@@ -11,6 +11,15 @@ import {
   MenuList,
   Menu,
   useToast,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
 } from "@chakra-ui/react";
 
 import React, { useEffect } from "react";
@@ -21,17 +30,17 @@ import { Link, useNavigate } from "react-router-dom";
 import HomeMenu from "./HomeMenu";
 import SearchBar from "./SearchBar";
 import SideBar from "./Sidebar";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/authReducer/action";
 import axios from "axios";
 import { addToCart } from "../../redux/cartReducer/action";
-// import NavbarTop from "./NavbarTop";
+import Cart from "../../pages/Cart"; // Import the Cart component
 
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   let { isAuth, afterLoginUser } = useSelector((state) => state.AuthReducer);
   const { cartItems } = useSelector((store) => store.cartReducer);
 
@@ -55,10 +64,6 @@ const Navbar = () => {
       width="100%"
       boxShadow=" 0px 7px 7px -5px rgba(170, 159, 170, 0.2)"
     >
-      {/* <Box display={{ base: "none", sm: "none", md: "none", lg: "block" }}>
-                <NavbarTop />
-            </Box> */}
-
       <Flex
         height={{ base: "3.2rem", md: "4.94rem" }}
         px={{ base: "1rem", md: "3rem" }}
@@ -74,14 +79,13 @@ const Navbar = () => {
 
         <Link to="/">
           <Box minW={"6rem"}>
-            {/* <Image
+            <Image
               src={Logo}
               alt="logo"
               margin={"auto"}
               width={{ base: "90%", sm: "60%", md: "60%", lg: "100%" }}
               height={{ base: "2rem", md: "100%" }}
-            /> */}
-            <Text style={{color: "#f89f17", fontSize: "1.5rem"}}>Pakistani Suits</Text>
+            />
           </Box>
         </Link>
 
@@ -163,33 +167,63 @@ const Navbar = () => {
             </Flex>
           </Link>
 
-          <Link to="/cart">
-            <Flex flexDir={"column"} align={"center"} pos="relative">
-              <Text>
-                <BsBag fontSize={"1.3rem"} />
-              </Text>
-              <Box
-                justify={"center"}
-                align="center"
-                pos={"absolute"}
-                top="-5px"
-                right="-12px"
-                width="20px"
-                height="20px"
-                color="white"
-                borderRadius={"50%"}
-                bg="#d53f8c"
-              >
-                <Text> {cartItems.length}</Text>
-              </Box>
-            </Flex>
-          </Link>
+          <Flex flexDir={"column"} align={"center"} pos="relative" onClick={onOpen}>
+            <Text>
+              <BsBag fontSize={"1.3rem"} />
+            </Text>
+            <Box
+              justify={"center"}
+              align="center"
+              pos={"absolute"}
+              top="-5px"
+              right="-12px"
+              width="20px"
+              height="20px"
+              color="white"
+              borderRadius={"50%"}
+              bg="#d53f8c"
+            >
+              <Text> {cartItems.length}</Text>
+            </Box>
+          </Flex>
         </Flex>
       </Flex>
 
       <Box padding={"8px"} display={{ lg: "none" }} width="90%" margin="auto">
         <SearchBar />
       </Box>
+
+      <Modal isOpen={isOpen} onClose={onClose} size="full">
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Your Cart</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Cart
+              cartItems={cartItems}
+              onIncrease={(id) => {
+                // Implement increase logic
+              }}
+              onDecrease={(id) => {
+                // Implement decrease logic
+              }}
+              onRemove={(id) => {
+                // Implement remove logic
+              }}
+              onSizeChange={(id, size) => {
+                // Implement size change logic
+              }}
+            />
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="green" onClick={() => {
+              // Implement payment logic
+            }}>
+              Proceed to Payment
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 };
