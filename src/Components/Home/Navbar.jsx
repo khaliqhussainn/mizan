@@ -7,7 +7,7 @@ import HomeMenu from "./HomeMenu";
 import SearchBar from "./SearchBar";
 import SideBar from "./Sidebar";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../redux/authReducer/action";
+// import { logout } from "../../redux/authReducer/action";
 import axios from "axios";
 import { addToCart } from "../../redux/cartReducer/action";
 import Cart from "../../pages/Cart"; // Import the Cart component

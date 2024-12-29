@@ -85,7 +85,7 @@ function SideBar() {
                   Home
                 </Text>
               </Link>
-              <Link to="/women">
+              <Link to="/">
                 <Text
                   textAlign={"center"}
                   fontSize={"1.5rem"}
@@ -104,7 +104,7 @@ function SideBar() {
                   Womens
                 </Text>
               </Link>
-              <Link to="/men">
+              <Link to="/">
                 <Text
                   textAlign={"center"}
                   fontSize={"1.5rem"}

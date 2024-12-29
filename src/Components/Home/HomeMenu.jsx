@@ -25,7 +25,7 @@ const HomeMenu = () => {
         width="15%"
         _hover={{ color: "#f89f17" }}
       >
-        <Link to="/women">Women</Link>
+        <Link to="/">Women</Link>
         <Box
           top="4rem"
           className="drop-down-content"
@@ -205,7 +205,7 @@ const HomeMenu = () => {
         width="15%"
         _hover={{ color: "#f89f17" }}
       >
-        <Link to="/men">Men</Link>
+        <Link to="/">Men</Link>
         <Box
           top="4rem"
           className="drop-down-content"
