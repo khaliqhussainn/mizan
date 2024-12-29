@@ -41,7 +41,7 @@ const data = [
   {
     src: "https://lmsin.net/cdn-cgi/image/w=300,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget20-Common-Banner2-10Mar23.jpg",
     description: "Product 2 Description",
-    price: "39.99",
+    price: "38.99",
     clothType: "Polyester",
     brand: "Brand B",
   },
