@@ -17,7 +17,7 @@ import "./style.css";
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  let { isAuth, afterLoginUser } = useSelector((state) => state.AuthReducer);
+  // let { isAuth, afterLoginUser } = useSelector((state) => state.AuthReducer);
   const { cartItems } = useSelector((store) => store.cartReducer);
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -30,12 +30,12 @@ const Navbar = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [cartItems]);
+  }, [cartItems, dispatch]);
 
-  const handleLogout = () => {
-    dispatch(logout());
-    alert("User Logout Successfully. Come Back Again Soon");
-  };
+  // const handleLogout = () => {
+  //   dispatch(logout());
+  //   alert("User Logout Successfully. Come Back Again Soon");
+  // };
 
   return (
     <div>

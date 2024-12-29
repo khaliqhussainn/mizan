@@ -29,8 +29,9 @@ export default function Login() {
   );
 
   useEffect(() => {
-    dispatch(getdata);
-  }, []);
+    dispatch(getdata());
+  }, [dispatch]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let temp = userData.filter((el) => {
@@ -39,7 +40,7 @@ export default function Login() {
 
     if (temp.length === 0) {
       toast({
-        title: `Invalid Credintials !!!`,
+        title: `Invalid Credentials !!!`,
         status: "error",
         duration: 1500,
         position: "top",
@@ -47,7 +48,7 @@ export default function Login() {
       });
     } else {
       toast({
-        title: `Login Successfull`,
+        title: `Login Successful`,
         status: "success",
         duration: 1500,
         position: "top",
@@ -64,10 +65,9 @@ export default function Login() {
       dispatch(loginFunction(obj));
     }
   };
+
   console.log(isAuth, afterLoginUser);
-  useEffect(() => {
-    dispatch(getdata);
-  }, []);
+
   return (
     <Flex
       minH={"100vh"}

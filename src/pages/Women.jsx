@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useSearchParams } from "react-router-dom";
 import { getwomens } from "../redux/MenReducer/action";
@@ -19,19 +18,18 @@ export const Women = () => {
     return store.MenReducer;
   });
 
-  let Obj = {
-    params: {
-      category: searchParams.getAll("category"),
-      _page: searchParams.get("page"),
-      _sort: searchParams.get("order") && "price",
-      _order: searchParams.get("order"),
-    },
-  };
-
   useEffect(() => {
+    let Obj = {
+      params: {
+        category: searchParams.getAll("category"),
+        _page: searchParams.get("page"),
+        _sort: searchParams.get("order") && "price",
+        _order: searchParams.get("order"),
+      },
+    };
     dispatch(getwomens(Obj));
     console.log(total);
-  }, [location.search]);
+  }, [location.search, dispatch]);
 
   return (
     <div>

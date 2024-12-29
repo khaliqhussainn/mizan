@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./Admin.css";
 import {
   Card,
@@ -22,28 +22,27 @@ import AdminNavbar from "./AdminNavbar";
 
 function AdminProduct() {
   const [men, setMen] = useState([]);
-  const [category, setCatergory] = useState("women");
+  const [category, setCategory] = useState("women");
   const toast = useToast();
 
-  const getData = () => {
+  const getData = useCallback(() => {
     axios
       .get(`https://lifestyle-mock-server-api.onrender.com/${category}`)
       .then((res) => {
-        // console.log(res.data)
         setMen(res.data);
       });
-  };
+  }, [category]);
+
   useEffect(() => {
     getData();
-  }, [men]);
+  }, [getData]);
 
   const handleDelete = (id) => {
-    console.log(id);
     axios
       .delete(`https://lifestyle-mock-server-api.onrender.com/men/${id}`)
       .then((res) => {
         toast({
-          title: "Product Deleted Successful.",
+          title: "Product Deleted Successfully.",
           description: "We have updated the repository",
           status: "success",
           duration: 1000,
@@ -52,7 +51,7 @@ function AdminProduct() {
         });
         getData();
       })
-      .then((error) => {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -62,7 +61,7 @@ function AdminProduct() {
       <AdminNavbar />
       <AdminSidebar />
       <Select
-        onChange={(e) => setCatergory(e.target.value)}
+        onChange={(e) => setCategory(e.target.value)}
         width="20%"
         h={"auto"}
         m="auto"

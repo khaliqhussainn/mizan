@@ -16,14 +16,14 @@ import {
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isAuth, setIsAuth] = useState(false);
-  const [token, setToken] = useState("");
   const toast = useToast();
-
   const navigate = useNavigate();
+
   const onCLickSubmit = (e) => {
     e.preventDefault();
     let obj = {
@@ -34,8 +34,6 @@ export default function AdminLogin() {
     axios
       .post(`https://reqres.in/api/login`, obj)
       .then((res) => {
-        // console.log(res.data.token)
-        setToken(res.data.token);
         setIsAuth(true);
         toast({
           title: "Login Successfully.",
@@ -51,7 +49,6 @@ export default function AdminLogin() {
         navigate("/admin");
       })
       .catch((error) => {
-        setToken("");
         setIsAuth(false);
         toast({
           title: "Check your Credentials!!.",
@@ -61,7 +58,6 @@ export default function AdminLogin() {
           isClosable: true,
           position: "top",
         });
-        //   console.log(error)
         setEmail("");
         setPassword("");
       });

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Admin.css";
-
 import {
   FormControl,
   FormLabel,
@@ -12,7 +11,7 @@ import {
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const initailState = {
+const initialState = {
   image: "",
   img1: "",
   img2: "",
@@ -26,7 +25,7 @@ const initailState = {
 };
 
 const AdminEdit = () => {
-  const [product, setProduct] = useState(initailState);
+  const [product, setProduct] = useState(initialState);
   const { id } = useParams();
   const toast = useToast();
 
@@ -57,7 +56,7 @@ const AdminEdit = () => {
       .catch((error) => {
         console.log(error);
       });
-    setProduct(initailState);
+    setProduct(initialState);
   };
 
   useEffect(() => {
@@ -70,7 +69,7 @@ const AdminEdit = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [id]);
 
   return (
     <FormControl
@@ -163,7 +162,7 @@ const AdminEdit = () => {
       </FormLabel>
       <Select
         name="category"
-        placeholder="Select Catergory"
+        placeholder="Select Category"
         onChange={(e) => handleChange(e)}
       >
         <option
@@ -180,11 +179,11 @@ const AdminEdit = () => {
         </option>
       </Select>
 
-      {/* <Input type="submit"/> */}
       <Button ml={"155px"} mt={"20px"} bg={"skyblue"} onClick={handleSubmit}>
         Edit Product
       </Button>
     </FormControl>
   );
 };
+
 export default AdminEdit;
