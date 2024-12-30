@@ -1,18 +1,3 @@
-import {
-  Box,
-  Button,
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerHeader,
-  DrawerOverlay,
-  Flex,
-  Image,
-  Text,
-  useDisclosure,
-  useToast,
-} from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../Asssets/logo2.png";
@@ -20,205 +5,74 @@ import LogoImage from "../../Asssets/LogoI.png";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/authReducer/action";
+import "./Sidebar.css"; // Import the CSS file
 
 function SideBar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isOpen, setIsOpen] = React.useState(false);
   let { isAuth } = useSelector((state) => state.AuthReducer);
-  // let { isAuth, afterLoginUser } = useSelector((state) => state.AuthReducer);
-  const toast = useToast();
   const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    alert("User Logout Successfully. Come Back Again Soon");
+  };
 
   return (
     <>
-      <Button
-        onClick={onOpen}
-        colorScheme="yellow"
-        size="md"
-        _hover={{ bg: "pink" }}
-      >
+      <button className="menu-button" onClick={() => setIsOpen(true)}>
         <GiHamburgerMenu size={"18px"} />
-      </Button>
+      </button>
 
-      <Drawer onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton color={"pink.600"} fontSize="3xl" />
-          <DrawerHeader width="28%">
-            <Image src={LogoImage} />
-          </DrawerHeader>
-          <DrawerBody>
-            <DrawerCloseButton />
-            <Box p="1rem">
-              <Image
-                src={Logo}
-                alt="logo"
-                width="12rem"
-                margin="auto"
-                height={{ base: "3rem", md: "100%" }}
-              />
-            </Box>
-
-            <Flex
-              justify="center"
-              pl="1rem"
-              gap="5"
-              flexDir={"column"}
-              mx="2rem"
-              mt="2rem"
-            >
-              <Link to="/">
-                <Text
-                  textAlign={"center"}
-                  fontSize={"1.5rem"}
-                  transition="0.5s ease"
-                  _hover={{
-                    borderBottomWidth: "4px",
-                    borderBottomColor: "#f89f17",
-                    color: "pink.600",
-                    fontSize: "1.7rem",
-                    webkitTransform: "scale(1.04)",
-                    msTransform: "scale(1.02)",
-                    transform: "scale(1.02)",
-                    transition: " 0.5s ease",
-                  }}
-                >
+      {isOpen && (
+        <div className="drawer-overlay" onClick={() => setIsOpen(false)}>
+          <div className="drawer-content" onClick={(e) => e.stopPropagation()}>
+            <button className="close-button" onClick={() => setIsOpen(false)}>
+              &times;
+            </button>
+            <div className="drawer-header">
+              <img src={LogoImage} alt="Logo" />
+            </div>
+            <div className="drawer-body">
+              <div className="logo-container">
+                <img src={Logo} alt="logo" className="logo" />
+              </div>
+              <div className="nav-links">
+                <Link to="/" className="nav-link">
                   Home
-                </Text>
-              </Link>
-              <Link to="/">
-                <Text
-                  textAlign={"center"}
-                  fontSize={"1.5rem"}
-                  transition="0.5s ease"
-                  _hover={{
-                    borderBottomWidth: "4px",
-                    borderBottomColor: "#f89f17",
-                    color: "pink.600",
-                    fontSize: "1.7rem",
-                    webkitTransform: "scale(1.04)",
-                    msTransform: "scale(1.02)",
-                    transform: "scale(1.02)",
-                    transition: " 0.5s ease",
-                  }}
-                >
+                </Link>
+                <Link to="/" className="nav-link">
                   Womens
-                </Text>
-              </Link>
-              <Link to="/">
-                <Text
-                  textAlign={"center"}
-                  fontSize={"1.5rem"}
-                  transition="0.5s ease"
-                  _hover={{
-                    borderBottomWidth: "4px",
-                    borderBottomColor: "#f89f17",
-                    color: "pink.600",
-                    fontSize: "1.7rem",
-                    webkitTransform: "scale(1.04)",
-                    msTransform: "scale(1.02)",
-                    transform: "scale(1.02)",
-                    transition: " 0.5s ease",
-                  }}
-                >
+                </Link>
+                <Link to="/" className="nav-link">
                   Mens
-                </Text>
-              </Link>
-              <Link to="/">
-                <Text
-                  textAlign={"center"}
-                  fontSize={"1.5rem"}
-                  transition="0.5s ease"
-                  _hover={{
-                    borderBottomWidth: "4px",
-                    borderBottomColor: "#f89f17",
-                    color: "pink.600",
-                    fontSize: "1.7rem",
-                    webkitTransform: "scale(1.04)",
-                    msTransform: "scale(1.02)",
-                    transform: "scale(1.02)",
-                    transition: " 0.5s ease",
-                  }}
-                >
+                </Link>
+                <Link to="/" className="nav-link">
                   Kids
-                </Text>
-              </Link>
-              <Link to="/cart">
-                <Text
-                  textAlign={"center"}
-                  fontSize={"1.5rem"}
-                  transition="0.5s ease"
-                  _hover={{
-                    borderBottomWidth: "4px",
-                    borderBottomColor: "#f89f17",
-                    color: "pink.600",
-                    fontSize: "1.7rem",
-                    webkitTransform: "scale(1.04)",
-                    msTransform: "scale(1.02)",
-                    transform: "scale(1.02)",
-                    transition: " 0.5s ease",
-                  }}
-                >
+                </Link>
+                <Link to="/cart" className="nav-link">
                   Your Cart
-                </Text>
-              </Link>
-              <Link to="#">
-                <Text
-                  textAlign={"center"}
-                  fontSize={"1.5rem"}
-                  transition="0.5s ease"
-                  _hover={{
-                    borderBottomWidth: "4px",
-                    borderBottomColor: "#f89f17",
-                    color: "pink.600",
-                    fontSize: "1.7rem",
-                    webkitTransform: "scale(1.04)",
-                    msTransform: "scale(1.02)",
-                    transform: "scale(1.02)",
-                    transition: " 0.5s ease",
-                  }}
-                >
+                </Link>
+                <Link to="#" className="nav-link">
                   Profile
-                </Text>
-              </Link>
-              <Flex justify={"center"} gap={3}>
-                {isAuth ? (
-                  <Link to="/">
-                    <Button
-                      px="2rem"
-                      colorScheme={"yellow"}
-                      _hover={{ bg: "pink" }}
-                      onClick={() => {
-                        dispatch(logout);
-                        toast({
-                          title: "User Logout Successfully.",
-                          description: "Come Back Again Soon",
-                          status: "success",
-                          duration: 2000,
-                          isClosable: true,
-                          position: "top",
-                        });
-                      }}
-                    >
+                </Link>
+                <div className="auth-buttons">
+                  {isAuth ? (
+                    <button className="auth-button" onClick={handleLogout}>
                       Logout
-                    </Button>
-                  </Link>
-                ) : (
-                  <Link to="/login">
-                    <Button
-                      px="2rem"
-                      colorScheme={"yellow"}
-                      _hover={{ bg: "pink" }}
-                    >
-                      Login
-                    </Button>
-                  </Link>
-                )}
-              </Flex>
-            </Flex>
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
+                    </button>
+                  ) : (
+                    <Link to="/login">
+                      <button className="auth-button">Login</button>
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
+
 export default SideBar;

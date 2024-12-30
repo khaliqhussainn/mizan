@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { FaTimes } from 'react-icons/fa';
 
-const Cart = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange }) => {
+export const CartPage = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange, onClose }) => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     console.log("Cart Items in Cart Component:", cartItems);
     const calculateTotalPrice = () => {
-      return cartItems.reduce((total, item) => {
-        const itemPrice = item.price ? parseFloat(item.price) : 0;
-        const itemQuantity = item.quantity ? parseInt(item.quantity, 10) : 0;
-        return total + itemPrice * itemQuantity;
-      }, 0);
+      return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
     };
     setTotalPrice(calculateTotalPrice());
   }, [cartItems]);
@@ -18,32 +15,6 @@ const Cart = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange }
   const handlePayment = () => {
     // Implement Razorpay payment logic here
     console.log("Proceed to payment");
-    // Example Razorpay integration (you need to replace with actual Razorpay code)
-    const options = {
-      key: "YOUR_RAZORPAY_KEY", // Replace with your actual Razorpay key
-      amount: totalPrice * 100, // Amount in paise
-      currency: "INR",
-      name: "Your Store Name",
-      description: "Test Transaction",
-      handler: function (response) {
-        console.log(response);
-        alert("Payment Successful");
-      },
-      prefill: {
-        name: "Customer Name",
-        email: "customer@example.com",
-        contact: "9999999999"
-      },
-      notes: {
-        address: "Corporate Office"
-      },
-      theme: {
-        color: "#3399cc"
-      }
-    };
-
-    const paymentObject = new window.Razorpay(options);
-    paymentObject.open();
   };
 
   if (cartItems.length === 0) {
@@ -55,16 +26,15 @@ const Cart = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange }
   }
 
   return (
-    <div className="cart-container">
-      <h2>Your Cart</h2>
+    <div className="cart-page">
+      <div className="cart-header">
+        <h2>Your Cart</h2>
+        <FaTimes className="close-button" onClick={onClose} />
+      </div>
       <div className="cart-items">
         {cartItems.map((item) => (
           <div key={item.id} className="cart-item">
-            <img
-              src={item.images && item.images[0] ? item.images[0] : 'path/to/default/image.jpg'}
-              alt={item.description}
-              className="cart-item-image"
-            />
+            <img src={item.src} alt={item.description} className="cart-item-image" />
             <div className="cart-item-details">
               <h3>{item.brand}</h3>
               <p>{item.description}</p>
@@ -75,7 +45,6 @@ const Cart = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange }
                 onChange={(e) => onSizeChange(item.id, e.target.value)}
                 className="size-select"
               >
-                <option value="">Select Size</option>
                 <option value="S">Small</option>
                 <option value="M">Medium</option>
                 <option value="L">Large</option>
@@ -99,4 +68,4 @@ const Cart = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange }
   );
 };
 
-export default Cart;
+export default CartPage;

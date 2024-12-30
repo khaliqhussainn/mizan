@@ -12,7 +12,7 @@ import axios from "axios";
 import { addToCart } from "../../redux/cartReducer/action";
 import Cart from "../../pages/Cart"; // Import the Cart component
 import NavbarTop from "./NavbarTop"; // Import the NavbarTop component
-import "./style.css";
+import "./Style.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -67,7 +67,7 @@ const Navbar = () => {
             </div>
             <div className="icon" onClick={() => setIsOpen(true)}>
               <BsBag />
-              <div className="cart-count">{cartItems.length}</div>
+              {/* <div className="cart-count">{cartItems.length}</div> */}
             </div>
           </div>
         </div>

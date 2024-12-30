@@ -4,7 +4,7 @@ import {
   MdOutlineAddToHomeScreen,
 } from "react-icons/md";
 import { FaHome } from "react-icons/fa";
-import "./style.css";
+import "./Style.css";
 
 const NavbarTop = () => {
   return (

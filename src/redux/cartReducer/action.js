@@ -30,6 +30,3 @@ export const decrementQuantity = (id) => {
     payload: id,
   };
 };
-
-
-

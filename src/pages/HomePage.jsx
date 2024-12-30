@@ -10,36 +10,15 @@ import Navbar from "../Components/Home/Navbar";
 import Cart from "./Cart";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingCart, FaTimes } from "react-icons/fa";
 import "./style.css";
-
-const Product = ({
-  src,
-  description,
-  price,
-  clothType,
-  brand,
-  onAddToCart,
-}) => (
-  <div className="product-box">
-    <img src={src} alt={description} />
-    <div className="product-details">
-      <p>
-        <strong>{brand}</strong>
-      </p>
-      <p>{description}</p>
-      <p>${price}</p>
-      <p>{clothType}</p>
-      <button
-        onClick={() =>
-          onAddToCart({ src, description, price, clothType, brand })
-        }
-      >
-        Add to Cart
-      </button>
-    </div>
-  </div>
-);
+import Product from "./Product"; // Update the import path as necessary
+import product1 from "../image/sanasafinaz/2ss5000.jpg";
+import product2 from "../image/sanasafinaz/2ss5000(2).webp";
+import product3 from "../image/sanasafinaz/2ss5000(3).jpg";
+// import main1 from "../image/main1.jpg";
+// import main2 from "../image/main2.jpg";
+// import main3 from "../image/main3.jpg";
 
 function HomePage() {
   const [cartItems, setCartItems] = useState([]);
@@ -114,12 +93,9 @@ function HomePage() {
   };
 
   return (
-    <div>
+    <div className="home-page">
       <ToastContainer />
       <div>
-        {/* <div>
-          <NavbarTop />
-        </div> */}
         <Navbar />
       </div>
       <div className="progress-bar">
@@ -133,73 +109,61 @@ function HomePage() {
       </div>
       <HomeSlider />
       <div className="container">
-        <div className="image-container">
-          <img
-            src="https://lmsin.net/cdn-cgi/image/w=1232,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/Uber-HP-Desktop-PromoStrip2-14Mar23.jpg"
-            alt="Promo"
-          />
-        </div>
+        {/* <div>
+          <img src={main1} alt="Promo" className="main-image" />
+        </div> */}
         <h2 className="section-title">Our Benefits</h2>
         <div className="product-grid">
           <Product
-            src="https://lmsin.net/cdn-cgi/image/w=410,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-DesktopUberHP-OurBenefit1-22Feb2023.jpg"
+            images={[product1, product2, product3]}
             description="Product 1 Description"
-            price="29.99"
+            price={29.99}
             clothType="Cotton"
             brand="Brand A"
             onAddToCart={handleAddToCart}
           />
           <Product
-            src="https://lmsin.net/cdn-cgi/image/w=410,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-DesktopUberHP-OurBenefit2-13Oct2022.jpg"
+            images={[product1, product2, product3]}
             description="Product 2 Description"
-            price="39.99"
+            price={39.99}
             clothType="Polyester"
             brand="Brand B"
             onAddToCart={handleAddToCart}
           />
           <Product
-            src="https://lmsin.net/cdn-cgi/image/w=410,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-DesktopUberHP-OurBenefit3-13Oct2022.jpg"
+            images={[product1, product2, product3]}
             description="Product 3 Description"
-            price="40.99"
+            price={40.99}
             clothType="Silk"
             brand="Brand C"
             onAddToCart={handleAddToCart}
           />
-          {/* <Product
-            src="https://lmsin.net/cdn-cgi/image/w=410,q=70,fit=cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-DesktopUberHP-OurBenefit3-13Oct2022.jpg"
-            description="Product 3 Description"
-            price="49.99"
-            clothType="Silk"
-            brand="Brand D"
-            onAddToCart={handleAddToCart}
-          /> */}
         </div>
       </div>
 
       <div className="container">
-        <div className="image-container">
-          <img
-            src="https://lmsin.net/cdn-cgi/image/w=1232,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/Uber-HP-Desktop-PromoStrip3-25Mar2023.jpg"
-            alt="Promo"
-          />
-        </div>
+        {/* <div className="image-container">
+          <img src={main2} alt="Promo" className="main-image" />
+        </div> */}
         <h2 className="section-title">Unmissable Offers</h2>
         <UnMissSlider />
       </div>
 
       <div className="container">
         <h2 className="section-title">Women's Store</h2>
-        <WomenSlider />
+        <div>
+          <WomenSlider handleAddToCart={handleAddToCart} />
+        </div>
       </div>
 
       <div className="container">
         <h2 className="section-title">Mens's Store</h2>
-        <MenSlider />
+        <MenSlider handleAddToCart={handleAddToCart} />
       </div>
 
       <div className="container">
         <h2 className="section-title">Kids Store</h2>
-        <KidSlider />
+        <KidSlider handleAddToCart={handleAddToCart} />
       </div>
 
       <div className="container">
@@ -209,7 +173,7 @@ function HomePage() {
 
       <div className="container">
         <h2 className="section-title">Season's Hottest Deals</h2>
-        <div className="image-container">
+        <div>
           <img
             src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget18-Banner1-01March23.jpg"
             alt="Promo"
@@ -223,7 +187,7 @@ function HomePage() {
 
       <div className="container">
         <h2 className="section-title">Big Brands Big Discounts</h2>
-        <div className="image-container">
+        <div>
           <img
             src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Top-Brands-Desk-Banner1-09Feb2023.jpg"
             alt="Promo"
@@ -239,23 +203,9 @@ function HomePage() {
         </div>
       </div>
 
-      {/* <div className="container">
-        <h2 className="section-title">Welcome Summer</h2>
-        <div className="image-container">
-          <img
-            src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget21-Desk-Banner1-14Feb23.jpg"
-            alt="Promo"
-          />
-          <img
-            src="https://lmsin.net/cdn-cgi/image/w=300,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LS-UberHP-Promowidget21-Desk-Banner7-14Feb23.jpg"
-            alt="Promo"
-          />
-        </div>
-      </div> */}
-
       <div className="container">
         <h2 className="section-title">Brands We Love</h2>
-        <div className="image-container">
+        <div>
           <img
             src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner1-17Mar23.jpg"
             alt="Promo"
@@ -278,7 +228,7 @@ function HomePage() {
       {showCart && (
         <div className="cart-modal">
           <div className="cart-content">
-            <FaShoppingCart
+            <FaTimes
               className="close-cart"
               onClick={() => setShowCart(false)}
             />

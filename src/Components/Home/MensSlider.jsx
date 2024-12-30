@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
 import { IoIosArrowForward } from "react-icons/io";
-import "./style.css"; // Import the CSS file
+import "./Style.css"; // Import the CSS file
 const Product = ({
   src,
   description,
