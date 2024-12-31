@@ -146,7 +146,7 @@ function HomePage() {
           <Product
             images={[product1, product2, product3]}
             description="Product 1 Description"
-            price={29.99}
+            price={25.99}
             clothType="Cotton"
             brand="Brand A"
             onAddToCart={handleAddToCart}
