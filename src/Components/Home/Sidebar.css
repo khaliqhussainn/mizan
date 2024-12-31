@@ -102,3 +102,41 @@
     background-color: pink;
   }
   
+
+  /* searrch */
+  .search-bar {
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .input-left-element {
+    margin-right: 8px;
+  }
+  
+  .search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+  }
+  
+  .search-input:focus {
+    box-shadow: none;
+    border: 1px solid #f89f17;
+    outline: none;
+  }
+  
+  
+  /*  */

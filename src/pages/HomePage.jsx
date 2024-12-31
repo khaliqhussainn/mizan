@@ -8,21 +8,22 @@ import UnMissSlider from "../Components/Home/UnMissSlider";
 import Footer from "../Components/Home/Footer";
 import Navbar from "../Components/Home/Navbar";
 import Cart from "./Cart";
+import Wishlist from "./Wishlist";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaShoppingCart, FaTimes } from "react-icons/fa";
 import "./style.css";
-import Product from "./Product"; // Update the import path as necessary
+import Product from "./Product";
 import product1 from "../image/sanasafinaz/2ss5000.jpg";
 import product2 from "../image/sanasafinaz/2ss5000(2).webp";
 import product3 from "../image/sanasafinaz/2ss5000(3).jpg";
-// import main1 from "../image/main1.jpg";
-// import main2 from "../image/main2.jpg";
-// import main3 from "../image/main3.jpg";
 
 function HomePage() {
   const [cartItems, setCartItems] = useState([]);
+  const [wishlistItems, setWishlistItems] = useState([]);
   const [showCart, setShowCart] = useState(false);
+  const [showWishlist, setShowWishlist] = useState(false);
+
 
   useEffect(() => {
     console.log("Cart Items in HomePage:", cartItems);
@@ -47,7 +48,6 @@ function HomePage() {
       ];
     });
 
-    // Show toast notification
     toast.success(
       `${product.brand} ${product.description} has been added to your cart.`,
       {
@@ -60,6 +60,38 @@ function HomePage() {
         progress: undefined,
       }
     );
+  };
+
+  const handleAddToWishlist = (product) => {
+    setWishlistItems((prevItems) => {
+      const existingItem = prevItems.find(
+        (item) => item.description === product.description
+      );
+      if (existingItem) {
+        return prevItems;
+      }
+      return [
+        ...prevItems,
+        { ...product, id: Date.now() },
+      ];
+    });
+
+    toast.success(
+      `${product.brand} ${product.description} has been added to your wishlist.`,
+      {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+  };
+
+  const handleRemoveFromWishlist = (id) => {
+    setWishlistItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
   const handleIncrease = (id) => {
@@ -96,7 +128,7 @@ function HomePage() {
     <div className="home-page">
       <ToastContainer />
       <div>
-        <Navbar />
+        <Navbar setShowWishlist={setShowWishlist} />
       </div>
       <div className="progress-bar">
         <div className="progress-text">
@@ -109,9 +141,6 @@ function HomePage() {
       </div>
       <HomeSlider />
       <div className="container">
-        {/* <div>
-          <img src={main1} alt="Promo" className="main-image" />
-        </div> */}
         <h2 className="section-title">Our Benefits</h2>
         <div className="product-grid">
           <Product
@@ -121,6 +150,9 @@ function HomePage() {
             clothType="Cotton"
             brand="Brand A"
             onAddToCart={handleAddToCart}
+            onAddToWishlist={handleAddToWishlist}
+            onRemoveFromWishlist={handleRemoveFromWishlist}
+            isInWishlist={wishlistItems.some(item => item.description === "Product 1 Description")}
           />
           <Product
             images={[product1, product2, product3]}
@@ -129,6 +161,9 @@ function HomePage() {
             clothType="Polyester"
             brand="Brand B"
             onAddToCart={handleAddToCart}
+            onAddToWishlist={handleAddToWishlist}
+            onRemoveFromWishlist={handleRemoveFromWishlist}
+            isInWishlist={wishlistItems.some(item => item.description === "Product 2 Description")}
           />
           <Product
             images={[product1, product2, product3]}
@@ -137,14 +172,25 @@ function HomePage() {
             clothType="Silk"
             brand="Brand C"
             onAddToCart={handleAddToCart}
+            onAddToWishlist={handleAddToWishlist}
+            onRemoveFromWishlist={handleRemoveFromWishlist}
+            isInWishlist={wishlistItems.some(item => item.description === "Product 3 Description")}
+          />
+          <Product
+            images={[product1, product2, product3]}
+            description="Product 4 Description"
+            price={40.99}
+            clothType="Silk"
+            brand="Brand D"
+            onAddToCart={handleAddToCart}
+            onAddToWishlist={handleAddToWishlist}
+            onRemoveFromWishlist={handleRemoveFromWishlist}
+            isInWishlist={wishlistItems.some(item => item.description === "Product 4 Description")}
           />
         </div>
       </div>
 
       <div className="container">
-        {/* <div className="image-container">
-          <img src={main2} alt="Promo" className="main-image" />
-        </div> */}
         <h2 className="section-title">Unmissable Offers</h2>
         <UnMissSlider />
       </div>
@@ -238,6 +284,22 @@ function HomePage() {
               onDecrease={handleDecrease}
               onRemove={handleRemove}
               onSizeChange={handleSizeChange}
+            />
+          </div>
+        </div>
+      )}
+
+      {showWishlist && (
+        <div className="wishlist-modal">
+          <div className="wishlist-content">
+            <FaTimes
+              className="close-wishlist"
+              onClick={() => setShowWishlist(false)}
+            />
+            <Wishlist
+              wishlistItems={wishlistItems}
+              onRemoveFromWishlist={handleRemoveFromWishlist}
+              onAddToCart={handleAddToCart}
             />
           </div>
         </div>

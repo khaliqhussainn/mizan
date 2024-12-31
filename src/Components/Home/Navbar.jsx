@@ -7,17 +7,15 @@ import HomeMenu from "./HomeMenu";
 import SearchBar from "./SearchBar";
 import SideBar from "./Sidebar";
 import { useSelector, useDispatch } from "react-redux";
-// import { logout } from "../../redux/authReducer/action";
 import axios from "axios";
 import { addToCart } from "../../redux/cartReducer/action";
-import Cart from "../../pages/Cart"; // Import the Cart component
-import NavbarTop from "./NavbarTop"; // Import the NavbarTop component
+import Cart from "../../pages/Cart";
+import NavbarTop from "./NavbarTop";
 import "./Style.css";
 
-const Navbar = () => {
+const Navbar = ({ setShowWishlist }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // let { isAuth, afterLoginUser } = useSelector((state) => state.AuthReducer);
   const { cartItems } = useSelector((store) => store.cartReducer);
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -31,11 +29,6 @@ const Navbar = () => {
         console.log(err);
       });
   }, [cartItems, dispatch]);
-
-  // const handleLogout = () => {
-  //   dispatch(logout());
-  //   alert("User Logout Successfully. Come Back Again Soon");
-  // };
 
   return (
     <div>
@@ -62,20 +55,15 @@ const Navbar = () => {
             <div className="icon">
               <BsPerson onClick={() => navigate("/profile")} />
             </div>
-            <div className="icon">
+            <div className="icon" onClick={() => setShowWishlist(true)}>
               <AiOutlineHeart />
             </div>
             <div className="icon" onClick={() => setIsOpen(true)}>
               <BsBag />
-              {/* <div className="cart-count">{cartItems.length}</div> */}
             </div>
           </div>
         </div>
       </div>
-
-      {/* <div className="search-bar-mobile">
-        <SearchBar />
-      </div> */}
 
       {isOpen && (
         <div className="modal">

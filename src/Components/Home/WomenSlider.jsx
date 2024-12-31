@@ -16,6 +16,13 @@ const data = [
     price: "39.99",
     clothType: "Polyester",
     brand: "Brand B",
+    sizes: ["S", "M", "L", "XL"],
+    sizeChart: [
+      { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
+      { size: "M", sleeve: "34", length: "30", back: "28", neck: "15" },
+      { size: "L", sleeve: "36", length: "32", back: "30", neck: "16" },
+      { size: "XL", sleeve: "38", length: "34", back: "32", neck: "17" },
+    ],
   },
   {
     images: [image2, "https://example.com/image2-2.jpg"],
@@ -23,28 +30,71 @@ const data = [
     price: "49.99",
     clothType: "Silk",
     brand: "Brand C",
+    sizes: ["S", "M", "L", "XL"],
+    sizeChart: [
+      { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
+      { size: "M", sleeve: "34", length: "30", back: "28", neck: "15" },
+      { size: "L", sleeve: "36", length: "32", back: "30", neck: "16" },
+      { size: "XL", sleeve: "38", length: "34", back: "32", neck: "17" },
+    ],
   },
   {
     images: [image2, "https://example.com/image2-2.jpg"],
-    description: "Product 4 Description",
-    price: "59.99",
-    clothType: "Linen",
-    brand: "Brand D",
+    description: "Product 3 Description",
+    price: "49.99",
+    clothType: "Silk",
+    brand: "Brand C",
+    sizes: ["S", "M", "L", "XL"],
+    sizeChart: [
+      { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
+      { size: "M", sleeve: "34", length: "30", back: "28", neck: "15" },
+      { size: "L", sleeve: "36", length: "32", back: "30", neck: "16" },
+      { size: "XL", sleeve: "38", length: "34", back: "32", neck: "17" },
+    ],
   },
   {
     images: [image2, "https://example.com/image2-2.jpg"],
-    description: "Product 5 Description",
-    price: "69.99",
-    clothType: "Wool",
-    brand: "Brand E",
+    description: "Product 3 Description",
+    price: "49.99",
+    clothType: "Silk",
+    brand: "Brand C",
+    sizes: ["S", "M", "L", "XL"],
+    sizeChart: [
+      { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
+      { size: "M", sleeve: "34", length: "30", back: "28", neck: "15" },
+      { size: "L", sleeve: "36", length: "32", back: "30", neck: "16" },
+      { size: "XL", sleeve: "38", length: "34", back: "32", neck: "17" },
+    ],
   },
   {
     images: [image2, "https://example.com/image2-2.jpg"],
-    description: "Product 6 Description",
-    price: "79.99",
-    clothType: "Denim",
-    brand: "Brand F",
+    description: "Product 3 Description",
+    price: "49.99",
+    clothType: "Silk",
+    brand: "Brand C",
+    sizes: ["S", "M", "L", "XL"],
+    sizeChart: [
+      { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
+      { size: "M", sleeve: "34", length: "30", back: "28", neck: "15" },
+      { size: "L", sleeve: "36", length: "32", back: "30", neck: "16" },
+      { size: "XL", sleeve: "38", length: "34", back: "32", neck: "17" },
+    ],
   },
+  {
+    images: [image2, "https://example.com/image2-2.jpg"],
+    description: "Product 3 Description",
+    price: "49.99",
+    clothType: "Silk",
+    brand: "Brand C",
+    sizes: ["S", "M", "L", "XL"],
+    sizeChart: [
+      { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
+      { size: "M", sleeve: "34", length: "30", back: "28", neck: "15" },
+      { size: "L", sleeve: "36", length: "32", back: "30", neck: "16" },
+      { size: "XL", sleeve: "38", length: "34", back: "32", neck: "17" },
+    ],
+  },
+  // Add more products as needed
 ];
 
 function SampleNextArrow({ onClick }) {
@@ -113,6 +163,8 @@ const WomenSlider = ({ handleAddToCart }) => {
                 price={item.price}
                 clothType={item.clothType}
                 brand={item.brand}
+                sizes={item.sizes}
+                sizeChart={item.sizeChart}
                 onAddToCart={handleAddToCart}
                 onImageClick={() => handleProductClick(item)}
               />

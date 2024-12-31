@@ -1,42 +1,20 @@
-import { Box, Flex } from "@chakra-ui/react";
+// import { Box, Flex } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../CSS/HomeMenu.css";
 
 const HomeMenu = () => {
   return (
-    <Flex
-      height={{ base: "3.2rem", md: "4.94rem" }}
-      minW={"100%"}
-      justify={"space-around"}
-      pos="relative"
-      align="center"
-      display={{ base: "none", lg: "Flex" }}
-      width="36%"
-      gap={5}
-
+    <div
+      className="home-menu"
       // border="1px solid red"
     >
-      <Flex
-        justify={"center"}
+      <div
         className="dropDown"
-        height="100%"
-        align={"center"}
-        width="15%"
-        _hover={{ color: "#f89f17" }}
       >
         <Link to="/">Women</Link>
-        <Box
-          top="4rem"
+        <div
           className="drop-down-content"
-          left="-2rem"
-          overflow="hidden"
-          bg="white"
-          pos={"absolute"}
-          width="1000px"
-          transition={"all 0.3s"}
-          height={"0vh"}
-          marginTop="14px"
         >
           <Link to="#">
             <div className="main-menu">
@@ -195,28 +173,14 @@ const HomeMenu = () => {
               </div>
             </div>
           </Link>
-        </Box>
-      </Flex>
-      <Flex
-        justify={"center"}
+        </div>
+      </div>
+      <div
         className="dropDown"
-        height="100%"
-        align={"center"}
-        width="15%"
-        _hover={{ color: "#f89f17" }}
       >
         <Link to="/">Men</Link>
-        <Box
-          top="4rem"
+        <div
           className="drop-down-content"
-          left="-2rem"
-          overflow="hidden"
-          bg="white"
-          pos={"absolute"}
-          width="1000px"
-          transition={"all 0.3s"}
-          height={"0vh"}
-          marginTop="14px"
         >
           <Link to="#">
             <div className="main-menu">
@@ -464,28 +428,15 @@ const HomeMenu = () => {
               </div>
             </div>
           </Link>
-        </Box>
-      </Flex>
-      <Flex
-        justify={"center"}
+        </div>
+      </div>
+      <div
         className="dropDown"
-        height="100%"
-        align={"center"}
-        width="15%"
-        _hover={{ color: "#f89f17" }}
       >
         <Link to="#">Kids</Link>
-        <Box
-          top="4rem"
+        <div
           className="drop-down-content"
-          left="-2rem"
-          overflow="hidden"
-          bg="white"
-          pos={"absolute"}
-          width="900px"
-          transition={"all 0.3s"}
-          height={"0vh"}
-          marginTop="14px"
+
         >
           <Link to="#">
             <div className="main-menu">
@@ -675,28 +626,16 @@ const HomeMenu = () => {
               </div>
             </div>
           </Link>
-        </Box>
-      </Flex>
-      <Flex
-        justify={"center"}
+        </div>
+      </div>
+      <div
         className="dropDown"
-        height="100%"
-        align={"center"}
-        width="15%"
-        _hover={{ color: "#f89f17" }}
+
       >
         <Link to="#">Shoes</Link>
-        <Box
-          top="4rem"
+        <div
           className="drop-down-content"
-          left="-2rem"
-          overflow="hidden"
-          bg="white"
-          pos={"absolute"}
-          width="950px"
-          transition={"all 0.3s"}
-          height={"0vh"}
-          marginTop="14px"
+
         >
           <Link to="#">
             <div className="main-menu">
@@ -896,28 +835,16 @@ const HomeMenu = () => {
               </div>
             </div>
           </Link>
-        </Box>
-      </Flex>
-      <Flex
-        justify={"center"}
+        </div>
+      </div>
+      <div
         className="dropDown"
-        height="100%"
-        align={"center"}
-        width="15%"
-        _hover={{ color: "#f89f17" }}
+
       >
         <Link to="#">Beauty</Link>
-        <Box
-          top="4rem"
+        <div
+        
           className="drop-down-content"
-          left="-2rem"
-          overflow="hidden"
-          bg="white"
-          pos={"absolute"}
-          width="1000px"
-          transition={"all 0.3s"}
-          height={"0vh"}
-          marginTop="14px"
         >
           <Link to="#">
             <div className="main-menu">
@@ -1078,9 +1005,9 @@ const HomeMenu = () => {
               </div>
             </div>
           </Link>
-        </Box>
-      </Flex>
-    </Flex>
+        </div>
+      </div>
+    </div>
   );
 };
 
