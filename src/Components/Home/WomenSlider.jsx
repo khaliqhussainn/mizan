@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import "./Style.css"; // Import the CSS file
+import "./home.css";
 import Product from "./Product"; // Import the updated Product component
 import image1 from "../../image/sanasafinaz/ss5000.webp";
 import image2 from "../../image/sanasafinaz/ss-5000.jpg";

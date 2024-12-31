@@ -11,7 +11,7 @@ import axios from "axios";
 import { addToCart } from "../../redux/cartReducer/action";
 import Cart from "../../pages/Cart";
 import NavbarTop from "./NavbarTop";
-import "./Style.css";
+import "./home.css";
 
 const Navbar = ({ setShowWishlist }) => {
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ const Navbar = ({ setShowWishlist }) => {
 
           <div className="icons">
             <div className="icon">
-              <BsPerson onClick={() => navigate("/profile")} />
+              <BsPerson onClick={() => navigate("/admin")} />
             </div>
             <div className="icon" onClick={() => setShowWishlist(true)}>
               <AiOutlineHeart />

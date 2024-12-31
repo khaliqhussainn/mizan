@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import { IoIosHeart, IoIosHeartEmpty, IoIosInformationCircleOutline } from "react-icons/io";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./Style.css";
+import "./home.css";
 
 const Product = ({ images, description, price, clothType, brand, sizes, sizeChart, onAddToCart, onAddToWishlist, onRemoveFromWishlist, isInWishlist, onImageClick }) => {
   const [isHovered, setIsHovered] = useState(false);

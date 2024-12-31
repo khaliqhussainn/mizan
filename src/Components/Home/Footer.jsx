@@ -6,7 +6,7 @@ import { MdCall } from "react-icons/md";
 import { RiQuestionnaireFill } from "react-icons/ri";
 import { FiMail } from "react-icons/fi";
 import Logo from "../../Asssets/logo2.png";
-import "./Style.css";
+import "./home.css";
 
 const Footer = () => {
   return (
