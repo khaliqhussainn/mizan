@@ -14,9 +14,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaShoppingCart, FaTimes } from "react-icons/fa";
 import "./style.css";
 import Product from "./Product";
-import product1 from "../image/sanasafinaz/2ss5000.jpg";
-import product2 from "../image/sanasafinaz/2ss5000(2).webp";
-import product3 from "../image/sanasafinaz/2ss5000(3).jpg";
+import product11 from "../image/sanasafinaz/2ss5000.jpg";
+import product12 from "../image/sanasafinaz/2ss5000(2).webp";
+import product13 from "../image/sanasafinaz/2ss5000(3).jpg";
+import product22 from "../image/stitched/1/IMG-20250102-WA0012.jpg";
+import product23 from "../image/stitched/1/IMG-20250102-WA0013.jpg";
+import product24 from "../image/stitched/1/IMG-20250102-WA0014.jpg";
+import product25 from "../image/stitched/1/IMG-20250102-WA0015.jpg";
+import product26 from "../image/stitched/1/IMG-20250102-WA0016.jpg";
+import product27 from "../image/stitched/1/IMG-20250102-WA0017.jpg";
 
 function HomePage() {
   const [cartItems, setCartItems] = useState([]);
@@ -141,10 +147,10 @@ function HomePage() {
       </div>
       <HomeSlider />
       <div className="container">
-        <h2 className="section-title">Our Benefits</h2>
+        <h2 className="section-title">Stitched</h2>
         <div className="product-grid">
           <Product
-            images={[product1, product2, product3]}
+            images={[product11, product12, product13]}
             description="Product 1 Description"
             price={25.99}
             clothType="Cotton"
@@ -155,7 +161,7 @@ function HomePage() {
             isInWishlist={wishlistItems.some(item => item.description === "Product 1 Description")}
           />
           <Product
-            images={[product1, product2, product3]}
+            images={[product24,product22, product23, product25, product26, product27]}
             description="Product 2 Description"
             price={39.99}
             clothType="Polyester"
@@ -166,7 +172,7 @@ function HomePage() {
             isInWishlist={wishlistItems.some(item => item.description === "Product 2 Description")}
           />
           <Product
-            images={[product1, product2, product3]}
+            images={[product11, product12, product13]}
             description="Product 3 Description"
             price={30.99}
             clothType="Silk"
@@ -177,7 +183,7 @@ function HomePage() {
             isInWishlist={wishlistItems.some(item => item.description === "Product 3 Description")}
           />
           <Product
-            images={[product1, product2, product3]}
+            images={[product11, product12, product13]}
             description="Product 4 Description"
             price={40.99}
             clothType="Silk"

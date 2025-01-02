@@ -95,20 +95,20 @@ const ProductDetail = () => {
                 <thead>
                   <tr>
                     <th>Size</th>
-                    <th>Sleeve</th>
-                    <th>Length</th>
-                    <th>Back</th>
-                    <th>Neck</th>
+                    <th>Sleeve Length</th>
+                    <th>Chest</th>
+                    <th>Shirt Length</th>
+                    <th>Hips</th>
                   </tr>
                 </thead>
                 <tbody>
                   {product.sizeChart.map((chart, index) => (
                     <tr key={index}>
                       <td>{chart.size}</td>
-                      <td>{chart.sleeve}</td>
-                      <td>{chart.length}</td>
-                      <td>{chart.back}</td>
-                      <td>{chart.neck}</td>
+                      <td>{chart.sleevelength || chart.sleeve}</td>
+                      <td>{chart.chest}</td>
+                      <td>{chart.shirtlength || chart.length}</td>
+                      <td>{chart.hips}</td>
                     </tr>
                   ))}
                 </tbody>
