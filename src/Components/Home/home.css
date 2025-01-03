@@ -858,3 +858,23 @@ body {
 
 
 /*  */
+
+
+/* home slider */
+.slider-container {
+  width: 90%;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+.slider-image-container {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.slider-image {
+  width: 100%;
+  border-radius: 8px;
+}
+
+/*  */

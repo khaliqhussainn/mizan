@@ -15,33 +15,48 @@ const Cart = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange }
     setTotalPrice(calculateTotalPrice());
   }, [cartItems]);
 
+  // const handlePayment = () => {
+  //   // Implement Razorpay payment logic here
+  //   console.log("Proceed to payment");
+  //   // Example Razorpay integration (you need to replace with actual Razorpay code)
+  //   const options = {
+  //     key: "YOUR_RAZORPAY_KEY", // Replace with your actual Razorpay key
+  //     amount: totalPrice * 100, // Amount in paise
+  //     currency: "INR",
+  //     name: "Your Store Name",
+  //     description: "Test Transaction",
+  //     handler: function (response) {
+  //       console.log(response);
+  //       alert("Payment Successful");
+  //     },
+  //     prefill: {
+  //       name: "Customer Name",
+  //       email: "customer@example.com",
+  //       contact: "9999999999"
+  //     },
+  //     notes: {
+  //       address: "Corporate Office"
+  //     },
+  //     theme: {
+  //       color: "#3399cc"
+  //     }
+  //   };
+
+  //   const paymentObject = new window.Razorpay(options);
+  //   paymentObject.open();
+  // };
   const handlePayment = () => {
-    // Implement Razorpay payment logic here
-    console.log("Proceed to payment");
-    // Example Razorpay integration (you need to replace with actual Razorpay code)
     const options = {
-      key: "YOUR_RAZORPAY_KEY", // Replace with your actual Razorpay key
-      amount: totalPrice * 100, // Amount in paise
+      key: "YOUR_RAZORPAY_KEY",
+      amount: totalPrice * 100,
       currency: "INR",
       name: "Your Store Name",
-      description: "Test Transaction",
-      handler: function (response) {
+      handler: (response) => {
         console.log(response);
         alert("Payment Successful");
       },
-      prefill: {
-        name: "Customer Name",
-        email: "customer@example.com",
-        contact: "9999999999"
-      },
-      notes: {
-        address: "Corporate Office"
-      },
-      theme: {
-        color: "#3399cc"
-      }
     };
-
+  
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
   };

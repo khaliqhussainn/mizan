@@ -32,7 +32,6 @@ function HomePage() {
   }, [cartItems]);
 
   const handleAddToCart = (product) => {
-    console.log("Adding to cart:", product);
     setCartItems((prevItems) => {
       const existingItem = prevItems.find(
         (item) => item.description === product.description
@@ -46,22 +45,11 @@ function HomePage() {
       }
       return [
         ...prevItems,
-        { ...product, quantity: 1, id: Date.now(), size: "" },
+        { ...product, quantity: 1, id: product.id || Date.now(), size: "" },
       ];
     });
 
-    toast.success(
-      `${product.brand} ${product.description} has been added to your cart.`,
-      {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      }
-    );
+    toast.success(`${product.brand} added to your cart.`, { position: "top-right" });
   };
 
   const handleIncrease = (id) => {

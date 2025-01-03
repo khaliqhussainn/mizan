@@ -22,6 +22,7 @@ import product41 from "../../image/stitched/3/WhatsApp Image 2025-01-02 at 16.26
 import product42 from "../../image/stitched/3/WhatsApp Image 2025-01-02 at 16.26.23_ca3ec539.jpg";
 import product43 from "../../image/stitched/3/WhatsApp Image 2025-01-02 at 16.26.23_cc863edf.jpg";
 import product44 from "../../image/stitched/3/WhatsApp Image 2025-01-02 at 16.26.24_9cbc8520.jpg";
+
 const data = [
   {
     images: [image2, image1, image3, image4],

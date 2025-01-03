@@ -1,34 +1,60 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BsBag, BsPerson } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import Logo from "../../Asssets/logo2.png";
 import { Link, useNavigate } from "react-router-dom";
 import HomeMenu from "./HomeMenu";
-import SearchBar from "./SearchBar";
 import SideBar from "./Sidebar";
-import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { addToCart } from "../../redux/cartReducer/action";
 import Cart from "../../pages/Cart";
 import NavbarTop from "./NavbarTop";
 import "./home.css";
 
 const Navbar = ({ setShowWishlist }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { cartItems } = useSelector((store) => store.cartReducer);
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     axios
       .get(`https://lifestyle-mock-server-api.onrender.com/cart`)
       .then((res) => {
-        dispatch(addToCart(res.data));
+        setCartItems(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
-  }, [cartItems, dispatch]);
+  }, []);
+
+  const handleIncrease = (id) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const handleDecrease = (id) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  };
+
+  const handleRemove = (id) => {
+    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  };
+
+  const handleSizeChange = (id, newSize) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === id ? { ...item, size: newSize } : item
+      )
+    );
+  };
 
   return (
     <div>
@@ -47,13 +73,9 @@ const Navbar = ({ setShowWishlist }) => {
             <HomeMenu />
           </div>
 
-          <div className="search-bar">
-            <SearchBar />
-          </div>
-
           <div className="icons">
-            <div className="icon">
-              <BsPerson onClick={() => navigate("/admin")} />
+            <div className="icon" onClick={() => navigate("/admin")}>
+              <BsPerson />
             </div>
             <div className="icon" onClick={() => setShowWishlist(true)}>
               <AiOutlineHeart />
@@ -77,18 +99,10 @@ const Navbar = ({ setShowWishlist }) => {
             <div className="modal-body">
               <Cart
                 cartItems={cartItems}
-                onIncrease={(id) => {
-                  // Implement increase logic
-                }}
-                onDecrease={(id) => {
-                  // Implement decrease logic
-                }}
-                onRemove={(id) => {
-                  // Implement remove logic
-                }}
-                onSizeChange={(id, size) => {
-                  // Implement size change logic
-                }}
+                onIncrease={handleIncrease}
+                onDecrease={handleDecrease}
+                onRemove={handleRemove}
+                onSizeChange={handleSizeChange}
               />
             </div>
             <div className="modal-footer">

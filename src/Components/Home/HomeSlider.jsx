@@ -1,11 +1,13 @@
-import { Box, Image } from "@chakra-ui/react";
 import React, { Component } from "react";
 import Slider from "react-slick";
-import sliderImage1 from "../../Asssets/SliderImage1.jpg";
-import sliderImage2 from "../../Asssets/SliderImage2.gif";
-import sliderImage3 from "../../Asssets/SliderImage3.jpg";
-import sliderImage4 from "../../Asssets/SliderImage4.gif";
-import sliderImage5 from "../../Asssets/SliderImage5.jpg";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import sliderImage1 from "../../image/main1.jpg";
+import sliderImage2 from "../../image/main2.jpg";
+import sliderImage3 from "../../image/main3.jpg";
+import sliderImage4 from "../../image/main1.jpg";
+import sliderImage5 from "../../image/main1.jpg";
+import "./home.css"; // Create a CSS file for styling
 
 export default class HomeSlider extends Component {
   render() {
@@ -18,54 +20,45 @@ export default class HomeSlider extends Component {
       autoplay: true,
     };
     return (
-      <Box
-        width={{ base: "90%", sm: "90%", md: "90%", lg: "85%" }}
-        margin="auto"
-        marginTop={3}
-      >
+      <div className="slider-container">
         <Slider {...settings}>
-          <Box borderRadius={"8px"}>
-            <Image
-              borderRadius={"8px"}
-              margin={"auto"}
-              width={"100%"}
+          <div className="slider-image-container">
+            <img
+              className="slider-image"
               src={sliderImage2}
+              alt="Slider 2"
             />
-          </Box>
-          <Box borderRadius={"8px"}>
-            <Image
-              borderRadius={"8px"}
-              margin={"auto"}
-              width={"100%"}
+          </div>
+          <div className="slider-image-container">
+            <img
+              className="slider-image"
               src={sliderImage1}
+              alt="Slider 1"
             />
-          </Box>
-          <Box borderRadius={"8px"}>
-            <Image
-              borderRadius={"8px"}
-              margin={"auto"}
-              width={"100%"}
+          </div>
+          <div className="slider-image-container">
+            <img
+              className="slider-image"
               src={sliderImage3}
+              alt="Slider 3"
             />
-          </Box>
-          <Box borderRadius={"8px"}>
-            <Image
-              borderRadius={"8px"}
-              margin={"auto"}
-              width={"100%"}
+          </div>
+          <div className="slider-image-container">
+            <img
+              className="slider-image"
               src={sliderImage4}
+              alt="Slider 4"
             />
-          </Box>
-          <Box borderRadius={"8px"}>
-            <Image
-              borderRadius={"8px"}
-              margin={"auto"}
-              width={"100%"}
+          </div>
+          <div className="slider-image-container">
+            <img
+              className="slider-image"
               src={sliderImage5}
+              alt="Slider 5"
             />
-          </Box>
+          </div>
         </Slider>
-      </Box>
+      </div>
     );
   }
 }

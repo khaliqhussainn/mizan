@@ -3,17 +3,12 @@ import { Link } from "react-router-dom";
 import Logo from "../../Asssets/logo2.png";
 import LogoImage from "../../Asssets/LogoI.png";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../redux/authReducer/action";
 import "./Sidebar.css"; // Import the CSS file
 
 function SideBar() {
   const [isOpen, setIsOpen] = React.useState(false);
-  let { isAuth } = useSelector((state) => state.AuthReducer);
-  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logout());
     alert("User Logout Successfully. Come Back Again Soon");
   };
 
@@ -56,15 +51,9 @@ function SideBar() {
                   Profile
                 </Link>
                 <div className="auth-buttons">
-                  {isAuth ? (
-                    <button className="auth-button" onClick={handleLogout}>
-                      Logout
-                    </button>
-                  ) : (
-                    <Link to="/login">
-                      <button className="auth-button">Login</button>
-                    </Link>
-                  )}
+                  <button className="auth-button" onClick={handleLogout}>
+                    Logout
+                  </button>
                 </div>
               </div>
             </div>
