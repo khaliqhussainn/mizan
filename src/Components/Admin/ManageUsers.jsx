@@ -15,22 +15,25 @@ import AdminSidebar from "./AdminSidebar";
 
 function ManageUsers() {
   const [userData, setUserData] = useState([]);
+  const [error, setError] = useState(null);
 
-  const getData = () => {
-    axios
-      .get(`https://lifestyle-mock-server-api.onrender.com/registeredUser`)
-      .then((res) => {
-        // console.log(res.data)
-        setUserData(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const getData = async () => {
+    try {
+      const response = await axios.get(`https://lifestyle-mock-server-api.onrender.com/registeredUser`);
+      setUserData(response.data);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+      setError("Failed to fetch user data. Please try again later.");
+    }
   };
 
   useEffect(() => {
     getData();
   }, []);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <>
@@ -48,19 +51,22 @@ function ManageUsers() {
               </Tr>
             </Thead>
             <Tbody>
-              {userData.length > 0 &&
-                userData.map((el, i) => {
-                  return (
-                    <Tr key={el.id}>
-                      <Td>{i + 1}</Td>
-                      <Td>
-                        {el.firstName} {el.lastName}
-                      </Td>
-                      <Td>{el.email}</Td>
-                      <Td>{el.password}</Td>
-                    </Tr>
-                  );
-                })}
+              {userData.length > 0 ? (
+                userData.map((el, i) => (
+                  <Tr key={el.id}>
+                    <Td>{i + 1}</Td>
+                    <Td>
+                      {el.firstName} {el.lastName}
+                    </Td>
+                    <Td>{el.email}</Td>
+                    <Td>{el.password}</Td>
+                  </Tr>
+                ))
+              ) : (
+                <Tr>
+                  <Td colSpan="4" textAlign="center">No users found</Td>
+                </Tr>
+              )}
             </Tbody>
           </Table>
         </TableContainer>

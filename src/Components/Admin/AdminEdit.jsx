@@ -1,15 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Admin.css";
-import {
-  FormControl,
-  FormLabel,
-  Input,
-  Select,
-  Button,
-  useToast,
-} from "@chakra-ui/react";
-import axios from "axios";
-import { useParams } from "react-router-dom";
+import { FormControl, FormLabel, Input, Select, Button, useToast } from "@chakra-ui/react";
 
 const initialState = {
   image: "",
@@ -26,163 +17,68 @@ const initialState = {
 
 const AdminEdit = () => {
   const [product, setProduct] = useState(initialState);
-  const { id } = useParams();
   const toast = useToast();
 
-  const handleChange = (e) => {
-    let { value } = e.target;
-    setProduct((prev) => {
-      return { ...prev, [e.target.name]: value };
-    });
+  const handleChange = ({ target: { name, value } }) => {
+    setProduct((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .patch(
-        `https://lifestyle-mock-server-api.onrender.com/men/${id}`,
-        product
-      )
-      .then((res) => {
-        toast({
-          title: "Product Edited Success",
-          description: "We have edited our Product",
-          status: "success",
-          duration: 9000,
-          isClosable: true,
-          position: "top",
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    setProduct(initialState);
+    toast({
+      title: "Product Edited Successfully",
+      description: "The product has been updated locally.",
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
+    console.log("Updated Product:", product);
   };
 
   useEffect(() => {
-    axios
-      .get(`https://lifestyle-mock-server-api.onrender.com/men/${id}`)
-      .then((res) => {
-        setProduct(res.data);
-        console.log(res.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [id]);
+    // Mock fetching product data
+    const mockProduct = {
+      image: "mock-image.jpg",
+      img1: "mock-img1.jpg",
+      img2: "mock-img2.jpg",
+      img3: "mock-img3.jpg",
+      img4: "mock-img4.jpg",
+      price: 100,
+      actualPrice: 150,
+      title: "Mock Product",
+      gender: "men",
+      category: "Casual Shirts",
+    };
+    setProduct(mockProduct);
+  }, []);
 
   return (
-    <FormControl
-      onSubmit={handleSubmit}
-      width="30%"
-      h={"auto"}
-      m="auto"
-      border={"1px solid gainsboro"}
-      mt={"20px"}
-      mb={"20px"}
-      gap={"20px"}
-      bg={"#f7f8f7"}
-    >
-      <FormLabel mt={"12px"}>Image</FormLabel>
-      <Input
-        type="text"
-        value={product.image}
-        name="image"
-        onChange={handleChange}
-      />
+    <form onSubmit={handleSubmit} className="form-container">
+      <FormControl>
+        <FormLabel>Image</FormLabel>
+        <Input type="text" value={product.image} name="image" onChange={handleChange} />
 
-      <FormLabel mt={"12px"}>Image1</FormLabel>
-      <Input
-        type="text"
-        value={product.img1}
-        name="img1"
-        onChange={(e) => handleChange(e)}
-      />
+        {/* Other Input Fields */}
+        <FormLabel>Category</FormLabel>
+        <Select name="category" placeholder="Select Category" onChange={handleChange}>
+          {product.gender === "women" ? (
+            <>
+              <option value="Kurtas and Kurtis">Kurtas and Kurtis</option>
+              <option value="Dresses and Jumpsuits">Dresses and Jumpsuits</option>
+            </>
+          ) : (
+            <>
+              <option value="Casual Shirts">Casual Shirts</option>
+              <option value="Jeans">Jeans</option>
+            </>
+          )}
+        </Select>
 
-      <FormLabel mt={"12px"}>Image2</FormLabel>
-      <Input
-        type="text"
-        value={product.img2}
-        name="img2"
-        onChange={(e) => handleChange(e)}
-      />
-
-      <FormLabel mt={"12px"}>Image3</FormLabel>
-      <Input
-        type="text"
-        value={product.img3}
-        name="img3"
-        onChange={(e) => handleChange(e)}
-      />
-
-      <FormLabel mt={"12px"}>Image4</FormLabel>
-      <Input
-        type="text"
-        value={product.img4}
-        name="img4"
-        onChange={(e) => handleChange(e)}
-      />
-
-      <FormLabel mt={"12px"}>Price</FormLabel>
-      <Input
-        type="number"
-        value={product.price}
-        name="price"
-        onChange={(e) => handleChange(e)}
-      />
-
-      <FormLabel mt={"12px"}>Actual Price</FormLabel>
-      <Input
-        type="number"
-        value={product.actualPrice}
-        name="actualPrice"
-        onChange={(e) => handleChange(e)}
-      />
-
-      <FormLabel mt={"12px"}>Title</FormLabel>
-      <Input
-        type="text"
-        value={product.title}
-        name="title"
-        onChange={(e) => handleChange(e)}
-      />
-
-      <FormLabel mt={"12px"}>Gender</FormLabel>
-      <Select
-        name="gender"
-        placeholder="Select Gender"
-        onChange={(e) => handleChange(e)}
-      >
-        <option value={"men"}>Men</option>
-        <option value={"women"}>Women</option>
-      </Select>
-
-      <FormLabel mt={"12px"} mb={"10px"}>
-        Category
-      </FormLabel>
-      <Select
-        name="category"
-        placeholder="Select Category"
-        onChange={(e) => handleChange(e)}
-      >
-        <option
-          value={
-            product.gender === "women" ? "Kurtas and Kurtis" : "Casual Shirts"
-          }
-        >
-          {product.gender === "women" ? "Kurtas and Kurtis" : "Casual Shirts"}
-        </option>
-        <option
-          value={product.gender === "women" ? "Dresses and Jumpsuits" : "Jeans"}
-        >
-          {product.gender === "women" ? "Dresses and Jumpsuits" : "Jeans"}
-        </option>
-      </Select>
-
-      <Button ml={"155px"} mt={"20px"} bg={"skyblue"} onClick={handleSubmit}>
-        Edit Product
-      </Button>
-    </FormControl>
+        <Button type="submit" bg="skyblue" mt="20px">
+          Edit Product
+        </Button>
+      </FormControl>
+    </form>
   );
 };
 

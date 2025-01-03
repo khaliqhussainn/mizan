@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Flex,
   Box,
@@ -6,83 +7,69 @@ import {
   Input,
   Checkbox,
   Stack,
-  Link,
   Button,
   Heading,
   Text,
   useColorModeValue,
   useToast,
 } from "@chakra-ui/react";
-import axios from "axios";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isAuth, setIsAuth] = useState(false);
   const toast = useToast();
   const navigate = useNavigate();
 
-  const onCLickSubmit = (e) => {
+  const onClickSubmit = (e) => {
     e.preventDefault();
-    let obj = {
-      email,
-      password,
+
+    // Mock login logic
+    const mockCredentials = {
+      email: "admin@example.com",
+      password: "admin123",
     };
 
-    axios
-      .post(`https://reqres.in/api/login`, obj)
-      .then((res) => {
-        setIsAuth(true);
-        toast({
-          title: "Login Successfully.",
-          description: "We're redirecting you to the admin page",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-          position: "top",
-        });
-
-        setEmail("khaliqhussain9711@gmail.com");
-        setPassword("12345678");
-        navigate("/admin");
-      })
-      .catch((error) => {
-        setIsAuth(false);
-        toast({
-          title: "Check your Credentials!!.",
-          description: "Please enter your correct details",
-          status: "error",
-          duration: 3000,
-          isClosable: true,
-          position: "top",
-        });
-        setEmail("");
-        setPassword("");
+    if (email === mockCredentials.email && password === mockCredentials.password) {
+      toast({
+        title: "Login Successful",
+        description: "Redirecting to the admin page.",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
       });
+      navigate("/admin");
+    } else {
+      toast({
+        title: "Login Failed",
+        description: "Invalid email or password.",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+      setEmail("");
+      setPassword("");
+    }
   };
-
-  console.log(isAuth);
 
   return (
     <Flex
-      minH={"100vh"}
-      align={"center"}
-      justify={"center"}
+      minH="100vh"
+      align="center"
+      justify="center"
       bg={useColorModeValue("gray.50", "gray.800")}
     >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
-        <Stack align={"center"}>
-          <Heading fontSize={"4xl"}>Sign in to your account</Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
-            to go to the Admin's page<Link color={"blue.400"}></Link> ✌️
+      <Stack spacing={8} mx="auto" maxW="lg" py={12} px={6}>
+        <Stack align="center">
+          <Heading fontSize="4xl">Sign in to your account</Heading>
+          <Text fontSize="lg" color="gray.600">
+            to access the admin page ✌️
           </Text>
         </Stack>
         <Box
-          rounded={"lg"}
+          rounded="lg"
           bg={useColorModeValue("white", "gray.700")}
-          boxShadow={"lg"}
+          boxShadow="lg"
           p={8}
         >
           <Stack spacing={4}>
@@ -90,7 +77,6 @@ export default function AdminLogin() {
               <FormLabel>Email address</FormLabel>
               <Input
                 type="email"
-                name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -99,27 +85,17 @@ export default function AdminLogin() {
               <FormLabel>Password</FormLabel>
               <Input
                 type="password"
-                name="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </FormControl>
             <Stack spacing={10}>
-              <Stack
-                direction={{ base: "column", sm: "row" }}
-                align={"start"}
-                justify={"space-between"}
-              >
-                <Checkbox>Remember me</Checkbox>
-                <Link color={"blue.400"}>Forgot password?</Link>
-              </Stack>
+              <Checkbox>Remember me</Checkbox>
               <Button
-                bg={"blue.400"}
-                color={"white"}
-                _hover={{
-                  bg: "blue.500",
-                }}
-                onClick={onCLickSubmit}
+                bg="blue.400"
+                color="white"
+                _hover={{ bg: "blue.500" }}
+                onClick={onClickSubmit}
               >
                 Sign in
               </Button>

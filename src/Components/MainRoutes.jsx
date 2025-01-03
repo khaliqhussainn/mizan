@@ -2,7 +2,6 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import Cart  from "../pages/Cart";
-import CartPage  from "../pages/CartPage";
 import AdminProduct from "./Admin/AdminProduct";
 import AdminManageProduct from "./Admin/AdminManageProduct";
 import AdminEdit from "./Admin/AdminEdit";
@@ -40,7 +39,7 @@ function MainRoutes() {
       <Route path="/admin" element={<Admin />}></Route>
       <Route path="/" element={<WomenSlider handleAddToCart={handleAddToCart} />} />
       <Route path="/product-detail" element={<ProductDetail />} />
-      <Route path="/cartPage" element={<CartPage />} />
+      {/* <Route path="/cartPage" element={<CartPage />} /> */}
     </Routes>
   );
 }
