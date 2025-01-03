@@ -1,52 +1,88 @@
 import React, { useState } from "react";
-import Slider from "react-slick";
-import { IoIosHeart, IoIosHeartEmpty, IoIosInformationCircleOutline } from "react-icons/io";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import {
+  IoIosHeart,
+  IoIosHeartEmpty,
+  IoIosInformationCircleOutline,
+} from "react-icons/io";
 import "./home.css";
 
-const Product = ({ images, description, price, clothType, brand, sizes, sizeChart, onAddToCart, onAddToWishlist, onRemoveFromWishlist, isInWishlist, onImageClick }) => {
-  const [isHovered, setIsHovered] = useState(false);
+const Product = ({
+  images,
+  price,
+  brand,
+  onAddToCart,
+  onAddToWishlist,
+  onRemoveFromWishlist,
+  isInWishlist,
+  onImageClick,
+}) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: isHovered,
-    autoplaySpeed: 2000,
+  const handleDotClick = (index) => {
+    setCurrentImageIndex(index);
   };
 
   return (
-    <div
-      className="product-container"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="product-container">
       <div className="product-image-slider">
-        <Slider {...settings}>
-          {images.map((image, index) => (
-            <div key={index} className="image-container">
-              <img src={image} alt={`Product ${index}`} />
-              <div className="icon-overlay">
-                <IoIosInformationCircleOutline size={30} color="white" onClick={onImageClick} />
-                <div onClick={() => onAddToWishlist({ images, description, price, clothType, brand, sizes, sizeChart })}>
-                  {isInWishlist ? <IoIosHeart size={30} color="red" /> : <IoIosHeartEmpty size={30} color="white" />}
-                </div>
-              </div>
+        <div className="image-container">
+          <img
+            src={images[currentImageIndex]}
+            alt={`Product ${currentImageIndex}`}
+          />
+          <div className="icon-overlay">
+            <IoIosInformationCircleOutline
+              size={30}
+              color="white"
+              onClick={onImageClick}
+            />
+            <div
+              onClick={() =>
+                onAddToWishlist({
+                  images,
+                  price,
+                  brand,
+                })
+              }
+            >
+              {isInWishlist ? (
+                <IoIosHeart size={30} color="red" />
+              ) : (
+                <IoIosHeartEmpty size={30} color="white" />
+              )}
             </div>
-          ))}
-        </Slider>
+          </div>
+          {images.length > 1 && (
+            <div className="dots">
+              {images.map((_, index) => (
+                <span
+                  key={index}
+                  className={`dot ${
+                    index === currentImageIndex ? "active" : ""
+                  }`}
+                  onClick={() => handleDotClick(index)}
+                ></span>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
       <div className="product-details">
-        <p>{description}</p>
         <p>Price: ${price}</p>
-        <p>Cloth Type: {clothType}</p>
         <p>Brand: {brand}</p>
-        <button onClick={() => onAddToCart({ images, description, price, clothType, brand, sizes, sizeChart })}>
-          Add to Cart
-        </button>
+        <div className="button-product-container">
+          <button
+            onClick={() =>
+              onAddToCart({
+                images,
+                price,
+                brand,
+              })
+            }
+          >
+            Add to Cart
+          </button>
+        </div>
       </div>
     </div>
   );

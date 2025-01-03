@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import "./home.css";
+import "./product-detail.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
@@ -24,15 +24,13 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart = () => {
-    if (selectedSize) {
-      setShowPopup(true);
-      setTimeout(() => {
-        setShowPopup(false);
-      }, 3000); // Hide popup after 3 seconds
-      alert(`Added ${product.brand} - ${product.description} (Size: ${selectedSize}) to cart!`);
-    } else {
+    if (!selectedSize) {
       alert("Please select a size before adding to cart.");
+      return;
     }
+    
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 3000);
   };
 
   return (
@@ -62,9 +60,18 @@ const ProductDetail = () => {
         <div className="product-info-container">
           <h1>{product.brand}</h1>
           <h2>{product.description}</h2>
-          <p className="product-description">{product.description}</p>
-          <p className="product-price">Price: ${product.price}</p>
-          <p className="product-cloth-type">Cloth Type: {product.clothType}</p>
+          <p className="product-price">₹{product.price}</p>
+          <p className="product-cloth-type">Outfit Type: {product.outfitType}</p>
+          <p className="product-cloth-type">Sub-Category: {product.subCategory}</p>
+          <p className="product-cloth-type">Color Type: {product.colorType}</p>
+          <p className="product-cloth-type">Number of Pieces: {product.numberOfPieces}</p>
+          <p className="product-cloth-type">Product Type: {product.productType}</p>
+          <p className="product-cloth-type">Season: {product.season}</p>
+          <p className="product-cloth-type">Shirt Fabrics: {product.shirtFabrics}</p>
+          <p className="product-cloth-type">Trouser Fabric: {product.trouserFabric}</p>
+          <p className="product-cloth-type">Dupatta Fabric: {product.dupattaFabric}</p>
+          <p className="product-cloth-type">Work Technique: {product.workTechnique}</p>
+          
           {product.sizes && product.sizes.length > 0 && (
             <div className="size-chart">
               <h3>Select Size</h3>
@@ -85,9 +92,11 @@ const ProductDetail = () => {
               </ul>
             </div>
           )}
+          
           <button className="add-to-cart-button" onClick={handleAddToCart}>
             Add to Cart
           </button>
+
           {product.sizeChart && product.sizeChart.length > 0 && (
             <div className="size-chart-details">
               <h3>Size Chart Details</h3>
@@ -117,6 +126,7 @@ const ProductDetail = () => {
           )}
         </div>
       </div>
+      
       {showPopup && (
         <div className="popup">
           <div className="popup-content">

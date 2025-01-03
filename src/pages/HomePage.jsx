@@ -99,6 +99,13 @@ function HomePage() {
       </div>
       <HomeSlider />
       <div className="container">
+        <h2 className="section-title">Women's Store</h2>
+        <div>
+          <WomenSlider handleAddToCart={handleAddToCart} />
+        </div>
+      </div>
+      
+      <div className="container">
         <h2 className="section-title">Stitched</h2>
         <div className="product-grid">
           <Product
@@ -141,12 +148,6 @@ function HomePage() {
         <UnMissSlider />
       </div>
 
-      <div className="container">
-        <h2 className="section-title">Women's Store</h2>
-        <div>
-          <WomenSlider handleAddToCart={handleAddToCart} />
-        </div>
-      </div>
 
       <div className="container">
         <h2 className="section-title">Mens's Store</h2>

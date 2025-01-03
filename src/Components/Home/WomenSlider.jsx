@@ -25,10 +25,19 @@ import product44 from "../../image/stitched/3/WhatsApp Image 2025-01-02 at 16.26
 
 const data = [
   {
-    images: [image2, image1, image3, image4],
+   images: [image2, image1, image3, image4],
     description: "Product 2 Description",
     price: "39.99",
-    clothType: "Polyester",
+    outfitType: "Dress",
+    subCategory: "Evening Wear",
+    colorType: "Red",
+    numberOfPieces: "1",
+    productType: "Dress",
+    season: "Summer",
+    shirtFabrics: "Polyester",
+    trouserFabric: "N/A",
+    dupattaFabric: "N/A",
+    workTechnique: "Embroidery",
     brand: "Brand B",
     sizes: ["S", "M", "L", "XL"],
     sizeChart: [
@@ -40,11 +49,19 @@ const data = [
   },
   {
     images: [product31, product32, product33, product34],
-    description:
-      "Aadab embroidered 3pcs Fine quality stuff",
-    price: "2500",
-    clothType: "Linen",
-    brand: "Aadab",
+    description: "Product 2 Description",
+    price: "39.99",
+    outfitType: "Dress",
+    subCategory: "Evening Wear",
+    colorType: "Red",
+    numberOfPieces: "1",
+    productType: "Dress",
+    season: "Summer",
+    shirtFabrics: "Polyester",
+    trouserFabric: "N/A",
+    dupattaFabric: "N/A",
+    workTechnique: "Embroidery",
+    brand: "Brand B",
     sizes: ["S", "M", "L", "XL"],
     sizeChart: [
       {
@@ -79,11 +96,19 @@ const data = [
   },
   {
     images: [product24, product22, product23, product25, product26, product27],
-    description:
-      "Luxury Aghajaan Studio- Maroon chiffon 3pc embroidered and hand embellished suit.",
-    price: "6000",
-    clothType: "Chiffon",
-    brand: "Aghajaan",
+   description: "Product 2 Description",
+    price: "39.99",
+    outfitType: "Dress",
+    subCategory: "Evening Wear",
+    colorType: "Red",
+    numberOfPieces: "1",
+    productType: "Dress",
+    season: "Summer",
+    shirtFabrics: "Polyester",
+    trouserFabric: "N/A",
+    dupattaFabric: "N/A",
+    workTechnique: "Embroidery",
+    brand: "Brand B",
     sizes: ["S", "M", "L", "XL"],
     sizeChart: [
       {
@@ -119,10 +144,19 @@ const data = [
 
   {
     images: [product41, product42, product43, product44],
-    description: "Featuring a unique front-short and back-tail design adorned with intricate Tilla work and full front embroidery.",
-    price: "3000",
-    clothType: "Chiffon",
-    brand: "Bin Akram",
+   description: "Product 2 Description",
+    price: "39.99",
+    outfitType: "Dress",
+    subCategory: "Evening Wear",
+    colorType: "Red",
+    numberOfPieces: "1",
+    productType: "Dress",
+    season: "Summer",
+    shirtFabrics: "Polyester",
+    trouserFabric: "N/A",
+    dupattaFabric: "N/A",
+    workTechnique: "Embroidery",
+    brand: "Brand B",
     sizes: ["S", "M", "L", "XL"],
     sizeChart: [
       { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
@@ -147,10 +181,19 @@ const data = [
   },
   {
     images: [image2, "https://example.com/image2-2.jpg"],
-    description: "Product 3 Description",
-    price: "49.99",
-    clothType: "Silk",
-    brand: "Brand C",
+    description: "Product 2 Description",
+    price: "39.99",
+    outfitType: "Dress",
+    subCategory: "Evening Wear",
+    colorType: "Red",
+    numberOfPieces: "1",
+    productType: "Dress",
+    season: "Summer",
+    shirtFabrics: "Polyester",
+    trouserFabric: "N/A",
+    dupattaFabric: "N/A",
+    workTechnique: "Embroidery",
+    brand: "Brand B",
     sizes: ["S", "M", "L", "XL"],
     sizeChart: [
       { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
@@ -184,8 +227,8 @@ const WomenSlider = ({ handleAddToCart }) => {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 2,
+    slidesToShow: 4, // Show 3 products on large screens
+    slidesToScroll: 1,
     initialSlide: 0,
     nextArrow: <SampleNextArrow style={{ color: "red" }} />,
     responsive: [
@@ -199,17 +242,17 @@ const WomenSlider = ({ handleAddToCart }) => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 780,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
         },
       },
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
@@ -217,11 +260,12 @@ const WomenSlider = ({ handleAddToCart }) => {
   };
 
   return (
+    <>
     <div className="slider-container">
       <Slider {...settings}>
         {data.map((item, i) => {
           return (
-            <div key={i}>
+            <div key={i} className="product-slide">
               <Product
                 images={item.images}
                 description={item.description}
@@ -238,6 +282,8 @@ const WomenSlider = ({ handleAddToCart }) => {
         })}
       </Slider>
     </div>
+    </>
+
   );
 };
 
