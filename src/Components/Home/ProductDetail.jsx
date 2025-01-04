@@ -4,7 +4,7 @@ import "./product-detail.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
-const ProductDetail = () => {
+const ProductDetail = ({ onAddToCart }) => {
   const location = useLocation();
   const { product } = location.state || {};
   const [selectedImage, setSelectedImage] = useState(product?.images?.[0] || "");
@@ -14,7 +14,6 @@ const ProductDetail = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
 
   if (!product) {
     return <div>No product selected</div>;
@@ -29,7 +28,8 @@ const ProductDetail = () => {
       alert("Please select a size before adding to cart.");
       return;
     }
-    
+
+    onAddToCart({ ...product, size: selectedSize });
     setShowPopup(true);
     setTimeout(() => setShowPopup(false), 3000);
   };
@@ -72,7 +72,7 @@ const ProductDetail = () => {
           <p className="product-cloth-type">Trouser Fabric: {product.trouserFabric}</p>
           <p className="product-cloth-type">Dupatta Fabric: {product.dupattaFabric}</p>
           <p className="product-cloth-type">Work Technique: {product.workTechnique}</p>
-          
+
           {product.sizes && product.sizes.length > 0 && (
             <div className="size-chart">
               <h3>Select Size</h3>
@@ -93,7 +93,7 @@ const ProductDetail = () => {
               </ul>
             </div>
           )}
-          
+
           <button className="add-to-cart-button" onClick={handleAddToCart}>
             Add to Cart
           </button>
@@ -127,7 +127,7 @@ const ProductDetail = () => {
           )}
         </div>
       </div>
-      
+
       {showPopup && (
         <div className="popup">
           <div className="popup-content">

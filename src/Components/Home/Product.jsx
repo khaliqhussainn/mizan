@@ -10,6 +10,10 @@ const Product = ({
   images,
   price,
   brand,
+  description,
+  clothType,
+  sizes,
+  sizeChart,
   onAddToCart,
   onAddToWishlist,
   onRemoveFromWishlist,
@@ -17,9 +21,24 @@ const Product = ({
   onImageClick,
 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleDotClick = (index) => {
     setCurrentImageIndex(index);
+  };
+
+  const handleAddToCart = () => {
+    onAddToCart({
+      images,
+      price,
+      brand,
+      description,
+      clothType,
+      sizes,
+      sizeChart,
+    });
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 3000); // Hide the popup after 3 seconds
   };
 
   return (
@@ -42,6 +61,10 @@ const Product = ({
                   images,
                   price,
                   brand,
+                  description,
+                  clothType,
+                  sizes,
+                  sizeChart,
                 })
               }
             >
@@ -71,19 +94,19 @@ const Product = ({
         <p>Price: ₹{price}</p>
         <p>Brand: {brand}</p>
         <div className="button-product-container">
-          <button
-            onClick={() =>
-              onAddToCart({
-                images,
-                price,
-                brand,
-              })
-            }
-          >
+          <button onClick={handleAddToCart}>
             Add to Cart
           </button>
         </div>
       </div>
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <h3>Added to Cart</h3>
+            <p>{brand} - {description}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -15,36 +15,6 @@ const Cart = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange }
     setTotalPrice(calculateTotalPrice());
   }, [cartItems]);
 
-  // const handlePayment = () => {
-  //   // Implement Razorpay payment logic here
-  //   console.log("Proceed to payment");
-  //   // Example Razorpay integration (you need to replace with actual Razorpay code)
-  //   const options = {
-  //     key: "YOUR_RAZORPAY_KEY", // Replace with your actual Razorpay key
-  //     amount: totalPrice * 100, // Amount in paise
-  //     currency: "INR",
-  //     name: "Your Store Name",
-  //     description: "Test Transaction",
-  //     handler: function (response) {
-  //       console.log(response);
-  //       alert("Payment Successful");
-  //     },
-  //     prefill: {
-  //       name: "Customer Name",
-  //       email: "customer@example.com",
-  //       contact: "9999999999"
-  //     },
-  //     notes: {
-  //       address: "Corporate Office"
-  //     },
-  //     theme: {
-  //       color: "#3399cc"
-  //     }
-  //   };
-
-  //   const paymentObject = new window.Razorpay(options);
-  //   paymentObject.open();
-  // };
   const handlePayment = () => {
     const options = {
       key: "YOUR_RAZORPAY_KEY",
@@ -56,7 +26,7 @@ const Cart = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange }
         alert("Payment Successful");
       },
     };
-  
+
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
   };
@@ -83,7 +53,7 @@ const Cart = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange }
             <div className="cart-item-details">
               <h3>{item.brand}</h3>
               <p>{item.description}</p>
-              <p>${Number(item.price).toFixed(2)}</p>
+              <p>₹{Number(item.price).toFixed(2)}</p>
               <p>{item.clothType}</p>
               <select
                 value={item.size}
@@ -107,7 +77,7 @@ const Cart = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange }
         ))}
       </div>
       <div className="cart-footer">
-        <p>Total: ${totalPrice.toFixed(2)}</p>
+        <p>Total: ₹{totalPrice.toFixed(2)}</p>
         <button className="payment-button" onClick={handlePayment}>Proceed to Payment</button>
       </div>
     </div>

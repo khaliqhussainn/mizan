@@ -7,10 +7,8 @@ import WomenSlider from "../Components/Home/WomenSlider";
 import UnMissSlider from "../Components/Home/UnMissSlider";
 import Footer from "../Components/Home/Footer";
 import Navbar from "../Components/Home/Navbar";
-import Cart from "./Cart";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaShoppingCart, FaTimes } from "react-icons/fa";
 import "./style.css";
 import Product from "./Product";
 import product11 from "../image/sanasafinaz/2ss5000.jpg";
@@ -22,89 +20,41 @@ import product24 from "../image/stitched/1/IMG-20250102-WA0014.jpg";
 import product25 from "../image/stitched/1/IMG-20250102-WA0015.jpg";
 import product26 from "../image/stitched/1/IMG-20250102-WA0016.jpg";
 import product27 from "../image/stitched/1/IMG-20250102-WA0017.jpg";
+import { FaTimes } from "react-icons/fa"; // Import FaTimes
+import Cart from "./Cart"; // Import Cart
 
-function HomePage() {
-  const [cartItems, setCartItems] = useState([]);
+const HomePage = ({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, onSizeChange }) => {
   const [showCart, setShowCart] = useState(false);
 
   useEffect(() => {
     console.log("Cart Items in HomePage:", cartItems);
   }, [cartItems]);
 
-  const handleAddToCart = (product) => {
-    setCartItems((prevItems) => {
-      const existingItem = prevItems.find(
-        (item) => item.description === product.description
-      );
-      if (existingItem) {
-        return prevItems.map((item) =>
-          item.description === product.description
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [
-        ...prevItems,
-        { ...product, quantity: 1, id: product.id || Date.now(), size: "" },
-      ];
-    });
-
-    toast.success(`${product.brand} added to your cart.`, { position: "top-right" });
-  };
-
-  const handleIncrease = (id) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
-  };
-
-  const handleDecrease = (id) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
-  };
-
-  const handleRemove = (id) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  };
-
-  const handleSizeChange = (id, newSize) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, size: newSize } : item
-      )
-    );
-  };
-
   return (
     <div className="home-page">
       <ToastContainer />
       <div>
-        <Navbar />
+        <Navbar
+          cartItems={cartItems}
+          onIncrease={onIncrease}
+          onDecrease={onDecrease}
+          onRemove={onRemove}
+          onSizeChange={onSizeChange}
+        />
       </div>
       <div className="progress-bar">
         <div className="progress-text">
           New arrivals in mens and womens wear upto 30% off
         </div>
-        <FaShoppingCart
-          className="cart-icon"
-          onClick={() => setShowCart(true)}
-        />
       </div>
       <HomeSlider />
       <div className="container">
         <h2 className="section-title">Women's Store</h2>
         <div className="homepage-slider-container">
-          <WomenSlider handleAddToCart={handleAddToCart} />
+          <WomenSlider handleAddToCart={onAddToCart} />
         </div>
       </div>
-      
+
       <div className="container">
         <h2 className="section-title">Stitched</h2>
         <div className="product-grid">
@@ -114,15 +64,15 @@ function HomePage() {
             price={25.99}
             clothType="Cotton"
             brand="Brand A"
-            onAddToCart={handleAddToCart}
+            onAddToCart={onAddToCart}
           />
           <Product
-            images={[product24,product22, product23, product25, product26, product27]}
+            images={[product24, product22, product23, product25, product26, product27]}
             description="Product 2 Description"
             price={39.99}
             clothType="Polyester"
             brand="Brand B"
-            onAddToCart={handleAddToCart}
+            onAddToCart={onAddToCart}
           />
           <Product
             images={[product11, product12, product13]}
@@ -130,7 +80,7 @@ function HomePage() {
             price={30.99}
             clothType="Silk"
             brand="Brand C"
-            onAddToCart={handleAddToCart}
+            onAddToCart={onAddToCart}
           />
           <Product
             images={[product11, product12, product13]}
@@ -138,7 +88,7 @@ function HomePage() {
             price={40.99}
             clothType="Silk"
             brand="Brand D"
-            onAddToCart={handleAddToCart}
+            onAddToCart={onAddToCart}
           />
         </div>
       </div>
@@ -148,20 +98,19 @@ function HomePage() {
         <UnMissSlider />
       </div>
 
-
       <div className="container">
         <h2 className="section-title">Mens's Store</h2>
-        <MenSlider handleAddToCart={handleAddToCart} />
+        <MenSlider onAddToCart={onAddToCart} />
       </div>
 
       <div className="container">
         <h2 className="section-title">Kids Store</h2>
-        <KidSlider handleAddToCart={handleAddToCart} />
+        <KidSlider onAddToCart={onAddToCart} />
       </div>
 
       <div className="container">
         <h2 className="section-title">Trending Add-Ons</h2>
-        <TrendingSlider handleAddToCart={handleAddToCart} />
+        <TrendingSlider onAddToCart={onAddToCart} />
       </div>
 
       <div className="container">
@@ -227,16 +176,16 @@ function HomePage() {
             />
             <Cart
               cartItems={cartItems}
-              onIncrease={handleIncrease}
-              onDecrease={handleDecrease}
-              onRemove={handleRemove}
-              onSizeChange={handleSizeChange}
+              onIncrease={onIncrease}
+              onDecrease={onDecrease}
+              onRemove={onRemove}
+              onSizeChange={onSizeChange}
             />
           </div>
         </div>
       )}
     </div>
   );
-}
+};
 
 export default HomePage;

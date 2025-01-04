@@ -116,7 +116,6 @@ const data = [
       },
     ],
   },
-
   {
     images: [product41, product42, product43, product44],
     description: "Featuring a unique front-short and back-tail design adorned with intricate Tilla work and full front embroidery.",
@@ -240,7 +239,6 @@ const WomenSlider = ({ handleAddToCart }) => {
         })}
       </Slider>
     </div>
-
   );
 };
 

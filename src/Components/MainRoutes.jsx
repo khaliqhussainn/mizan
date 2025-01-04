@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "../pages/HomePage";
-import Cart  from "../pages/Cart";
+import Cart from "../pages/Cart";
 import AdminProduct from "./Admin/AdminProduct";
 import AdminManageProduct from "./Admin/AdminManageProduct";
 import AdminEdit from "./Admin/AdminEdit";
@@ -10,36 +10,49 @@ import AdminLogin from "./Admin/AdminLogin";
 import Admin from "../pages/Admin";
 import ProductDetail from "../Components/Home/ProductDetail";
 import WomenSlider from "../Components/Home/WomenSlider";
-  
 
-function MainRoutes() {
-  const handleAddToCart = (product) => {
-    console.log("Product added to cart:", product);
-  };
+function MainRoutes({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, onSizeChange }) {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/" element={<HomePage />} />
-
-      {/* <Route
-        path="/checkout"
+      <Route
+        path="/"
         element={
-          <PrivateRoutes>
-            <Checkout />
-          </PrivateRoutes>
+          <HomePage
+            cartItems={cartItems}
+            onAddToCart={onAddToCart}
+            onIncrease={onIncrease}
+            onDecrease={onDecrease}
+            onRemove={onRemove}
+            onSizeChange={onSizeChange}
+          />
         }
-      /> */}
-      {/* <Route path="/payment" element={<Payment />} /> */}
-      <Route path="/cart" element={<Cart />} />
-      <Route path="/products" element={<AdminProduct />}></Route>
-      <Route path="/manageProduct" element={<AdminManageProduct />}></Route>
-      <Route path="/editProduct/:id" element={<AdminEdit />}></Route>
-      <Route path="/users" element={<ManageUsers />}></Route>
-      <Route path="/adminLogin" element={<AdminLogin />}></Route>
-      <Route path="/admin" element={<Admin />}></Route>
-      <Route path="/" element={<WomenSlider handleAddToCart={handleAddToCart} />} />
-      <Route path="/product-detail" element={<ProductDetail />} />
-      {/* <Route path="/cartPage" element={<CartPage />} /> */}
+      />
+      <Route
+        path="/cart"
+        element={
+          <Cart
+            cartItems={cartItems}
+            onIncrease={onIncrease}
+            onDecrease={onDecrease}
+            onRemove={onRemove}
+            onSizeChange={onSizeChange}
+          />
+        }
+      />
+      <Route path="/products" element={<AdminProduct />} />
+      <Route path="/manageProduct" element={<AdminManageProduct />} />
+      <Route path="/editProduct/:id" element={<AdminEdit />} />
+      <Route path="/users" element={<ManageUsers />} />
+      <Route path="/adminLogin" element={<AdminLogin />} />
+      <Route path="/admin" element={<Admin />} />
+      <Route
+        path="/women"
+        element={<WomenSlider handleAddToCart={onAddToCart} />}
+      />
+      <Route
+        path="/product-detail"
+        element={<ProductDetail onAddToCart={onAddToCart} />}
+      />
     </Routes>
   );
 }

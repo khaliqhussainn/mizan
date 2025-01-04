@@ -984,6 +984,71 @@ body {
   background-color: #0056b3;
 }
 
+/* Popup Styles */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.popup-content h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.popup-content p {
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .popup {
+    width: 80%;
+    padding: 15px;
+  }
+
+  .popup-content h3 {
+    font-size: 16px;
+  }
+
+  .popup-content p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .popup {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .popup-content h3 {
+    font-size: 14px;
+  }
+
+  .popup-content p {
+    font-size: 10px;
+  }
+}
+
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .slider-container {
