@@ -396,6 +396,11 @@ body {
     margin: 0px;
     height: 550px;
   }
+  .homepage-slider-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }  
   
 }
 

@@ -100,7 +100,7 @@ function HomePage() {
       <HomeSlider />
       <div className="container">
         <h2 className="section-title">Women's Store</h2>
-        <div>
+        <div className="homepage-slider-container">
           <WomenSlider handleAddToCart={handleAddToCart} />
         </div>
       </div>

@@ -27,6 +27,7 @@
     cursor: pointer;
     border-radius: 8px;
     transition: all 0.3s ease;
+
   }
   
   .product-thumbnail:hover {
@@ -193,6 +194,7 @@
   
     .product-images-container {
       flex-direction: column;
+      width: 300px;
     }
   
     .product-thumbnails {
@@ -201,6 +203,14 @@
     }
   
     .main-image {
-      height: 400px;
+      height: 450px;
     }
-  }
+
+    .size-chart-details{
+      font-size: 8px;
+    }
+    .product-info-container {
+      width: 80%;
+    }
+  
+}

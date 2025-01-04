@@ -68,7 +68,7 @@ const Product = ({
         </div>
       </div>
       <div className="product-details">
-        <p>Price: ${price}</p>
+        <p>Price: ₹{price}</p>
         <p>Brand: {brand}</p>
         <div className="button-product-container">
           <button

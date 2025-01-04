@@ -20,39 +20,39 @@ export default class HomeSlider extends Component {
       autoplay: true,
     };
     return (
-      <div className="slider-container">
+      <div className="home-slider-container">
         <Slider {...settings}>
-          <div className="slider-image-container">
+          <div className="home-slider-image-container">
             <img
-              className="slider-image"
+              className="home-slider-image"
               src={sliderImage2}
               alt="Slider 2"
             />
           </div>
-          <div className="slider-image-container">
+          <div className="home-slider-image-container">
             <img
-              className="slider-image"
+              className="home-slider-image"
               src={sliderImage1}
               alt="Slider 1"
             />
           </div>
-          <div className="slider-image-container">
+          <div className="home-slider-image-container">
             <img
-              className="slider-image"
+              className="home-slider-image"
               src={sliderImage3}
               alt="Slider 3"
             />
           </div>
-          <div className="slider-image-container">
+          <div className="home-slider-image-container">
             <img
-              className="slider-image"
+              className="home-slider-image"
               src={sliderImage4}
               alt="Slider 4"
             />
           </div>
-          <div className="slider-image-container">
+          <div className="home-slider-image-container">
             <img
-              className="slider-image"
+              className="home-slider-image"
               src={sliderImage5}
               alt="Slider 5"
             />
