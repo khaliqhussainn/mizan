@@ -4,6 +4,8 @@ import {
   IoIosHeartEmpty,
   IoIosInformationCircleOutline,
 } from "react-icons/io";
+import { MdAddShoppingCart } from "react-icons/md";
+
 import "./home.css";
 
 const Product = ({
@@ -91,19 +93,21 @@ const Product = ({
         </div>
       </div>
       <div className="product-details">
-        <p>Price: ₹{price}</p>
-        <p>Brand: {brand}</p>
-        <div className="button-product-container">
-          <button onClick={handleAddToCart}>
-            Add to Cart
-          </button>
+        <div>
+          <p>Price: ₹{price}</p>
+          <p>Brand: {brand}</p>
+        </div>
+        <div onClick={handleAddToCart} className="div-cart-add-icon">
+          <MdAddShoppingCart size={30} className="cart-add-icon" />
         </div>
       </div>
       {showPopup && (
         <div className="popup">
           <div className="popup-content">
             <h3>Added to Cart</h3>
-            <p>{brand} - {description}</p>
+            <p>
+              {brand} - {description}
+            </p>
           </div>
         </div>
       )}

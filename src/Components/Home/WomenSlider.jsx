@@ -40,8 +40,7 @@ const data = [
   },
   {
     images: [product31, product32, product33, product34],
-    description:
-      "Aadab embroidered 3pcs Fine quality stuff",
+    description: "Aadab embroidered 3pcs Fine quality stuff",
     price: "2500",
     clothType: "Linen",
     brand: "Aadab",
@@ -118,7 +117,8 @@ const data = [
   },
   {
     images: [product41, product42, product43, product44],
-    description: "Featuring a unique front-short and back-tail design adorned with intricate Tilla work and full front embroidery.",
+    description:
+      "Featuring a unique front-short and back-tail design adorned with intricate Tilla work and full front embroidery.",
     price: "3000",
     clothType: "Chiffon",
     brand: "Bin Akram",
@@ -218,26 +218,70 @@ const WomenSlider = ({ handleAddToCart }) => {
   };
 
   return (
-    <div className="slider-container">
-      <Slider {...settings}>
-        {data.map((item, i) => {
-          return (
-            <div key={i} className="product-slide">
-              <Product
-                images={item.images}
-                description={item.description}
-                price={item.price}
-                clothType={item.clothType}
-                brand={item.brand}
-                sizes={item.sizes}
-                sizeChart={item.sizeChart}
-                onAddToCart={handleAddToCart}
-                onImageClick={() => handleProductClick(item)}
-              />
-            </div>
-          );
-        })}
-      </Slider>
+    <div className="women-slider-container">
+      <div className="slider-container">
+        <Slider {...settings}>
+          {data.map((item, i) => {
+            return (
+              <div key={i} className="product-slide">
+                <Product
+                  images={item.images}
+                  description={item.description}
+                  price={item.price}
+                  clothType={item.clothType}
+                  brand={item.brand}
+                  sizes={item.sizes}
+                  sizeChart={item.sizeChart}
+                  onAddToCart={handleAddToCart}
+                  onImageClick={() => handleProductClick(item)}
+                />
+              </div>
+            );
+          })}
+        </Slider>
+      </div>
+      <div className="slider-container">
+        <Slider {...settings}>
+          {data.map((item, i) => {
+            return (
+              <div key={i} className="product-slide">
+                <Product
+                  images={item.images}
+                  description={item.description}
+                  price={item.price}
+                  clothType={item.clothType}
+                  brand={item.brand}
+                  sizes={item.sizes}
+                  sizeChart={item.sizeChart}
+                  onAddToCart={handleAddToCart}
+                  onImageClick={() => handleProductClick(item)}
+                />
+              </div>
+            );
+          })}
+        </Slider>
+      </div>
+      <div className="slider-container">
+        <Slider {...settings}>
+          {data.map((item, i) => {
+            return (
+              <div key={i} className="product-slide">
+                <Product
+                  images={item.images}
+                  description={item.description}
+                  price={item.price}
+                  clothType={item.clothType}
+                  brand={item.brand}
+                  sizes={item.sizes}
+                  sizeChart={item.sizeChart}
+                  onAddToCart={handleAddToCart}
+                  onImageClick={() => handleProductClick(item)}
+                />
+              </div>
+            );
+          })}
+        </Slider>
+      </div>
     </div>
   );
 };

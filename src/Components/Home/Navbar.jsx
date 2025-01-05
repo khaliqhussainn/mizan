@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import HomeMenu from "./HomeMenu";
 import SideBar from "./Sidebar";
 import Cart from "../../pages/Cart";
-import NavbarTop from "./NavbarTop";
+// import NavbarTop from "./NavbarTop";
 import "./home.css";
 
 const Navbar = ({ setShowWishlist, cartItems, onIncrease, onDecrease, onRemove, onSizeChange }) => {
@@ -16,7 +16,7 @@ const Navbar = ({ setShowWishlist, cartItems, onIncrease, onDecrease, onRemove, 
 
   return (
     <div>
-      <NavbarTop />
+      {/* <NavbarTop /> */}
       <div className="navbar">
         <div className="navbar-container">
           <div className="sidebar">

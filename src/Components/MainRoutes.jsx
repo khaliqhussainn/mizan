@@ -10,6 +10,8 @@ import AdminLogin from "./Admin/AdminLogin";
 import Admin from "../pages/Admin";
 import ProductDetail from "../Components/Home/ProductDetail";
 import WomenSlider from "../Components/Home/WomenSlider";
+import SaleSlider from "../Components/Home/SaleSlider";
+import ContactForm from "./Home/ContactForm";
 
 function MainRoutes({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, onSizeChange }) {
   return (
@@ -45,6 +47,14 @@ function MainRoutes({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, 
       <Route path="/users" element={<ManageUsers />} />
       <Route path="/adminLogin" element={<AdminLogin />} />
       <Route path="/admin" element={<Admin />} />
+      <Route
+        path="/contact"
+        element={<ContactForm />}
+      />
+      <Route
+        path="/sale"
+        element={<SaleSlider handleAddToCart={onAddToCart} />}
+      />
       <Route
         path="/women"
         element={<WomenSlider handleAddToCart={onAddToCart} />}

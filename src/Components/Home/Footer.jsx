@@ -6,12 +6,13 @@ import { MdCall } from "react-icons/md";
 import { RiQuestionnaireFill } from "react-icons/ri";
 import { FiMail } from "react-icons/fi";
 import Logo from "../../Asssets/logo2.png";
+import ContactForm from "./ContactForm";
 import "./home.css";
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="subscription-section">
+      {/* <div className="subscription-section">
         <div className="subscription-box">
           <h2>Subscribe to our awesome emails.</h2>
           <p>Get our latest offers and news straight in your inbox.</p>
@@ -34,7 +35,9 @@ const Footer = () => {
             />
           </div>
         </div>
-      </div>
+      </div> */}
+
+      <ContactForm />
 
       <hr className="divider" />
 

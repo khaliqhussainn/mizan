@@ -40,8 +40,7 @@ const data = [
   },
   {
     images: [product31, product32, product33, product34],
-    description:
-      "Aadab embroidered 3pcs Fine quality stuff",
+    description: "Aadab embroidered 3pcs Fine quality stuff",
     price: "2500",
     clothType: "Linen",
     brand: "Aadab",
@@ -116,10 +115,10 @@ const data = [
       },
     ],
   },
-
   {
     images: [product41, product42, product43, product44],
-    description: "Featuring a unique front-short and back-tail design adorned with intricate Tilla work and full front embroidery.",
+    description:
+      "Featuring a unique front-short and back-tail design adorned with intricate Tilla work and full front embroidery.",
     price: "3000",
     clothType: "Chiffon",
     brand: "Bin Akram",
@@ -184,7 +183,7 @@ const UnMissSlider = ({ handleAddToCart }) => {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 4, // Show 3 products on large screens
+    slidesToShow: 4, // Show 4 products on large screens
     slidesToScroll: 1,
     initialSlide: 0,
     nextArrow: <SampleNextArrow style={{ color: "#d81b60" }} />,
@@ -199,48 +198,91 @@ const UnMissSlider = ({ handleAddToCart }) => {
         },
       },
       {
-        breakpoint: 780,
+        breakpoint: 768, // Medium screens (tablets)
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 1,
+          infinite: true,
+          dots: true,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 580, // Mobile devices
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2, // Show 2 products on mobile
           slidesToScroll: 1,
+          dots: true,
         },
       },
     ],
   };
 
   return (
-    <>
-    <div className="slider-container">
-      <Slider {...settings}>
-        {data.map((item, i) => {
-          return (
-            <div key={i} className="product-slide">
-              <Product
-                images={item.images}
-                description={item.description}
-                price={item.price}
-                clothType={item.clothType}
-                brand={item.brand}
-                sizes={item.sizes}
-                sizeChart={item.sizeChart}
-                onAddToCart={handleAddToCart}
-                onImageClick={() => handleProductClick(item)}
-              />
-            </div>
-          );
-        })}
-      </Slider>
+    <div className="women-slider-container">
+      <div className="slider-container">
+        <Slider {...settings}>
+          {data.map((item, i) => {
+            return (
+              <div key={i} className="product-slide">
+                <Product
+                  images={item.images}
+                  description={item.description}
+                  price={item.price}
+                  clothType={item.clothType}
+                  brand={item.brand}
+                  sizes={item.sizes}
+                  sizeChart={item.sizeChart}
+                  onAddToCart={handleAddToCart}
+                  onImageClick={() => handleProductClick(item)}
+                />
+              </div>
+            );
+          })}
+        </Slider>
+      </div>
+      <div className="slider-container">
+        <Slider {...settings}>
+          {data.map((item, i) => {
+            return (
+              <div key={i} className="product-slide">
+                <Product
+                  images={item.images}
+                  description={item.description}
+                  price={item.price}
+                  clothType={item.clothType}
+                  brand={item.brand}
+                  sizes={item.sizes}
+                  sizeChart={item.sizeChart}
+                  onAddToCart={handleAddToCart}
+                  onImageClick={() => handleProductClick(item)}
+                />
+              </div>
+            );
+          })}
+        </Slider>
+      </div>
+      <div className="slider-container">
+        <Slider {...settings}>
+          {data.map((item, i) => {
+            return (
+              <div key={i} className="product-slide">
+                <Product
+                  images={item.images}
+                  description={item.description}
+                  price={item.price}
+                  clothType={item.clothType}
+                  brand={item.brand}
+                  sizes={item.sizes}
+                  sizeChart={item.sizeChart}
+                  onAddToCart={handleAddToCart}
+                  onImageClick={() => handleProductClick(item)}
+                />
+              </div>
+            );
+          })}
+        </Slider>
+      </div>
     </div>
-    </>
-
   );
 };
 

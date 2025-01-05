@@ -1,0 +1,487 @@
+/* ContactForm.css */
+.contact-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.contact-container {
+  width: 100%;
+  max-width: 1200px;
+  min-height: 600px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Left side styles */
+.contact-left {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-image: url('/api/placeholder/600/800'); */
+  background-size: cover;
+  background-position: center;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(76, 0, 255, 0.6), rgba(255, 0, 255, 0.6));
+  z-index: 1;
+}
+
+.social-banner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  color: white;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.social-banner h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+.social-text {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Right side styles */
+.contact-right {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-header {
+  margin-bottom: 2rem;
+}
+
+.form-header h2 {
+  font-size: 2.5rem;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.form-header p {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 1rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.submit-button {
+  background: linear-gradient(45deg, #6366f1, #8b5cf6);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.submit-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+}
+
+.send-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.submit-button:hover .send-icon {
+  transform: translateX(4px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .contact-container {
+    grid-template-columns: 1fr 1.5fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+
+  .contact-left {
+    min-height: 300px;
+  }
+
+  .contact-right {
+    padding: 2rem;
+  }
+
+  .form-header h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-wrapper {
+    padding: 1rem;
+  }
+
+  .contact-left {
+    min-height: 250px;
+  }
+
+  .contact-right {
+    padding: 1.5rem;
+  }
+
+  .social-banner {
+    padding: 1.5rem;
+  }
+
+  .social-banner h3 {
+    font-size: 1.25rem;
+  }
+
+  .form-header h2 {
+    font-size: 1.75rem;
+  }
+
+  .social-icons {
+    gap: 1rem;
+  }
+
+  .social-icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Animation keyframes for hover effects */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Custom scrollbar for textarea */
+textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Why Choose Us Section Styles */
+.feat {
+  background-color: #f9fafb;
+  padding: 5rem 0;
+  margin-bottom: 50px;
+}
+
+.section-head {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.section-head h4 {
+  position: relative;
+  padding: 0;
+  color: #f91942;
+  line-height: 1;
+  letter-spacing: 0.3px;
+  font-size: 34px;
+  font-weight: 700;
+  text-align: center;
+  text-transform: none;
+  margin-bottom: 30px;
+}
+
+.section-head h4:before {
+  content: '';
+  width: 60px;
+  height: 3px;
+  background: #f91942;
+  position: absolute;
+  left: 0px;
+  bottom: -10px;
+  right: 0;
+  margin: 0 auto;
+}
+
+.section-head h4 span {
+  font-weight: 700;
+  padding-bottom: 5px;
+  color: #2f2f2f;
+}
+
+.section-head p {
+  color: #818181;
+  font-size: 16px;
+  line-height: 28px;
+  text-align: center;
+}
+
+.item-contact {
+  background: #fff;
+  text-align: center;
+  padding: 30px 25px;
+  box-shadow: 0 0px 25px rgba(0, 0, 0, 0.07);
+  border-radius: 20px;
+  border: 5px solid rgba(0, 0, 0, 0.07);
+  margin-bottom: 30px;
+  transition: all 0.5s ease 0s;
+}
+
+.item-contact:hover {
+  background: #f91942;
+  box-shadow: 0 8px 20px 0px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s ease 0s;
+}
+
+.item-contact:hover .icon-contact,
+.item-contact:hover span.icon-contact {
+  background: #fff;
+  border-radius: 10px;
+  transition: all 0.5s ease 0s;
+}
+
+.item-contact:hover h6,
+.item-contact:hover p {
+  color: #fff;
+  transition: all 0.5s ease 0s;
+}
+
+.item-contact .icon-contact {
+  font-size: 40px;
+  margin-bottom: 25px;
+  color: #f91942;
+  width: 90px;
+  height: 90px;
+  line-height: 96px;
+  border-radius: 50px;
+}
+
+.item-contact .feature_box_col_one {
+  background: rgba(247, 198, 5, 0.20);
+  color: #f91942;
+}
+
+.item-contact .feature_box_col_two {
+  background: rgba(255, 77, 28, 0.15);
+  color: #f91942;
+}
+
+.item-contact .feature_box_col_three {
+  background: rgba(0, 147, 38, 0.15);
+  color: #f91942;
+}
+
+.item-contact .feature_box_col_four {
+  background: rgba(0, 108, 255, 0.15);
+  color: #f91942;
+}
+
+.item-contact .feature_box_col_five {
+  background: rgba(146, 39, 255, 0.15);
+  color: #f91942;
+}
+
+.item-contact .feature_box_col_six {
+  background: rgba(23, 39, 246, 0.15);
+  color: #f91942;
+}
+
+.item-contact p {
+  font-size: 15px;
+  line-height: 26px;
+}
+
+.item-contact h6 {
+  margin-bottom: 20px;
+  color: #2f2f2f;
+}
+
+.why-choose-contact {
+  display: grid;
+    gap: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .feat {
+    padding: 4rem 0;
+  }
+
+  .section-head h4 {
+    font-size: 30px;
+  }
+
+  .section-head p {
+    font-size: 15px;
+    line-height: 26px;
+  }
+
+  .why-choose-contact {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .feat {
+    padding: 3rem 0;
+  }
+
+  .section-head h4 {
+    font-size: 26px;
+  }
+
+  .section-head p {
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .why-choose-contact {
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .item-contact {
+    padding: 25px 20px;
+  }
+
+  .item-contact .icon-contact {
+    width: 80px;
+    height: 80px;
+    line-height: 86px;
+  }
+}
+
+@media (max-width: 480px) {
+  .feat {
+    padding: 2rem 0;
+  }
+
+  .section-head h4 {
+    font-size: 22px;
+  }
+
+  .section-head p {
+    font-size: 13px;
+    line-height: 22px;
+  }
+
+  .why-choose-contact {
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+
+  .item-contact {
+    padding: 20px 15px;
+  }
+
+  .item-contact .icon-contact {
+    width: 70px;
+    height: 70px;
+    line-height: 76px;
+  }
+}

@@ -142,6 +142,28 @@ client.setProject('676fbd32002376946429');
 
 
 
+
+
+      {/* <div className="container">
+        <h2 className="section-title">Brands We Love</h2>
+        <div>
+          <img
+            src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner1-17Mar23.jpg"
+            alt="Promo"
+          />
+          <img
+            src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner2-29Nov22.jpg"
+            alt="Promo"
+          />
+          <img
+            src="https://lmsin.net/cdn-cgi/image/w=616,q=70,fit-cover/https://70415bb9924dca896de0-34a37044c62e41b40b39fcedad8af927.lmsin.net/LS-Fest/LS-new/LSUber-Desktop-Promowidget19-Banner9-24Mar23.jpg"
+            alt="Promo"
+          />
+        </div>
+      </div> */}
+
+
+      
 // "registeredUser": [
 //     {
 //       "id": 1,
