@@ -31,6 +31,7 @@ import product52 from "../../image/stitched/5/IMG-20250102-WA0009.jpg";
 import product53 from "../../image/stitched/5/IMG-20250102-WA0010.jpg";
 import product54 from "../../image/stitched/5/IMG-20250102-WA0011.jpg";
 
+
 const data1 = [
   {
     images: [produc44t, produc42t, produc43t, produc41t],
