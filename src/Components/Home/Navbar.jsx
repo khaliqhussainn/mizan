@@ -10,7 +10,14 @@ import Cart from "../../pages/Cart";
 // import NavbarTop from "./NavbarTop";
 import "./home.css";
 
-const Navbar = ({ setShowWishlist, cartItems, onIncrease, onDecrease, onRemove, onSizeChange }) => {
+const Navbar = ({
+  setShowWishlist,
+  cartItems,
+  onIncrease,
+  onDecrease,
+  onRemove,
+  onSizeChange,
+}) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,7 +27,13 @@ const Navbar = ({ setShowWishlist, cartItems, onIncrease, onDecrease, onRemove, 
       <div className="navbar">
         <div className="navbar-container">
           <div className="sidebar">
-            <SideBar />
+            <SideBar
+              cartItems={cartItems}
+              onIncrease={onIncrease}
+              onDecrease={onDecrease}
+              onRemove={onRemove}
+              onSizeChange={onSizeChange}
+            />
           </div>
 
           <Link to="/" className="logo">
@@ -48,10 +61,7 @@ const Navbar = ({ setShowWishlist, cartItems, onIncrease, onDecrease, onRemove, 
       {isOpen && (
         <div className="cart-modal">
           <div className="cart-content">
-            <FaTimes
-              className="close-cart"
-              onClick={() => setIsOpen(false)}
-            />
+            <FaTimes className="close-cart" onClick={() => setIsOpen(false)} />
             <Cart
               cartItems={cartItems}
               onIncrease={onIncrease}

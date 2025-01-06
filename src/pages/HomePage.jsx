@@ -49,31 +49,31 @@ const HomePage = ({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, on
         </div>
       </div>
       <HomeSlider />
-      <div className="container">
+      <div className="container" id="stitched">
         <h2 className="section-title">Stitched </h2>
         <div className="homepage-slider-container">
           <WomenSlider handleAddToCart={handleAddToCart} />
         </div>
       </div>
 
-      <div className="container">
+      <div className="container" id="unstitched">
         <h2 className="section-title">Unstitched </h2>
         <UnMissSlider handleAddToCart={handleAddToCart} />
       </div>
 
-      <div className="container">
+      <div className="container" id="sale">
         <SaleSlider />
         <h2 className="section-title">Sale</h2>
         <MenSlider handleAddToCart={handleAddToCart} />
       </div>
 
-      <div className="container">
+      <div className="container" id="trending">
         <h2 className="section-title">Trending Add-Ons</h2>
         <TrendingSlider handleAddToCart={handleAddToCart} />
       </div>
 
       <div className="container">
-        <h2 className="section-title">Kids Store</h2>
+        <h2 className="section-title">Special Offers</h2>
         <KidSlider handleAddToCart={handleAddToCart} />
       </div>
 

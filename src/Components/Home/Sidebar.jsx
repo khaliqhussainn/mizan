@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../Asssets/logo2.png";
 import LogoImage from "../../Asssets/LogoI.png";
+import { FaTimes } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import "./Sidebar.css"; // Import the CSS file
+import Cart from "../../pages/Cart";
 
-function SideBar() {
-  const [isOpen, setIsOpen] = React.useState(false);
+
+function SideBar({ setShowWishlist, cartItems, onIncrease, onDecrease, onRemove, onSizeChange }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [Open, setOpen] = useState(false);
 
   const handleLogout = () => {
     alert("User Logout Successfully. Come Back Again Soon");
   };
+  const handleNavigation = () => {
+    setIsOpen(false);
+  };
 
   return (
-    <>
+    <div>
       <button className="menu-button" onClick={() => setIsOpen(true)}>
         <GiHamburgerMenu size={"18px"} />
       </button>
@@ -32,24 +39,24 @@ function SideBar() {
                 <img src={Logo} alt="logo" className="logo" />
               </div>
               <div className="nav-links">
-                <Link to="/" className="nav-link">
+                <a href="/" className="nav-link">
                   Home
-                </Link>
-                <Link to="/" className="nav-link">
-                  Womens
-                </Link>
-                <Link to="/" className="nav-link">
-                  Mens
-                </Link>
-                <Link to="/" className="nav-link">
-                  Kids
-                </Link>
-                <Link to="/cart" className="nav-link">
+                </a>
+                <a href="#stitched" className="nav-link" onClick={handleNavigation}>
+                  Stitched
+                </a>
+                <a href="#unstitched" className="nav-link" onClick={handleNavigation}>
+                  Unstitched
+                </a>
+                <a href="#sale" className="nav-link" onClick={handleNavigation}>
+                  Sale
+                </a>
+                <Link  className="nav-link" onClick={() => setOpen(true)}>
                   Your Cart
                 </Link>
-                <Link to="#" className="nav-link">
+                <a href="/" className="nav-link" onClick={handleNavigation}>
                   Profile
-                </Link>
+                </a>
                 <div className="auth-buttons">
                   <button className="auth-button" onClick={handleLogout}>
                     Logout
@@ -60,7 +67,25 @@ function SideBar() {
           </div>
         </div>
       )}
-    </>
+
+      {Open && (
+        <div className="cart-modal">
+          <div className="cart-content">
+            <FaTimes
+              className="close-cart"
+              onClick={() => setOpen(false)}
+            />
+            <Cart
+              cartItems={cartItems}
+              onIncrease={onIncrease}
+              onDecrease={onDecrease}
+              onRemove={onRemove}
+              onSizeChange={onSizeChange}
+            />
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 

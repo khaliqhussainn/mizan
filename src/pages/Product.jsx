@@ -3,9 +3,30 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
-const Product = ({ images, description, price, clothType, brand, onAddToCart }) => {
+const Product = ({
+  images,
+  description,
+  price,
+  clothType,
+  brand,
+  onAddToCart,
+  outfitType,
+  subCategory,
+  colorType,
+  numberOfPieces,
+  productType,
+  season,
+  shirtFabrics,
+  trouserFabric,
+  dupattaFabric,
+  workTechnique,
+  sizes,
+  sizeChart,
+}) => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
 
   const settings = {
     dots: true,
@@ -17,13 +38,39 @@ const Product = ({ images, description, price, clothType, brand, onAddToCart }) 
     autoplaySpeed: 2000,
   };
 
+  const handleImageClick = () => {
+    navigate("/product-detail", {
+      state: {
+        product: {
+          images,
+          description,
+          price,
+          clothType,
+          brand,
+          outfitType,
+          subCategory,
+          colorType,
+          numberOfPieces,
+          productType,
+          season,
+          shirtFabrics,
+          trouserFabric,
+          dupattaFabric,
+          workTechnique,
+          sizes,
+          sizeChart,
+        },
+      },
+    });
+  };
+
   return (
     <div
       className="product-container1"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="product-image-slider1">
+      <div className="product-image-slider1" onClick={handleImageClick}>
         <Slider {...settings}>
           {images.map((image, index) => (
             <div key={index} className="image-container1">

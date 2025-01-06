@@ -48,6 +48,7 @@ body li {
 .home-slider-image-container {
   border-radius: 8px;
   overflow: hidden;
+  height: 350px;
 }
 
 .home-slider-image {
