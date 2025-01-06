@@ -4,12 +4,10 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import "./home.css";
 import Product from "./Product"; // Import the updated Product component
-import product22 from "../../image/stitched/1/IMG-20250102-WA0012.jpg";
-import product51 from "../../image/stitched/5/IMG-20250102-WA0006.jpg";
 import image11 from "../../image/unstitched/1/IMG-20250106-WA0014.jpg";
-import image12 from "../../image/unstitched/1/IMG-20250106-WA0014.jpg";
-import image13 from "../../image/unstitched/1/IMG-20250106-WA0014.jpg";
-import image14 from "../../image/unstitched/1/IMG-20250106-WA0014.jpg";
+import image12 from "../../image/unstitched/1/IMG-20250106-WA0015.jpg";
+import image13 from "../../image/unstitched/1/IMG-20250106-WA0016.jpg";
+import image14 from "../../image/unstitched/1/IMG-20250106-WA0017.jpg";
 import image21 from "../../image/unstitched/2/IMG-20250106-WA0033.jpg";
 import image22 from "../../image/unstitched/2/WhatsApp Image 2025-01-06 at 19.13.29_4f69086a.jpg";
 import image23 from "../../image/unstitched/2/WhatsApp Image 2025-01-06 at 19.13.29_aa508695.jpg";

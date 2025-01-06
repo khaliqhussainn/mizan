@@ -33,11 +33,6 @@ const ProductDetail = ({ cartItems, onAddToCart, onIncrease, onDecrease, onRemov
   };
 
   const handleAddToCart = () => {
-    if (!selectedSize) {
-      alert("Please select a size before adding to cart.");
-      return;
-    }
-
     onAddToCart({ ...product, size: selectedSize, quantity: 1 });
     setShowPopup(true);
     setTimeout(() => setShowPopup(false), 3000);

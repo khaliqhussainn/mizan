@@ -8,7 +8,6 @@ body {
   padding: 0;
   margin: 0 auto;
   position: relative;
-  transition: ease all 0.3s;
 }
 
 body * {
@@ -698,6 +697,10 @@ body li {
   .product-image-slider img {
     height: auto;
     max-height: 200px;
+  }
+  .home-slider-image-container {
+    
+    height: 200px;
   }
 
   .product-details {

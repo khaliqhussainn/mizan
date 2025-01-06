@@ -22,33 +22,14 @@ import product41 from "../../image/stitched/3/WhatsApp Image 2025-01-02 at 16.26
 import product42 from "../../image/stitched/3/WhatsApp Image 2025-01-02 at 16.26.23_ca3ec539.jpg";
 import product43 from "../../image/stitched/3/WhatsApp Image 2025-01-02 at 16.26.23_cc863edf.jpg";
 import product44 from "../../image/stitched/3/WhatsApp Image 2025-01-02 at 16.26.24_9cbc8520.jpg";
-import produc41t from "../../image/stitched/4/IMG-20250102-WA0022.jpg";
-import produc42t from "../../image/stitched/4/IMG-20250102-WA0023.jpg";
-import produc43t from "../../image/stitched/4/IMG-20250102-WA0024.jpg";
-import produc44t from "../../image/stitched/4/IMG-20250102-WA0025.jpg";
-import product51 from "../../image/stitched/5/IMG-20250102-WA0006.jpg";
-import product52 from "../../image/stitched/5/IMG-20250102-WA0009.jpg";
-import product53 from "../../image/stitched/5/IMG-20250102-WA0010.jpg";
-import product54 from "../../image/stitched/5/IMG-20250102-WA0011.jpg";
 
-
-const data1 = [
+const data = [
   {
-    images: [produc44t, produc42t, produc43t, produc41t],
+    images: [image2, image1, image3, image4],
     description: "Product 2 Description",
-    price: "2000",
+    price: "39.99",
     clothType: "Polyester",
     brand: "Brand B",
-    outfitType: "Eastern Ready to wear",
-    subCategory: "Kurta Set",
-    colorType: "Red",
-    numberOfPieces: "3",
-    productType: "Stitched",
-    season: "Summer",
-    shirtFabrics: "Cotton",
-    trouserFabric: "Cotton",
-    dupattaFabric: "Chiffon",
-    workTechnique: "Embroidery",
     sizes: ["S", "M", "L", "XL"],
     sizeChart: [
       { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
@@ -63,16 +44,6 @@ const data1 = [
     price: "2500",
     clothType: "Linen",
     brand: "Aadab",
-    outfitType: "Eastern Ready to wear",
-    subCategory: "Kurta Set",
-    colorType: "Blue",
-    numberOfPieces: "3",
-    productType: "Stitched",
-    season: "Winter",
-    shirtFabrics: "Linen",
-    trouserFabric: "Linen",
-    dupattaFabric: "Silk",
-    workTechnique: "Embroidery",
     sizes: ["S", "M", "L", "XL"],
     sizeChart: [
       {
@@ -101,202 +72,6 @@ const data1 = [
         sleevelength: "20",
         chest: "23",
         shirtlength: "54",
-        hips: "24",
-      },
-    ],
-  },
-  {
-    images: [product31, product32, product33, product34],
-    description: "Aadab embroidered 3pcs Fine quality stuff",
-    price: "2500",
-    clothType: "Linen",
-    brand: "Aadab",
-    outfitType: "Eastern Ready to wear",
-    subCategory: "Kurta Set",
-    colorType: "Blue",
-    numberOfPieces: "3",
-    productType: "Stitched",
-    season: "Winter",
-    shirtFabrics: "Linen",
-    trouserFabric: "Linen",
-    dupattaFabric: "Silk",
-    workTechnique: "Embroidery",
-    sizes: ["S", "M", "L", "XL"],
-    sizeChart: [
-      {
-        size: "S",
-        sleevelength: "20",
-        chest: "18",
-        shirtlength: "54",
-        hips: "20",
-      },
-      {
-        size: "M",
-        sleevelength: "20",
-        chest: "20",
-        shirtlength: "54",
-        hips: "21",
-      },
-      {
-        size: "L",
-        sleevelength: "20",
-        chest: "22",
-        shirtlength: "54",
-        hips: "23",
-      },
-      {
-        size: "XL",
-        sleevelength: "20",
-        chest: "23",
-        shirtlength: "54",
-        hips: "24",
-      },
-    ],
-  },
-  {
-    images: [product31, product32, product33, product34],
-    description: "Aadab embroidered 3pcs Fine quality stuff",
-    price: "2500",
-    clothType: "Linen",
-    brand: "Aadab",
-    outfitType: "Eastern Ready to wear",
-    subCategory: "Kurta Set",
-    colorType: "Blue",
-    numberOfPieces: "3",
-    productType: "Stitched",
-    season: "Winter",
-    shirtFabrics: "Linen",
-    trouserFabric: "Linen",
-    dupattaFabric: "Silk",
-    workTechnique: "Embroidery",
-    sizes: ["S", "M", "L", "XL"],
-    sizeChart: [
-      {
-        size: "S",
-        sleevelength: "20",
-        chest: "18",
-        shirtlength: "54",
-        hips: "20",
-      },
-      {
-        size: "M",
-        sleevelength: "20",
-        chest: "20",
-        shirtlength: "54",
-        hips: "21",
-      },
-      {
-        size: "L",
-        sleevelength: "20",
-        chest: "22",
-        shirtlength: "54",
-        hips: "23",
-      },
-      {
-        size: "XL",
-        sleevelength: "20",
-        chest: "23",
-        shirtlength: "54",
-        hips: "24",
-      },
-    ],
-  },
-  {
-    images: [product31, product32, product33, product34],
-    description: "Aadab embroidered 3pcs Fine quality stuff",
-    price: "2500",
-    clothType: "Linen",
-    brand: "Aadab",
-    outfitType: "Eastern Ready to wear",
-    subCategory: "Kurta Set",
-    colorType: "Blue",
-    numberOfPieces: "3",
-    productType: "Stitched",
-    season: "Winter",
-    shirtFabrics: "Linen",
-    trouserFabric: "Linen",
-    dupattaFabric: "Silk",
-    workTechnique: "Embroidery",
-    sizes: ["S", "M", "L", "XL"],
-    sizeChart: [
-      {
-        size: "S",
-        sleevelength: "20",
-        chest: "18",
-        shirtlength: "54",
-        hips: "20",
-      },
-      {
-        size: "M",
-        sleevelength: "20",
-        chest: "20",
-        shirtlength: "54",
-        hips: "21",
-      },
-      {
-        size: "L",
-        sleevelength: "20",
-        chest: "22",
-        shirtlength: "54",
-        hips: "23",
-      },
-      {
-        size: "XL",
-        sleevelength: "20",
-        chest: "23",
-        shirtlength: "54",
-        hips: "24",
-      },
-    ],
-  },
-];
-
-const data2 = [
-  {
-    images: [product24, product22, product23, product25, product26, product27],
-    description:
-      "Luxury Aghajaan Studio- Maroon chiffon 3pc embroidered and hand embellished suit.",
-    price: "6000",
-    clothType: "Chiffon",
-    brand: "Aghajaan",
-    outfitType: "Eastern Ready to wear",
-    subCategory: "Kurta Set",
-    colorType: "Maroon",
-    numberOfPieces: "3",
-    productType: "Stitched",
-    season: "Autumn",
-    shirtFabrics: "Chiffon",
-    trouserFabric: "Chiffon",
-    dupattaFabric: "Chiffon",
-    workTechnique: "Embroidery",
-    sizes: ["S", "M", "L", "XL"],
-    sizeChart: [
-      {
-        size: "S",
-        sleevelength: "20",
-        chest: "18",
-        shirtlength: "37",
-        hips: "20",
-      },
-      {
-        size: "M",
-        sleevelength: "20",
-        chest: "20",
-        shirtlength: "38",
-        hips: "21",
-      },
-      {
-        size: "L",
-        sleevelength: "20",
-        chest: "22",
-        shirtlength: "39",
-        hips: "23",
-      },
-      {
-        size: "XL",
-        sleevelength: "20",
-        chest: "23",
-        shirtlength: "40",
         hips: "24",
       },
     ],
@@ -308,65 +83,6 @@ const data2 = [
     price: "6000",
     clothType: "Chiffon",
     brand: "Aghajaan",
-    outfitType: "Eastern Ready to wear",
-    subCategory: "Kurta Set",
-    colorType: "Maroon",
-    numberOfPieces: "3",
-    productType: "Stitched",
-    season: "Autumn",
-    shirtFabrics: "Chiffon",
-    trouserFabric: "Chiffon",
-    dupattaFabric: "Chiffon",
-    workTechnique: "Embroidery",
-    sizes: ["S", "M", "L", "XL"],
-    sizeChart: [
-      {
-        size: "S",
-        sleevelength: "20",
-        chest: "18",
-        shirtlength: "37",
-        hips: "20",
-      },
-      {
-        size: "M",
-        sleevelength: "20",
-        chest: "20",
-        shirtlength: "38",
-        hips: "21",
-      },
-      {
-        size: "L",
-        sleevelength: "20",
-        chest: "22",
-        shirtlength: "39",
-        hips: "23",
-      },
-      {
-        size: "XL",
-        sleevelength: "20",
-        chest: "23",
-        shirtlength: "40",
-        hips: "24",
-      },
-    ],
-  },
-  {
-    images: [product24, product22, product23, product25, product26, product27],
-    description:
-      "Luxury Aghajaan Studio- Maroon chiffon 3pc embroidered and hand embellished suit.",
-    price: "6000",
-    clothType: "Chiffon",
-    brand: "Aghajaan",
-    outfitType: "Eastern Ready to wear",
-    subCategory: "Kurta Set",
-    colorType: "Maroon",
-    numberOfPieces: "3",
-    productType: "Stitched",
-    season: "Autumn",
-    shirtFabrics: "Chiffon",
-    trouserFabric: "Chiffon",
-    dupattaFabric: "Chiffon",
-    workTechnique: "Embroidery",
     sizes: ["S", "M", "L", "XL"],
     sizeChart: [
       {
@@ -406,43 +122,6 @@ const data2 = [
     price: "3000",
     clothType: "Chiffon",
     brand: "Bin Akram",
-    outfitType: "Eastern Ready to wear",
-    subCategory: "Kurta Set",
-    colorType: "Green",
-    numberOfPieces: "3",
-    productType: "Stitched",
-    season: "Spring",
-    shirtFabrics: "Chiffon",
-    trouserFabric: "Chiffon",
-    dupattaFabric: "Chiffon",
-    workTechnique: "Embroidery",
-    sizes: ["S", "M", "L", "XL"],
-    sizeChart: [
-      { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
-      { size: "M", sleeve: "34", length: "30", back: "28", neck: "15" },
-      { size: "L", sleeve: "36", length: "32", back: "30", neck: "16" },
-      { size: "XL", sleeve: "38", length: "34", back: "32", neck: "17" },
-    ],
-  },
-];
-
-const data3 = [
-  {
-    images: [product51, product52, product53, product54],
-    description: "Rosebud embroidered 2pcs fine quality and stuff",
-    price: "2000",
-    clothType: "Silk",
-    brand: "Rosebud",
-    outfitType: "Eastern Ready to wear",
-    subCategory: "Kurta Set",
-    colorType: "Plum",
-    numberOfPieces: "2 Piece - Top & Bottom",
-    productType: "Daily/Basic Wear",
-    season: "Winter Wear",
-    shirtFabrics: "Linen",
-    trouserFabric: "Linen",
-    dupattaFabric: "Silk",
-    workTechnique: "Embroidery",
     sizes: ["S", "M", "L", "XL"],
     sizeChart: [
       { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
@@ -452,93 +131,11 @@ const data3 = [
     ],
   },
   {
-    images: [product51, product52, product53, product54],
-    description: "Rosebud embroidered 2pcs fine quality and stuff",
-    price: "2000",
-    clothType: "Silk",
-    brand: "Rosebud",
-    outfitType: "Eastern Ready to wear",
-    subCategory: "Kurta Set",
-    colorType: "Plum",
-    numberOfPieces: "2 Piece - Top & Bottom",
-    productType: "Daily/Basic Wear",
-    season: "Winter Wear",
-    shirtFabrics: "Linen",
-    trouserFabric: "Linen",
-    dupattaFabric: "Silk",
-    workTechnique: "Embroidery",
-    sizes: ["S", "M", "L", "XL"],
-    sizeChart: [
-      { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
-      { size: "M", sleeve: "34", length: "30", back: "28", neck: "15" },
-      { size: "L", sleeve: "36", length: "32", back: "30", neck: "16" },
-      { size: "XL", sleeve: "38", length: "34", back: "32", neck: "17" },
-    ],
-  },
-  {
-    images: [product51, product52, product53, product54],
-    description: "Rosebud embroidered 2pcs fine quality and stuff",
-    price: "2000",
-    clothType: "Silk",
-    brand: "Rosebud",
-    outfitType: "Eastern Ready to wear",
-    subCategory: "Kurta Set",
-    colorType: "Plum",
-    numberOfPieces: "2 Piece - Top & Bottom",
-    productType: "Daily/Basic Wear",
-    season: "Winter Wear",
-    shirtFabrics: "Linen",
-    trouserFabric: "Linen",
-    dupattaFabric: "Silk",
-    workTechnique: "Embroidery",
-    sizes: ["S", "M", "L", "XL"],
-    sizeChart: [
-      { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
-      { size: "M", sleeve: "34", length: "30", back: "28", neck: "15" },
-      { size: "L", sleeve: "36", length: "32", back: "30", neck: "16" },
-      { size: "XL", sleeve: "38", length: "34", back: "32", neck: "17" },
-    ],
-  },
-  {
-    images: [product51, product52, product53, product54],
-    description: "Rosebud embroidered 2pcs fine quality and stuff",
-    price: "2000",
-    clothType: "Silk",
-    brand: "Rosebud",
-    outfitType: "Eastern Ready to wear",
-    subCategory: "Kurta Set",
-    colorType: "Plum",
-    numberOfPieces: "2 Piece - Top & Bottom",
-    productType: "Daily/Basic Wear",
-    season: "Winter Wear",
-    shirtFabrics: "Linen",
-    trouserFabric: "Linen",
-    dupattaFabric: "Silk",
-    workTechnique: "Embroidery",
-    sizes: ["S", "M", "L", "XL"],
-    sizeChart: [
-      { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
-      { size: "M", sleeve: "34", length: "30", back: "28", neck: "15" },
-      { size: "L", sleeve: "36", length: "32", back: "30", neck: "16" },
-      { size: "XL", sleeve: "38", length: "34", back: "32", neck: "17" },
-    ],
-  },
-  {
-    images: [image2, image1, image3, image4],
+    images: [image2, "https://example.com/image2-2.jpg"],
     description: "Product 3 Description",
     price: "49.99",
     clothType: "Silk",
     brand: "Brand C",
-    outfitType: "Eastern Ready to wear",
-    subCategory: "Kurta Set",
-    colorType: "Yellow",
-    numberOfPieces: "3",
-    productType: "Stitched",
-    season: "Winter",
-    shirtFabrics: "Silk",
-    trouserFabric: "Silk",
-    dupattaFabric: "Silk",
-    workTechnique: "Embroidery",
     sizes: ["S", "M", "L", "XL"],
     sizeChart: [
       { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
@@ -547,6 +144,21 @@ const data3 = [
       { size: "XL", sleeve: "38", length: "34", back: "32", neck: "17" },
     ],
   },
+  {
+    images: [image2, "https://example.com/image2-2.jpg"],
+    description: "Product 3 Description",
+    price: "49.99",
+    clothType: "Silk",
+    brand: "Brand C",
+    sizes: ["S", "M", "L", "XL"],
+    sizeChart: [
+      { size: "S", sleeve: "32", length: "28", back: "26", neck: "14" },
+      { size: "M", sleeve: "34", length: "30", back: "28", neck: "15" },
+      { size: "L", sleeve: "36", length: "32", back: "30", neck: "16" },
+      { size: "XL", sleeve: "38", length: "34", back: "32", neck: "17" },
+    ],
+  },
+  // Add more products as needed
 ];
 
 function SampleNextArrow({ onClick }) {
@@ -560,7 +172,7 @@ function SampleNextArrow({ onClick }) {
   );
 }
 
-const WomenSlider = ({ handleAddToCart }) => {
+const WomenSlider= ({ handleAddToCart }) => {
   const navigate = useNavigate();
 
   const handleProductClick = (product) => {
@@ -609,89 +221,23 @@ const WomenSlider = ({ handleAddToCart }) => {
     <div className="women-slider-container">
       <div className="slider-container">
         <Slider {...settings}>
-          {data1.map((item, i) => (
-            <div key={i} className="product-slide">
-              <Product
-                images={item.images}
-                description={item.description}
-                price={item.price}
-                clothType={item.clothType}
-                brand={item.brand}
-                sizes={item.sizes}
-                outfitType={item.outfitType}
-                subCategory={item.subCategory}
-                colorType={item.colorType}
-                numberOfPieces={item.numberOfPieces}
-                productType={item.productType}
-                season={item.season}
-                shirtFabrics={item.shirtFabrics}
-                trouserFabric={item.trouserFabric}
-                dupattaFabric={item.dupattaFabric}
-                workTechnique={item.workTechnique}
-                sizeChart={item.sizeChart}
-                onAddToCart={handleAddToCart}
-                onImageClick={() => handleProductClick(item)}
-              />
-            </div>
-          ))}
-        </Slider>
-      </div>
-      <div className="slider-container">
-        <Slider {...settings}>
-          {data2.map((item, i) => (
-            <div key={i} className="product-slide">
-              <Product
-                images={item.images}
-                description={item.description}
-                price={item.price}
-                clothType={item.clothType}
-                brand={item.brand}
-                sizes={item.sizes}
-                outfitType={item.outfitType}
-                subCategory={item.subCategory}
-                colorType={item.colorType}
-                numberOfPieces={item.numberOfPieces}
-                productType={item.productType}
-                season={item.season}
-                shirtFabrics={item.shirtFabrics}
-                trouserFabric={item.trouserFabric}
-                dupattaFabric={item.dupattaFabric}
-                workTechnique={item.workTechnique}
-                sizeChart={item.sizeChart}
-                onAddToCart={handleAddToCart}
-                onImageClick={() => handleProductClick(item)}
-              />
-            </div>
-          ))}
-        </Slider>
-      </div>
-      <div className="slider-container">
-        <Slider {...settings}>
-          {data3.map((item, i) => (
-            <div key={i} className="product-slide">
-              <Product
-                images={item.images}
-                description={item.description}
-                price={item.price}
-                clothType={item.clothType}
-                brand={item.brand}
-                sizes={item.sizes}
-                outfitType={item.outfitType}
-                subCategory={item.subCategory}
-                colorType={item.colorType}
-                numberOfPieces={item.numberOfPieces}
-                productType={item.productType}
-                season={item.season}
-                shirtFabrics={item.shirtFabrics}
-                trouserFabric={item.trouserFabric}
-                dupattaFabric={item.dupattaFabric}
-                workTechnique={item.workTechnique}
-                sizeChart={item.sizeChart}
-                onAddToCart={handleAddToCart}
-                onImageClick={() => handleProductClick(item)}
-              />
-            </div>
-          ))}
+          {data.map((item, i) => {
+            return (
+              <div key={i} className="product-slide">
+                <Product
+                  images={item.images}
+                  description={item.description}
+                  price={item.price}
+                  clothType={item.clothType}
+                  brand={item.brand}
+                  sizes={item.sizes}
+                  sizeChart={item.sizeChart}
+                  onAddToCart={handleAddToCart}
+                  onImageClick={() => handleProductClick(item)}
+                />
+              </div>
+            );
+          })}
         </Slider>
       </div>
     </div>
