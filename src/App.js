@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import "./App.css";
 import MainRoutes from "./Components/MainRoutes";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      window.scrollTo(0, 0);
+    };
+
+    window.addEventListener('popstate', handleRouteChange);
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+    };
+  }, []);
 
   const handleAddToCart = (product) => {
     setCartItems((prevItems) => {

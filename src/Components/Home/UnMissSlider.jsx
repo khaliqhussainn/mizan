@@ -172,7 +172,7 @@ function SampleNextArrow({ onClick }) {
   );
 }
 
-const UnMissSlider = ({ handleAddToCart }) => {
+const UnMissSlider= ({ handleAddToCart }) => {
   const navigate = useNavigate();
 
   const handleProductClick = (product) => {
@@ -219,27 +219,6 @@ const UnMissSlider = ({ handleAddToCart }) => {
 
   return (
     <div className="women-slider-container">
-      <div className="slider-container">
-        <Slider {...settings}>
-          {data.map((item, i) => {
-            return (
-              <div key={i} className="product-slide">
-                <Product
-                  images={item.images}
-                  description={item.description}
-                  price={item.price}
-                  clothType={item.clothType}
-                  brand={item.brand}
-                  sizes={item.sizes}
-                  sizeChart={item.sizeChart}
-                  onAddToCart={handleAddToCart}
-                  onImageClick={() => handleProductClick(item)}
-                />
-              </div>
-            );
-          })}
-        </Slider>
-      </div>
       <div className="slider-container">
         <Slider {...settings}>
           {data.map((item, i) => {

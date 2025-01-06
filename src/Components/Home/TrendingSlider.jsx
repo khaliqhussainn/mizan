@@ -172,7 +172,7 @@ function SampleNextArrow({ onClick }) {
   );
 }
 
-const TrendingSlider = ({ handleAddToCart }) => {
+const TrendingSlider= ({ handleAddToCart }) => {
   const navigate = useNavigate();
 
   const handleProductClick = (product) => {

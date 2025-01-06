@@ -12,8 +12,17 @@ import ProductDetail from "../Components/Home/ProductDetail";
 import WomenSlider from "../Components/Home/WomenSlider";
 import SaleSlider from "../Components/Home/SaleSlider";
 import ContactForm from "./Home/ContactForm";
+import UnMissSlider from "./Home/UnMissSlider";
+import TrendingSlider from "./Home/TrendingSlider";
 
-function MainRoutes({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, onSizeChange }) {
+function MainRoutes({
+  cartItems,
+  onAddToCart,
+  onIncrease,
+  onDecrease,
+  onRemove,
+  onSizeChange,
+}) {
   return (
     <Routes>
       <Route
@@ -47,10 +56,7 @@ function MainRoutes({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, 
       <Route path="/users" element={<ManageUsers />} />
       <Route path="/adminLogin" element={<AdminLogin />} />
       <Route path="/admin" element={<Admin />} />
-      <Route
-        path="/contact"
-        element={<ContactForm />}
-      />
+      <Route path="/contact" element={<ContactForm />} />
       <Route
         path="/sale"
         element={<SaleSlider handleAddToCart={onAddToCart} />}
@@ -60,8 +66,25 @@ function MainRoutes({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, 
         element={<WomenSlider handleAddToCart={onAddToCart} />}
       />
       <Route
+        path="/unmiss"
+        element={<UnMissSlider handleAddToCart={onAddToCart} />}
+      />
+      <Route
+        path="/Trending"
+        element={<TrendingSlider handleAddToCart={onAddToCart} />}
+      />
+      <Route
         path="/product-detail"
-        element={<ProductDetail onAddToCart={onAddToCart} />}
+        element={
+          <ProductDetail
+            cartItems={cartItems}
+            onAddToCart={onAddToCart}
+            onIncrease={onIncrease}
+            onDecrease={onDecrease}
+            onRemove={onRemove}
+            onSizeChange={onSizeChange}
+          />
+        }
       />
     </Routes>
   );

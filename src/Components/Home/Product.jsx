@@ -5,7 +5,7 @@ import {
   IoIosInformationCircleOutline,
 } from "react-icons/io";
 import { MdAddShoppingCart } from "react-icons/md";
-
+import { useNavigate } from "react-router-dom";
 import "./home.css";
 
 const Product = ({
@@ -20,10 +20,10 @@ const Product = ({
   onAddToWishlist,
   onRemoveFromWishlist,
   isInWishlist,
-  onImageClick,
 }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
   const handleDotClick = (index) => {
     setCurrentImageIndex(index);
@@ -43,10 +43,26 @@ const Product = ({
     setTimeout(() => setShowPopup(false), 3000); // Hide the popup after 3 seconds
   };
 
+  const handleImageClick = () => {
+    navigate("/product-detail", {
+      state: {
+        product: {
+          images,
+          price,
+          brand,
+          description,
+          clothType,
+          sizes,
+          sizeChart,
+        },
+      },
+    });
+  };
+
   return (
     <div className="product-container">
       <div className="product-image-slider">
-        <div className="image-container">
+        <div className="image-container" onClick={handleImageClick}>
           <img
             src={images[currentImageIndex]}
             alt={`Product ${currentImageIndex}`}
@@ -55,7 +71,7 @@ const Product = ({
             <IoIosInformationCircleOutline
               size={30}
               color="white"
-              onClick={onImageClick}
+              onClick={handleImageClick}
             />
             <div
               onClick={() =>

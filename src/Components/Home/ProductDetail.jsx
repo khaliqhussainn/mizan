@@ -1,17 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./product-detail.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Cart from "../../pages/Cart"; // Import Cart
+import { FaTimes } from "react-icons/fa"; // Import FaTimes
 
-const ProductDetail = ({ onAddToCart }) => {
+const ProductDetail = ({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, onSizeChange }) => {
   const location = useLocation();
   const { product } = location.state || {};
   const [selectedImage, setSelectedImage] = useState(product?.images?.[0] || "");
   const [selectedSize, setSelectedSize] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+  const [showCart, setShowCart] = useState(false);
 
   useEffect(() => {
+    console.log("Cart Items in HomePage:", cartItems);
+  }, [cartItems]);
+
+  useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
@@ -29,14 +38,21 @@ const ProductDetail = ({ onAddToCart }) => {
       return;
     }
 
-    onAddToCart({ ...product, size: selectedSize });
+    onAddToCart({ ...product, size: selectedSize, quantity: 1 });
     setShowPopup(true);
     setTimeout(() => setShowPopup(false), 3000);
   };
 
   return (
     <>
-      <Navbar />
+      <ToastContainer />
+      <Navbar
+        cartItems={cartItems}
+        onIncrease={onIncrease}
+        onDecrease={onDecrease}
+        onRemove={onRemove}
+        onSizeChange={onSizeChange}
+      />
       <div className="product-detail-container">
         <div className="product-images-container">
           {product.images && product.images.length > 0 && (
@@ -129,10 +145,33 @@ const ProductDetail = ({ onAddToCart }) => {
       </div>
 
       {showPopup && (
-        <div className="popup">
+        <div className="popup-modal">
           <div className="popup-content">
-            <h3>Added to Cart</h3>
-            <p>{product.brand} - {product.description} (Size: {selectedSize})</p>
+            <FaTimes className="close-popup" onClick={() => setShowPopup(false)} />
+            <h2>Product Added to Cart</h2>
+            <img src={selectedImage} alt={product.description} className="popup-image" />
+            <h3>{product.brand}</h3>
+            <p>{product.description}</p>
+            <p>Size: {selectedSize}</p>
+            <p>Price: ₹{product.price}</p>
+          </div>
+        </div>
+      )}
+
+      {showCart && (
+        <div className="cart-modal">
+          <div className="cart-content">
+            <FaTimes
+              className="close-cart"
+              onClick={() => setShowCart(false)}
+            />
+            <Cart
+              cartItems={cartItems}
+              onIncrease={onIncrease}
+              onDecrease={onDecrease}
+              onRemove={onRemove}
+              onSizeChange={onSizeChange}
+            />
           </div>
         </div>
       )}
