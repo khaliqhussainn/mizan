@@ -60,6 +60,14 @@ app.post('/payment-success', async (req, res) => {
       created_at: Date.now()
     });
 
+    // Log the user object to debug
+    console.log('User object:', user);
+
+    // Check if user.phoneNumber is present
+    if (!user.phoneNumber) {
+      return res.status(400).json({ error: 'User phone number is missing' });
+    }
+
     // Send SMS notification
     try {
       await twilioClient.messages.create({
