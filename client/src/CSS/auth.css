@@ -385,7 +385,7 @@
 .order-detail-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .order-detail-item p {
