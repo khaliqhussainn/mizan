@@ -3,7 +3,6 @@ const Razorpay = require('razorpay');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const crypto = require('crypto'); // Import the crypto module
-const twilio = require('twilio');
 require('dotenv').config();
 
 const app = express();
@@ -14,8 +13,6 @@ const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET
 });
-
-const twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 // In-memory storage for order history (replace with a real database)
 let orderHistory = {};
@@ -68,19 +65,7 @@ app.post('/payment-success', async (req, res) => {
       return res.status(400).json({ error: 'User phone number is missing' });
     }
 
-    // Send SMS notification
-    try {
-      await twilioClient.messages.create({
-        body: `Payment successful for order ID: ${razorpay_order_id}\nProducts:\n${cartItems.map(item => `${item.brand} - ${item.description} - ₹${item.price}`).join('\n')}`,
-        from: process.env.TWILIO_PHONE_NUMBER, // Change to your Twilio number
-        to: user.phoneNumber // Change to the phone number you want to notify
-      });
-      console.log('SMS sent');
-    } catch (error) {
-      console.error('Error sending SMS:', error);
-    }
-
-    res.json({ message: 'Payment successful and notifications sent' });
+    res.json({ message: 'Payment successful' });
   } else {
     res.status(400).json({ error: 'Invalid payment signature' });
   }
