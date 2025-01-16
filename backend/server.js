@@ -2,11 +2,18 @@ const express = require('express');
 const Razorpay = require('razorpay');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const crypto = require('crypto'); // Import the crypto module
+const crypto = require('crypto');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
+
+// Update CORS configuration to allow requests from your deployed client-side URL
+const corsOptions = {
+  origin: 'https://your-client-url.vercel.app', // Replace with your actual client-side URL
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 const razorpay = new Razorpay({

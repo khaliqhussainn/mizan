@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import "./style.css"
+import "./style.css";
 
 const Cart = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange }) => {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -60,7 +60,7 @@ const Cart = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange }
     }
 
     try {
-      const orderResponse = await axios.post('http://localhost:5000/create-order', {
+      const orderResponse = await axios.post('https://mizan-backend.vercel.app/create-order', {
         amount: totalPrice,
         currency: 'INR'
       });
@@ -77,7 +77,7 @@ const Cart = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange }
           setSuccessMessage('Payment Successful');
 
           // Send payment success notification
-          await axios.post('http://localhost:5000/payment-success', {
+          await axios.post('https://mizan-backend.vercel.app/payment-success', {
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_order_id: response.razorpay_order_id,
             razorpay_signature: response.razorpay_signature,
@@ -86,7 +86,7 @@ const Cart = ({ cartItems = [], onIncrease, onDecrease, onRemove, onSizeChange }
               email: user.email,
               uid: user.uid,
               displayName: user.displayName,
-              phoneNumber: user.phoneNumber // Ensure the user object includes the phone number
+              phoneNumber: user.phoneNumber
             }
           });
 

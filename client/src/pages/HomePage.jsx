@@ -1,4 +1,3 @@
-// HomePage.js
 import React, { useState, useEffect } from "react";
 import HomeSlider from "../Components/Home/HomeSlider";
 import KidSlider from "../Components/Home/KidSlider";
@@ -12,8 +11,8 @@ import Navbar from "../Components/Home/Navbar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./style.css";
-import { FaTimes } from "react-icons/fa"; // Import FaTimes
-import Cart from "./Cart"; // Import Cart
+import { FaTimes } from "react-icons/fa";
+import Cart from "./Cart";
 
 const HomePage = ({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, onSizeChange }) => {
   const [showCart, setShowCart] = useState(false);
