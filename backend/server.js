@@ -9,7 +9,7 @@ const app = express();
 
 // Update CORS configuration to allow requests from your deployed client-side URL
 const corsOptions = {
-  origin: 'https://your-client-url.vercel.app', // Replace with your actual client-side URL
+  origin: 'https://mizancollection.vercel.app', // Replace with your actual client-side URL
   optionsSuccessStatus: 200
 };
 
