@@ -14,7 +14,7 @@ import "./style.css";
 import { FaTimes } from "react-icons/fa";
 import Cart from "./Cart";
 
-const HomePage = ({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, onSizeChange }) => {
+const HomePage = ({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, onSizeChange, products = [] }) => {
   const [showCart, setShowCart] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -29,6 +29,10 @@ const HomePage = ({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, on
     setShowPopup(true);
     setTimeout(() => setShowPopup(false), 3000);
   };
+
+  const stitchedProducts = products.filter(product => product.section === "stitched");
+  const unstitchedProducts = products.filter(product => product.section === "unstitched");
+  const saleProducts = products.filter(product => product.section === "sale");
 
   return (
     <div className="home-page">
@@ -51,19 +55,19 @@ const HomePage = ({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, on
       <div className="container" id="stitched">
         <h2 className="section-title">Stitched </h2>
         <div className="homepage-slider-container">
-          <WomenSlider handleAddToCart={handleAddToCart} />
+          <WomenSlider handleAddToCart={handleAddToCart} products={stitchedProducts} />
         </div>
       </div>
 
       <div className="container" id="unstitched">
         <h2 className="section-title">Unstitched </h2>
-        <UnMissSlider handleAddToCart={handleAddToCart} />
+        <UnMissSlider handleAddToCart={handleAddToCart} products={unstitchedProducts} />
       </div>
 
       <div className="container" id="sale">
         <SaleSlider />
         <h2 className="section-title">Sale</h2>
-        <MenSlider handleAddToCart={handleAddToCart} />
+        <MenSlider handleAddToCart={handleAddToCart} products={saleProducts} />
       </div>
 
       <div className="container" id="trending">

@@ -5,8 +5,8 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Cart from "../../pages/Cart"; // Import Cart
-import { FaTimes } from "react-icons/fa"; // Import FaTimes
+import Cart from "../../pages/Cart";
+import { FaTimes } from "react-icons/fa";
 
 const ProductDetail = ({ cartItems, onAddToCart, onIncrease, onDecrease, onRemove, onSizeChange }) => {
   const location = useLocation();

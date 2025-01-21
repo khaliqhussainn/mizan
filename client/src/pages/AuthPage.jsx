@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { initializeApp } from "firebase/app";
 import Navbar from "../Components/Home/Navbar";
+// import Image from "../Asssets/auth-top.jpeg";
 
 import {
   getAuth,
@@ -187,6 +188,7 @@ const styles = `
   @media (max-width: 480px) {
     .auth-box {
       padding: 20px;
+      margin-top: 80px;
     }
   }
 `;

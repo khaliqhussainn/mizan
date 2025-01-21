@@ -7,9 +7,13 @@ import { RiQuestionnaireFill } from "react-icons/ri";
 import { FiMail } from "react-icons/fi";
 import Logo from "../../Asssets/logo2.png";
 import ContactForm from "./ContactForm";
+import { RiAdminLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 import "./home.css";
 
 const Footer = () => {
+    const navigate = useNavigate();
+
   return (
     <footer className="footer">
       <ContactForm />
@@ -163,6 +167,10 @@ const Footer = () => {
           <p>© 2023 RNA Intellectual Property Limited.</p>
           <p>Terms & Conditions - Privacy Policy</p>
           <p className="footer-link"> Shipping Policy</p>
+          <div style={{display:"flex" , padding:"10px" , gap:"10px"}} className="footer-admin" onClick={() => navigate("/admin")} >
+            <RiAdminLine />
+            <p>Admin Login</p>
+          </div>
         </div>
       </div>
     </footer>

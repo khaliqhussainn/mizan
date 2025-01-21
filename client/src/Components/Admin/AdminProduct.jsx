@@ -18,22 +18,23 @@ import {
 import { Link } from "react-router-dom";
 import AdminSidebar from "./AdminSidebar";
 import AdminNavbar from "./AdminNavbar";
-
-const mockData = {
-  men: [
-    { id: 1, image: "men1.jpg", title: "Men's Shirt", price: 1000 },
-    { id: 2, image: "men2.jpg", title: "Men's Jeans", price: 2000 },
-  ],
-  women: [
-    { id: 3, image: "women1.jpg", title: "Women's Dress", price: 1500 },
-    { id: 4, image: "women2.jpg", title: "Women's Top", price: 800 },
-  ],
-};
+import AdminManageProduct from "./AdminManageProduct";
 
 function AdminProduct() {
   const [category, setCategory] = useState("women");
-  const [products, setProducts] = useState(mockData[category]);
+  const [products, setProducts] = useState([]);
   const toast = useToast();
+
+  const handleAddProduct = (product) => {
+    setProducts((prev) => [...prev, { ...product, id: Date.now() }]);
+    toast({
+      title: "Product Added",
+      description: "Product added to the list.",
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+    });
+  };
 
   const handleDelete = (id) => {
     setProducts((prev) => prev.filter((product) => product.id !== id));
@@ -49,13 +50,15 @@ function AdminProduct() {
   const handleCategoryChange = (e) => {
     const selectedCategory = e.target.value;
     setCategory(selectedCategory);
-    setProducts(mockData[selectedCategory]);
   };
+
+  const filteredProducts = products.filter((product) => product.gender === category);
 
   return (
     <>
       <AdminNavbar />
       <AdminSidebar />
+      <AdminManageProduct onAddProduct={handleAddProduct} />
       <Select
         onChange={handleCategoryChange}
         width="20%"
@@ -72,12 +75,12 @@ function AdminProduct() {
         templateColumns="repeat(3, 1fr)"
         gap="20px"
       >
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <Card key={product.id} maxW="sm">
             <CardBody>
-              <Image src={product.image} alt={product.title} borderRadius="lg" />
+              <Image src={product.images[0]} alt={product.brand} borderRadius="lg" />
               <Stack mt="6" spacing="3">
-                <Heading size="md">{product.title}</Heading>
+                <Heading size="md">{product.brand}</Heading>
                 <Text color="blue.600" fontSize="2xl">
                   ₹ {product.price}
                 </Text>
